@@ -1,7 +1,7 @@
 # UFE-2-FTE
 Universal Fighting Engine 2 Freed Terror Extensions.<br>
 This is a set of scripts and templates to extend Universal Fighting Engine 2<br>
-Import the UFE 2 FTE folder into unity or unity package.<br>
+Import the UFE 2 FTE folder or unity package into unity.<br>
 
 Base Requirements: Universal Fighting Engine 2<br>
 
