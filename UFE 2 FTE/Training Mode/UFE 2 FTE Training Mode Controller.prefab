@@ -1,0 +1,121 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4426527056074196292
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4216679614923189824}
+  - component: {fileID: 7019840559665710648}
+  - component: {fileID: -6157243383486644313}
+  - component: {fileID: 575982588273573085}
+  - component: {fileID: -7438159799160510535}
+  - component: {fileID: -4440709370174604774}
+  m_Layer: 0
+  m_Name: UFE 2 FTE Training Mode Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4216679614923189824
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4426527056074196292}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7019840559665710648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4426527056074196292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 304d3cec300f99b45b6b81ed1b2e4dbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trainingModeAIMode: 0
+  activeFramesBeginOffset: -1
+--- !u!114 &-6157243383486644313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4426527056074196292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e80c23e549f1f641af04b96408fa8a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  excludedButtonPressArray: 
+  availableTracks: 5
+  maxRecordingFrames: 600
+--- !u!114 &575982588273573085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4426527056074196292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 478943189dfa7064f9a884db6f8fef8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultTrainingModeLifeMode: 2
+  currentTrainingModeLifeMode: 2
+  defaultTrainingModeGaugeMode: 2
+  currentTrainingModeGaugeMode: 2
+--- !u!114 &-7438159799160510535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4426527056074196292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79e1613cd1667284e8318d5d21067f1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trainingModePositionPlayerControl: 0
+  useLeftCornerPositionButtonPress: 0
+  leftCornerPositionButtonPress: 0
+  useRightCornerPositionButtonPress: 0
+  rightCornerPositionButtonPress: 0
+  useResetPositionButtonPress: 0
+  resetPositionButtonPress: 0
+  cornerPositionXOffset:
+    _serializedValue: 12884901888
+--- !u!114 &-4440709370174604774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4426527056074196292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80ed8332fee6a8e46a1e6e6b3852c4f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trainingModeSaveAndLoadStatePlayerControl: 0
+  useSaveStateButtonPress: 0
+  saveStateButtonPress: 0
+  useLoadStateButtonPress: 0
+  loadStateButtonPress: 0
