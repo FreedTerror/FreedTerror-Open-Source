@@ -18,14 +18,7 @@ public class Fix64InspectorAttributePropertyDrawer : PropertyDrawer
     private readonly string widthFieldName = "width";
     private readonly string heightFieldName = "height";
 
-    private SerializedProperty coreFieldLongValueProperty = null;
-    private SerializedProperty xFieldLongValueProperty = null;
-    private SerializedProperty yFieldLongValueProperty = null;
-    private SerializedProperty zFieldLongValueProperty = null;
-    private SerializedProperty widthFieldLongValueProperty = null;
-    private SerializedProperty heightFieldLongValueProperty = null;
-
-    private bool isRectType;
+    private bool useRectFieldTypePropertyHeight;
 
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
@@ -33,16 +26,13 @@ public class Fix64InspectorAttributePropertyDrawer : PropertyDrawer
             || fieldInfo.FieldType == typeof(Fix64[])
             || fieldInfo.FieldType == typeof(List<Fix64>))
         {
+            SerializedProperty coreFieldLongValueProperty = property.FindPropertyRelative(coreFieldName);
+
             if (coreFieldLongValueProperty == null)
             {
-                coreFieldLongValueProperty = property.FindPropertyRelative(coreFieldName);
+                EditorGUI.LabelField(position, unsupportedUsageErrorMessageName);
 
-                if (coreFieldLongValueProperty == null)
-                {
-                    EditorGUI.LabelField(position, unsupportedUsageErrorMessageName);
-
-                    return;
-                }
+                return;
             }
 
             float newFloat = EditorGUI.FloatField(
@@ -56,19 +46,15 @@ public class Fix64InspectorAttributePropertyDrawer : PropertyDrawer
             || fieldInfo.FieldType == typeof(FPVector2[])
             || fieldInfo.FieldType == typeof(List<FPVector2>))
         {
+            SerializedProperty xFieldLongValueProperty = property.FindPropertyRelative(xFieldName).FindPropertyRelative(coreFieldName);
+            SerializedProperty yFieldLongValueProperty = property.FindPropertyRelative(yFieldName).FindPropertyRelative(coreFieldName);
+
             if (xFieldLongValueProperty == null
                 || yFieldLongValueProperty == null)
             {
-                xFieldLongValueProperty = property.FindPropertyRelative(xFieldName).FindPropertyRelative(coreFieldName);
-                yFieldLongValueProperty = property.FindPropertyRelative(yFieldName).FindPropertyRelative(coreFieldName);
+                EditorGUI.LabelField(position, unsupportedUsageErrorMessageName);
 
-                if (xFieldLongValueProperty == null
-                    || yFieldLongValueProperty == null)
-                {
-                    EditorGUI.LabelField(position, unsupportedUsageErrorMessageName);
-
-                    return;
-                }
+                return;
             }
 
             Vector2 newVector = EditorGUI.Vector2Field(
@@ -85,22 +71,17 @@ public class Fix64InspectorAttributePropertyDrawer : PropertyDrawer
             || fieldInfo.FieldType == typeof(FPVector[])
             || fieldInfo.FieldType == typeof(List<FPVector>))
         {
+            SerializedProperty xFieldLongValueProperty = property.FindPropertyRelative(xFieldName).FindPropertyRelative(coreFieldName);
+            SerializedProperty yFieldLongValueProperty = property.FindPropertyRelative(yFieldName).FindPropertyRelative(coreFieldName);
+            SerializedProperty zFieldLongValueProperty = property.FindPropertyRelative(zFieldName).FindPropertyRelative(coreFieldName);
+
             if (xFieldLongValueProperty == null
                 || yFieldLongValueProperty == null
                 || zFieldLongValueProperty == null)
             {
-                xFieldLongValueProperty = property.FindPropertyRelative(xFieldName).FindPropertyRelative(coreFieldName);
-                yFieldLongValueProperty = property.FindPropertyRelative(yFieldName).FindPropertyRelative(coreFieldName);
-                zFieldLongValueProperty = property.FindPropertyRelative(zFieldName).FindPropertyRelative(coreFieldName);
+                EditorGUI.LabelField(position, unsupportedUsageErrorMessageName);
 
-                if (xFieldLongValueProperty == null
-                    || yFieldLongValueProperty == null
-                    || zFieldLongValueProperty == null)
-                {
-                    EditorGUI.LabelField(position, unsupportedUsageErrorMessageName);
-
-                    return;
-                }
+                return;
             }
 
             Vector3 newVector = EditorGUI.Vector3Field(
@@ -119,28 +100,20 @@ public class Fix64InspectorAttributePropertyDrawer : PropertyDrawer
             || fieldInfo.FieldType == typeof(FPRect[])
             || fieldInfo.FieldType == typeof(List<FPRect>))
         {
+            SerializedProperty xFieldLongValueProperty = property.FindPropertyRelative(_xFieldName).FindPropertyRelative(coreFieldName);
+            SerializedProperty yFieldLongValueProperty = property.FindPropertyRelative(_yFieldName).FindPropertyRelative(coreFieldName);
+            SerializedProperty widthFieldLongValueProperty = property.FindPropertyRelative(widthFieldName).FindPropertyRelative(coreFieldName);
+            SerializedProperty heightFieldLongValueProperty = property.FindPropertyRelative(heightFieldName).FindPropertyRelative(coreFieldName);
+
             if (xFieldLongValueProperty == null
                 || yFieldLongValueProperty == null
                 || widthFieldLongValueProperty == null
                 || heightFieldLongValueProperty == null)
             {
-                xFieldLongValueProperty = property.FindPropertyRelative(_xFieldName).FindPropertyRelative(coreFieldName);
-                yFieldLongValueProperty = property.FindPropertyRelative(_yFieldName).FindPropertyRelative(coreFieldName);
-                widthFieldLongValueProperty = property.FindPropertyRelative(widthFieldName).FindPropertyRelative(coreFieldName);
-                heightFieldLongValueProperty = property.FindPropertyRelative(heightFieldName).FindPropertyRelative(coreFieldName);
+                EditorGUI.LabelField(position, unsupportedUsageErrorMessageName);
 
-                if (xFieldLongValueProperty == null
-                    || yFieldLongValueProperty == null
-                    || widthFieldLongValueProperty == null
-                    || heightFieldLongValueProperty == null)
-                {
-                    EditorGUI.LabelField(position, unsupportedUsageErrorMessageName);
-
-                    return;
-                }
+                return;
             }
-
-            isRectType = true;
 
             Rect newRect = EditorGUI.RectField(
                 position,
@@ -155,6 +128,8 @@ public class Fix64InspectorAttributePropertyDrawer : PropertyDrawer
             yFieldLongValueProperty.longValue = ((Fix64)newRect.y).RawValue;
             widthFieldLongValueProperty.longValue = ((Fix64)newRect.width).RawValue;
             heightFieldLongValueProperty.longValue = ((Fix64)newRect.height).RawValue;
+
+            useRectFieldTypePropertyHeight = true;
         }
         else
         {        
@@ -164,7 +139,7 @@ public class Fix64InspectorAttributePropertyDrawer : PropertyDrawer
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
-        if (isRectType == true)
+        if (useRectFieldTypePropertyHeight == true)
         {
             return (EditorGUIUtility.standardVerticalSpacing + EditorGUIUtility.singleLineHeight) * 2;
         }

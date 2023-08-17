@@ -31,6 +31,14 @@ namespace UFE2FTE
         public SpriteOptions spriteOptions;
 
         [Serializable]
+        public class PopcronGizmosOptions
+        {
+            [Range(0, 100)]
+            public int pointsCount = 16;
+        }
+        public PopcronGizmosOptions popcronGizmosOptions;
+
+        [Serializable]
         public class InitialOptions
         {
             [Range(0, 255)]

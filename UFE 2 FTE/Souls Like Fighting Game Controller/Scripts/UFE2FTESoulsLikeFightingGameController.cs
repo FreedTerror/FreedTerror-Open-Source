@@ -636,17 +636,17 @@ namespace UFE2FTE
             switch (UFE.GetPlayer1ControlsScript().currentState)
             {
                 case PossibleStates.Stand:
-                    UFE2FTEHelperMethodsManager.CastMove(UFE.GetPlayer1ControlsScript(), parryOptions.standParryConfirmReactMoveName);
+                    UFE2FTEHelperMethodsManager.CastMoveByMoveName(UFE.GetPlayer1ControlsScript(), parryOptions.standParryConfirmReactMoveName);
                     break;
 
                 case PossibleStates.Crouch:
-                    UFE2FTEHelperMethodsManager.CastMove(UFE.GetPlayer1ControlsScript(), parryOptions.crouchParryConfirmReactMoveName);
+                    UFE2FTEHelperMethodsManager.CastMoveByMoveName(UFE.GetPlayer1ControlsScript(), parryOptions.crouchParryConfirmReactMoveName);
                     break;
 
                 case PossibleStates.NeutralJump:
                 case PossibleStates.ForwardJump:
                 case PossibleStates.BackJump:
-                    UFE2FTEHelperMethodsManager.CastMove(UFE.GetPlayer1ControlsScript(), parryOptions.jumpParryConfirmReactMoveName);
+                    UFE2FTEHelperMethodsManager.CastMoveByMoveName(UFE.GetPlayer1ControlsScript(), parryOptions.jumpParryConfirmReactMoveName);
                     break;
             }
         }
@@ -661,17 +661,17 @@ namespace UFE2FTE
             switch (UFE.GetPlayer2ControlsScript().currentState)
             {
                 case PossibleStates.Stand:
-                    UFE2FTEHelperMethodsManager.CastMove(UFE.GetPlayer2ControlsScript(), parryOptions.standParryConfirmReactMoveName);
+                    UFE2FTEHelperMethodsManager.CastMoveByMoveName(UFE.GetPlayer2ControlsScript(), parryOptions.standParryConfirmReactMoveName);
                     break;
 
                 case PossibleStates.Crouch:
-                    UFE2FTEHelperMethodsManager.CastMove(UFE.GetPlayer2ControlsScript(), parryOptions.crouchParryConfirmReactMoveName);
+                    UFE2FTEHelperMethodsManager.CastMoveByMoveName(UFE.GetPlayer2ControlsScript(), parryOptions.crouchParryConfirmReactMoveName);
                     break;
 
                 case PossibleStates.NeutralJump:
                 case PossibleStates.ForwardJump:
                 case PossibleStates.BackJump:
-                    UFE2FTEHelperMethodsManager.CastMove(UFE.GetPlayer2ControlsScript(), parryOptions.jumpParryConfirmReactMoveName);
+                    UFE2FTEHelperMethodsManager.CastMoveByMoveName(UFE.GetPlayer2ControlsScript(), parryOptions.jumpParryConfirmReactMoveName);
                     break;
             }
         }
@@ -1047,36 +1047,36 @@ namespace UFE2FTE
             switch (basicMove)
             {
                 case BasicMoveReference.BlockingHighHit:
-                    UFE2FTEHelperMethodsManager.CastMove(player, blockBreakOptions.standHighBlockBreakMoveName);
+                    UFE2FTEHelperMethodsManager.CastMoveByMoveName(player, blockBreakOptions.standHighBlockBreakMoveName);
                     break;
 
                 case BasicMoveReference.BlockingLowHit:
-                    UFE2FTEHelperMethodsManager.CastMove(player, blockBreakOptions.standLowBlockBreakMoveName);
+                    UFE2FTEHelperMethodsManager.CastMoveByMoveName(player, blockBreakOptions.standLowBlockBreakMoveName);
                     break;
 
                 case BasicMoveReference.BlockingCrouchingHit:
-                    UFE2FTEHelperMethodsManager.CastMove(player, blockBreakOptions.crouchBlockBreakMoveName);
+                    UFE2FTEHelperMethodsManager.CastMoveByMoveName(player, blockBreakOptions.crouchBlockBreakMoveName);
                     break;
 
                 case BasicMoveReference.BlockingAirHit:
-                    UFE2FTEHelperMethodsManager.CastMove(player, blockBreakOptions.jumpBlockBreakMoveName);
+                    UFE2FTEHelperMethodsManager.CastMoveByMoveName(player, blockBreakOptions.jumpBlockBreakMoveName);
                     break;
 
                 default:
                     switch (player.currentState)
                     {
                         case PossibleStates.Stand:
-                            UFE2FTEHelperMethodsManager.CastMove(player, blockBreakOptions.standHighBlockBreakMoveName);
+                            UFE2FTEHelperMethodsManager.CastMoveByMoveName(player, blockBreakOptions.standHighBlockBreakMoveName);
                             break;
 
                         case PossibleStates.Crouch:
-                            UFE2FTEHelperMethodsManager.CastMove(player, blockBreakOptions.crouchBlockBreakMoveName);
+                            UFE2FTEHelperMethodsManager.CastMoveByMoveName(player, blockBreakOptions.crouchBlockBreakMoveName);
                             break;
 
                         case PossibleStates.NeutralJump:
                         case PossibleStates.ForwardJump:
                         case PossibleStates.BackJump:
-                            UFE2FTEHelperMethodsManager.CastMove(player, blockBreakOptions.jumpBlockBreakMoveName);
+                            UFE2FTEHelperMethodsManager.CastMoveByMoveName(player, blockBreakOptions.jumpBlockBreakMoveName);
                             break;
                     }
                     break;

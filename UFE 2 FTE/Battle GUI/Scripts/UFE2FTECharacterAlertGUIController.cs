@@ -12,6 +12,12 @@ namespace UFE2FTE
         private class CharacterData
         {
             public CurrentFrameData currentFrameData;
+            [Serializable]
+            public class CurrentFrameDataOverrideOptions
+            {
+                public CurrentFrameData currentFrameData;
+                public string[] moveNameArray;
+            }       
             public bool armor;
             public int armorHitsRemaining;
             public bool invincibility;
@@ -177,6 +183,49 @@ namespace UFE2FTE
                     characterData.standUp = false;
                 }
             }
+
+            public static void SetCharacterDataCurrentFrameDataOverrideOptions(ControlsScript player, CharacterData characterData, CurrentFrameDataOverrideOptions currentFrameDataOverrideOptions)
+            {
+                if (player == null
+                    || characterData == null
+                    || currentFrameDataOverrideOptions == null)
+                {
+                    return;
+                }
+
+                if (currentFrameDataOverrideOptions.moveNameArray != null
+                    && player.currentMove != null)
+                {
+                    int length = currentFrameDataOverrideOptions.moveNameArray.Length;
+                    for (int i = 0; i < length; i++)
+                    {
+                        if (player.currentMove.moveName != currentFrameDataOverrideOptions.moveNameArray[i])
+                        {
+                            continue;
+                        }
+
+                        characterData.currentFrameData = currentFrameDataOverrideOptions.currentFrameData;
+
+                        break;
+                    }
+                }
+            }
+
+            public static void SetCharacterDataCurrentFrameDataOverrideOptions(ControlsScript player, CharacterData characterData, CurrentFrameDataOverrideOptions[] currentFrameDataOverrideOptionsArray)
+            {
+                if (player == null
+                    || characterData == null
+                    || currentFrameDataOverrideOptionsArray == null)
+                {
+                    return;
+                }
+
+                int length = currentFrameDataOverrideOptionsArray.Length;
+                for (int i = 0; i < length; i++)
+                {
+                    SetCharacterDataCurrentFrameDataOverrideOptions(player, characterData, currentFrameDataOverrideOptionsArray[i]);
+                }
+            }
         }
         private CharacterData player1CharacterData = new CharacterData();
         private CharacterData player2CharacterData = new CharacterData();
@@ -216,7 +265,9 @@ namespace UFE2FTE
         [SerializeField]
         private Color32 firstHitAlertColor = new Color32(255, 255, 255, 255);
         [SerializeField]
-        private bool useCounterHitAlertOnNewAlert = true;
+        private bool useCounterHitAlertOnNewAlert;
+        [SerializeField]
+        private bool useCounterHitAlertOnHit = true;
         [SerializeField]
         private string counterHitAlertName = "COUNTER HIT";
         [SerializeField]
@@ -335,6 +386,9 @@ namespace UFE2FTE
         [SerializeField]
         private MoveNameAlertData[] moveNameAlertDataOnMoveArray;
 
+        [SerializeField]
+        private CharacterData.CurrentFrameDataOverrideOptions[] currentFrameDataOverrideOptionsArray;
+
         private void OnEnable()
         {
             UFE2FTESoulsLikeFightingGameEventsManager.OnBlockBreak += OnBlockBreak;
@@ -365,6 +419,10 @@ namespace UFE2FTE
             CharacterData.SetCharacterData(UFE.GetPlayer1ControlsScript(), player1CharacterData);
 
             CharacterData.SetCharacterData(UFE.GetPlayer2ControlsScript(), player2CharacterData);
+
+            CharacterData.SetCharacterDataCurrentFrameDataOverrideOptions(UFE.GetPlayer1ControlsScript(), player1CharacterData, currentFrameDataOverrideOptionsArray);
+
+            CharacterData.SetCharacterDataCurrentFrameDataOverrideOptions(UFE.GetPlayer2ControlsScript(), player2CharacterData, currentFrameDataOverrideOptionsArray);
 
             SetContinuousInvincibilityAlert();
 
@@ -434,6 +492,8 @@ namespace UFE2FTE
             StartArmorBreakerAlertOnHit(player, hitInfo);
 
             StartPunishAlertOnHit(player);
+
+            StartCounterHitAlertOnHit(player);
         }
 
         private void OnBlock(HitBox strokeHitBox, MoveInfo move, Hit hitInfo, ControlsScript player)
@@ -1060,6 +1120,54 @@ namespace UFE2FTE
 
         #region On Hit Alert Methods
 
+        private void StartCounterHitAlertOnHit(ControlsScript player)
+        {
+            if (useCounterHitAlertOnHit == false
+                || player == null)
+            {
+                return;
+            }
+
+            if (this.player == Player.Player1
+                && player == UFE.GetPlayer1ControlsScript()
+                && player2CharacterData.currentFrameData == CurrentFrameData.StartupFrames
+                && player2CharacterData.armor == false)
+            {
+                StartCharacterAlertGUI(counterHitAlertName, counterHitAlertColor);
+            }
+            else if (this.player == Player.Player2
+                && player == UFE.GetPlayer2ControlsScript()
+                && player1CharacterData.currentFrameData == CurrentFrameData.StartupFrames
+                && player1CharacterData.armor == false)
+            {
+                StartCharacterAlertGUI(counterHitAlertName, counterHitAlertColor);
+            }
+        }
+
+        private void StartPunishAlertOnHit(ControlsScript player)
+        {
+            if (usePunishAlertOnHit == false
+                || player == null)
+            {
+                return;
+            }
+
+            if (this.player == Player.Player1
+                && player == UFE.GetPlayer1ControlsScript()
+                && player2CharacterData.currentFrameData == CurrentFrameData.RecoveryFrames
+                && player2CharacterData.armor == false)
+            {
+                StartCharacterAlertGUI(punishAlertName, punishAlertColor);
+            }
+            else if (this.player == Player.Player2
+                && player == UFE.GetPlayer2ControlsScript()
+                && player1CharacterData.currentFrameData == CurrentFrameData.RecoveryFrames
+                && player1CharacterData.armor == false)
+            {
+                StartCharacterAlertGUI(punishAlertName, punishAlertColor);
+            }
+        }
+
         private void StartArmorAlertOnHit(ControlsScript player, Hit hitInfo)
         {
             if (useArmorAlertOnHit == false
@@ -1149,30 +1257,6 @@ namespace UFE2FTE
                 && UFE.GetPlayer1ControlsScript().comboHits <= 0)
             {
                 StartCharacterAlertGUI(unblockableAlertName, unblockableAlertColor);
-            }
-        }
-
-        private void StartPunishAlertOnHit(ControlsScript player)
-        {
-            if (usePunishAlertOnHit == false
-                || player == null)
-            {
-                return;
-            }
-
-            if (this.player == Player.Player1
-                && player == UFE.GetPlayer1ControlsScript()
-                && player2CharacterData.currentFrameData == CurrentFrameData.RecoveryFrames
-                && player2CharacterData.armor == false)
-            {
-                StartCharacterAlertGUI(punishAlertName, punishAlertColor);
-            }
-            else if (this.player == Player.Player2
-                && player == UFE.GetPlayer2ControlsScript()
-                && player1CharacterData.currentFrameData == CurrentFrameData.RecoveryFrames
-                && player1CharacterData.armor == false)
-            {
-                StartCharacterAlertGUI(punishAlertName, punishAlertColor);
             }
         }
 

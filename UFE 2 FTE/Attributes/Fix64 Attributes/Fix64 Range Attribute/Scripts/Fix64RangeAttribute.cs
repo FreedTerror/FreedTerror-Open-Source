@@ -5,12 +5,21 @@ using UnityEngine;
 /// </summary>
 public class Fix64RangeAttribute : PropertyAttribute
 {
-    public float min { get; private set; }
-    public float max { get; private set; }
+    public readonly float? minFloat;
+    public readonly float? maxFloat;
 
-    public Fix64RangeAttribute(float min, float max)
+    public Fix64RangeAttribute(float minFloat, float maxFloat)
     {
-        this.min = min;
-        this.max = max;
+        this.minFloat = minFloat;
+        this.maxFloat = maxFloat;
+    }
+
+    public readonly int? minInt;
+    public readonly int? maxInt;
+
+    public Fix64RangeAttribute(int minInt, int maxInt)
+    {
+        this.minInt = minInt;
+        this.maxInt = maxInt;
     }
 }

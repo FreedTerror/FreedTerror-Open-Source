@@ -2514,7 +2514,7 @@ namespace UFE2FTE
                                 case CollisionType.bodyCollider:
                                     if (characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayGameObject.activeInHierarchy == true)
                                     {
-                                        Popcron.Gizmos.Circle(characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.position, (characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.x + characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.y) / 4, characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.rotation, hitBoxDisplayConfigurationScriptableObject.characterHitBoxOptions.bodyColliderOptions.colliderColor);
+                                        Popcron.Gizmos.Circle(characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.position, (characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.x + characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.y) / 4, characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.rotation, hitBoxDisplayConfigurationScriptableObject.characterHitBoxOptions.bodyColliderOptions.colliderColor, false, hitBoxDisplayConfigurationScriptableObject.popcronGizmosOptions.pointsCount);
                                     }
 
                                     if (characterHitBoxDisplayList[i].hitBoxesRectangleGameObjectArray[a].hitBoxDisplayGameObject.activeInHierarchy == true)
@@ -2526,7 +2526,7 @@ namespace UFE2FTE
                                 case CollisionType.hitCollider:
                                     if (characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayGameObject.activeInHierarchy == true)
                                     {
-                                        Popcron.Gizmos.Circle(characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.position, (characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.x + characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.y) / 4, characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.rotation, hitBoxDisplayConfigurationScriptableObject.characterHitBoxOptions.hitColliderOptions.colliderColor);
+                                        Popcron.Gizmos.Circle(characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.position, (characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.x + characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.y) / 4, characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.rotation, hitBoxDisplayConfigurationScriptableObject.characterHitBoxOptions.hitColliderOptions.colliderColor, false, hitBoxDisplayConfigurationScriptableObject.popcronGizmosOptions.pointsCount);
                                     }
 
                                     if (characterHitBoxDisplayList[i].hitBoxesRectangleGameObjectArray[a].hitBoxDisplayGameObject.activeInHierarchy == true)
@@ -2538,7 +2538,7 @@ namespace UFE2FTE
                                 case CollisionType.noCollider:
                                     if (characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayGameObject.activeInHierarchy == true)
                                     {
-                                        Popcron.Gizmos.Circle(characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.position, (characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.x + characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.y) / 4, characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.rotation, hitBoxDisplayConfigurationScriptableObject.characterHitBoxOptions.noColliderOptions.colliderColor);
+                                        Popcron.Gizmos.Circle(characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.position, (characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.x + characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.y) / 4, characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.rotation, hitBoxDisplayConfigurationScriptableObject.characterHitBoxOptions.noColliderOptions.colliderColor, false, hitBoxDisplayConfigurationScriptableObject.popcronGizmosOptions.pointsCount);
                                     }
 
                                     if (characterHitBoxDisplayList[i].hitBoxesRectangleGameObjectArray[a].hitBoxDisplayGameObject.activeInHierarchy == true)
@@ -2550,7 +2550,7 @@ namespace UFE2FTE
                                 case CollisionType.throwCollider:
                                     if (characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayGameObject.activeInHierarchy == true)
                                     {
-                                        Popcron.Gizmos.Circle(characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.position, (characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.x + characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.y) / 4, characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.rotation, hitBoxDisplayConfigurationScriptableObject.characterHitBoxOptions.throwColliderOptions.colliderColor);
+                                        Popcron.Gizmos.Circle(characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.position, (characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.x + characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.y) / 4, characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.rotation, hitBoxDisplayConfigurationScriptableObject.characterHitBoxOptions.throwColliderOptions.colliderColor, false, hitBoxDisplayConfigurationScriptableObject.popcronGizmosOptions.pointsCount);
                                     }
 
                                     if (characterHitBoxDisplayList[i].hitBoxesRectangleGameObjectArray[a].hitBoxDisplayGameObject.activeInHierarchy == true)
@@ -2562,7 +2562,7 @@ namespace UFE2FTE
                                 case CollisionType.projectileInvincibleCollider:
                                     if (characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayGameObject.activeInHierarchy == true)
                                     {
-                                        Popcron.Gizmos.Circle(characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.position, (characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.x + characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.y) / 4, characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.rotation, hitBoxDisplayConfigurationScriptableObject.characterHitBoxOptions.projectileInvincibleColliderOptions.colliderColor);
+                                        Popcron.Gizmos.Circle(characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.position, (characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.x + characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.y) / 4, characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.rotation, hitBoxDisplayConfigurationScriptableObject.characterHitBoxOptions.projectileInvincibleColliderOptions.colliderColor, false, hitBoxDisplayConfigurationScriptableObject.popcronGizmosOptions.pointsCount);
                                     }
 
                                     if (characterHitBoxDisplayList[i].hitBoxesRectangleGameObjectArray[a].hitBoxDisplayGameObject.activeInHierarchy == true)
@@ -2574,7 +2574,7 @@ namespace UFE2FTE
                                 case CollisionType.physicalInvincibleCollider:
                                     if (characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayGameObject.activeInHierarchy == true)
                                     {
-                                        Popcron.Gizmos.Circle(characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.position, (characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.x + characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.y) / 4, characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.rotation, hitBoxDisplayConfigurationScriptableObject.characterHitBoxOptions.physicalInvincibleColliderOptions.colliderColor);
+                                        Popcron.Gizmos.Circle(characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.position, (characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.x + characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.y) / 4, characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.rotation, hitBoxDisplayConfigurationScriptableObject.characterHitBoxOptions.physicalInvincibleColliderOptions.colliderColor, false, hitBoxDisplayConfigurationScriptableObject.popcronGizmosOptions.pointsCount);
                                     }
 
                                     if (characterHitBoxDisplayList[i].hitBoxesRectangleGameObjectArray[a].hitBoxDisplayGameObject.activeInHierarchy == true)
@@ -2593,7 +2593,7 @@ namespace UFE2FTE
                                 continue;
                             }
 
-                            Popcron.Gizmos.Circle(characterHitBoxDisplayList[i].activeHurtBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.position, (characterHitBoxDisplayList[i].activeHurtBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.x + characterHitBoxDisplayList[i].activeHurtBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.y) / 4, characterHitBoxDisplayList[i].activeHurtBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.rotation, hitBoxDisplayConfigurationScriptableObject.characterHitBoxOptions.activeHurtBoxOptions.colliderColor);
+                            Popcron.Gizmos.Circle(characterHitBoxDisplayList[i].activeHurtBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.position, (characterHitBoxDisplayList[i].activeHurtBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.x + characterHitBoxDisplayList[i].activeHurtBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.y) / 4, characterHitBoxDisplayList[i].activeHurtBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.rotation, hitBoxDisplayConfigurationScriptableObject.characterHitBoxOptions.activeHurtBoxOptions.colliderColor, false, hitBoxDisplayConfigurationScriptableObject.popcronGizmosOptions.pointsCount);
                         }
 
                         lengthA = characterHitBoxDisplayList[i].activeHurtBoxesRectangleGameObjectArray.Length;
@@ -2609,7 +2609,7 @@ namespace UFE2FTE
 
                         if (characterHitBoxDisplayList[i].blockableAreaCircleGameObject.hitBoxDisplayGameObject.activeInHierarchy == true)
                         {
-                            Popcron.Gizmos.Circle(characterHitBoxDisplayList[i].blockableAreaCircleGameObject.hitBoxDisplayTransform.position, (characterHitBoxDisplayList[i].blockableAreaCircleGameObject.hitBoxDisplayTransform.localScale.x + characterHitBoxDisplayList[i].blockableAreaCircleGameObject.hitBoxDisplayTransform.localScale.y) / 4, characterHitBoxDisplayList[i].blockableAreaCircleGameObject.hitBoxDisplayTransform.rotation, hitBoxDisplayConfigurationScriptableObject.projectileHitBoxOptions.blockableAreaOptions.colliderColor);
+                            Popcron.Gizmos.Circle(characterHitBoxDisplayList[i].blockableAreaCircleGameObject.hitBoxDisplayTransform.position, (characterHitBoxDisplayList[i].blockableAreaCircleGameObject.hitBoxDisplayTransform.localScale.x + characterHitBoxDisplayList[i].blockableAreaCircleGameObject.hitBoxDisplayTransform.localScale.y) / 4, characterHitBoxDisplayList[i].blockableAreaCircleGameObject.hitBoxDisplayTransform.rotation, hitBoxDisplayConfigurationScriptableObject.projectileHitBoxOptions.blockableAreaOptions.colliderColor, false, hitBoxDisplayConfigurationScriptableObject.popcronGizmosOptions.pointsCount);
                         }
 
                         if (characterHitBoxDisplayList[i].blockableAreaRectangleGameObject.hitBoxDisplayGameObject.activeInHierarchy == true)
@@ -2623,7 +2623,7 @@ namespace UFE2FTE
                     {
                         if (projectileHitBoxDisplayList[i].hitAreaCircleGameObject.hitBoxDisplayGameObject.activeInHierarchy == true)
                         {
-                            Popcron.Gizmos.Circle(projectileHitBoxDisplayList[i].hitAreaCircleGameObject.hitBoxDisplayTransform.position, (projectileHitBoxDisplayList[i].hitAreaCircleGameObject.hitBoxDisplayTransform.localScale.x + projectileHitBoxDisplayList[i].hitAreaCircleGameObject.hitBoxDisplayTransform.localScale.y) / 4, projectileHitBoxDisplayList[i].hitAreaCircleGameObject.hitBoxDisplayTransform.rotation, hitBoxDisplayConfigurationScriptableObject.projectileHitBoxOptions.hitAreaOptions.colliderColor);
+                            Popcron.Gizmos.Circle(projectileHitBoxDisplayList[i].hitAreaCircleGameObject.hitBoxDisplayTransform.position, (projectileHitBoxDisplayList[i].hitAreaCircleGameObject.hitBoxDisplayTransform.localScale.x + projectileHitBoxDisplayList[i].hitAreaCircleGameObject.hitBoxDisplayTransform.localScale.y) / 4, projectileHitBoxDisplayList[i].hitAreaCircleGameObject.hitBoxDisplayTransform.rotation, hitBoxDisplayConfigurationScriptableObject.projectileHitBoxOptions.hitAreaOptions.colliderColor, false, hitBoxDisplayConfigurationScriptableObject.popcronGizmosOptions.pointsCount);
                         }
 
                         if (projectileHitBoxDisplayList[i].hitAreaRectangleGameObject.hitBoxDisplayGameObject.activeInHierarchy == true)
@@ -2633,7 +2633,7 @@ namespace UFE2FTE
 
                         if (projectileHitBoxDisplayList[i].blockableAreaCircleGameObject.hitBoxDisplayGameObject.activeInHierarchy == true)
                         {
-                            Popcron.Gizmos.Circle(projectileHitBoxDisplayList[i].blockableAreaCircleGameObject.hitBoxDisplayTransform.position, (projectileHitBoxDisplayList[i].blockableAreaCircleGameObject.hitBoxDisplayTransform.localScale.x + projectileHitBoxDisplayList[i].blockableAreaCircleGameObject.hitBoxDisplayTransform.localScale.y) / 4, projectileHitBoxDisplayList[i].blockableAreaCircleGameObject.hitBoxDisplayTransform.rotation, hitBoxDisplayConfigurationScriptableObject.projectileHitBoxOptions.blockableAreaOptions.colliderColor);
+                            Popcron.Gizmos.Circle(projectileHitBoxDisplayList[i].blockableAreaCircleGameObject.hitBoxDisplayTransform.position, (projectileHitBoxDisplayList[i].blockableAreaCircleGameObject.hitBoxDisplayTransform.localScale.x + projectileHitBoxDisplayList[i].blockableAreaCircleGameObject.hitBoxDisplayTransform.localScale.y) / 4, projectileHitBoxDisplayList[i].blockableAreaCircleGameObject.hitBoxDisplayTransform.rotation, hitBoxDisplayConfigurationScriptableObject.projectileHitBoxOptions.blockableAreaOptions.colliderColor, false, hitBoxDisplayConfigurationScriptableObject.popcronGizmosOptions.pointsCount);
                         }
 
                         if (projectileHitBoxDisplayList[i].blockableAreaRectangleGameObject.hitBoxDisplayGameObject.activeInHierarchy == true)
@@ -2657,7 +2657,7 @@ namespace UFE2FTE
                                 case CollisionType.bodyCollider:
                                     if (characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayGameObject.activeInHierarchy == true)
                                     {
-                                        Popcron.Gizmos.Sphere(characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.position, (characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.x + characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.y) / 4, hitBoxDisplayConfigurationScriptableObject.characterHitBoxOptions.bodyColliderOptions.colliderColor);
+                                        Popcron.Gizmos.Sphere(characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.position, (characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.x + characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.y) / 4, hitBoxDisplayConfigurationScriptableObject.characterHitBoxOptions.bodyColliderOptions.colliderColor, false, hitBoxDisplayConfigurationScriptableObject.popcronGizmosOptions.pointsCount);
                                     }
 
                                     if (characterHitBoxDisplayList[i].hitBoxesRectangleGameObjectArray[a].hitBoxDisplayGameObject.activeInHierarchy == true)
@@ -2669,7 +2669,7 @@ namespace UFE2FTE
                                 case CollisionType.hitCollider:
                                     if (characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayGameObject.activeInHierarchy == true)
                                     {
-                                        Popcron.Gizmos.Sphere(characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.position, (characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.x + characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.y) / 4, hitBoxDisplayConfigurationScriptableObject.characterHitBoxOptions.hitColliderOptions.colliderColor);
+                                        Popcron.Gizmos.Sphere(characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.position, (characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.x + characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.y) / 4, hitBoxDisplayConfigurationScriptableObject.characterHitBoxOptions.hitColliderOptions.colliderColor, false, hitBoxDisplayConfigurationScriptableObject.popcronGizmosOptions.pointsCount);
                                     }
 
                                     if (characterHitBoxDisplayList[i].hitBoxesRectangleGameObjectArray[a].hitBoxDisplayGameObject.activeInHierarchy == true)
@@ -2681,7 +2681,7 @@ namespace UFE2FTE
                                 case CollisionType.noCollider:
                                     if (characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayGameObject.activeInHierarchy == true)
                                     {
-                                        Popcron.Gizmos.Sphere(characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.position, (characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.x + characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.y) / 4, hitBoxDisplayConfigurationScriptableObject.characterHitBoxOptions.noColliderOptions.colliderColor);
+                                        Popcron.Gizmos.Sphere(characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.position, (characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.x + characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.y) / 4, hitBoxDisplayConfigurationScriptableObject.characterHitBoxOptions.noColliderOptions.colliderColor, false, hitBoxDisplayConfigurationScriptableObject.popcronGizmosOptions.pointsCount);
                                     }
 
                                     if (characterHitBoxDisplayList[i].hitBoxesRectangleGameObjectArray[a].hitBoxDisplayGameObject.activeInHierarchy == true)
@@ -2693,7 +2693,7 @@ namespace UFE2FTE
                                 case CollisionType.throwCollider:
                                     if (characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayGameObject.activeInHierarchy == true)
                                     {
-                                        Popcron.Gizmos.Sphere(characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.position, (characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.x + characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.y) / 4, hitBoxDisplayConfigurationScriptableObject.characterHitBoxOptions.throwColliderOptions.colliderColor);
+                                        Popcron.Gizmos.Sphere(characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.position, (characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.x + characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.y) / 4, hitBoxDisplayConfigurationScriptableObject.characterHitBoxOptions.throwColliderOptions.colliderColor, false, hitBoxDisplayConfigurationScriptableObject.popcronGizmosOptions.pointsCount);
                                     }
 
                                     if (characterHitBoxDisplayList[i].hitBoxesRectangleGameObjectArray[a].hitBoxDisplayGameObject.activeInHierarchy == true)
@@ -2705,7 +2705,7 @@ namespace UFE2FTE
                                 case CollisionType.projectileInvincibleCollider:
                                     if (characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayGameObject.activeInHierarchy == true)
                                     {
-                                        Popcron.Gizmos.Sphere(characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.position, (characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.x + characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.y) / 4, hitBoxDisplayConfigurationScriptableObject.characterHitBoxOptions.projectileInvincibleColliderOptions.colliderColor);
+                                        Popcron.Gizmos.Sphere(characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.position, (characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.x + characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.y) / 4, hitBoxDisplayConfigurationScriptableObject.characterHitBoxOptions.projectileInvincibleColliderOptions.colliderColor, false, hitBoxDisplayConfigurationScriptableObject.popcronGizmosOptions.pointsCount);
                                     }
 
                                     if (characterHitBoxDisplayList[i].hitBoxesRectangleGameObjectArray[a].hitBoxDisplayGameObject.activeInHierarchy == true)
@@ -2717,7 +2717,7 @@ namespace UFE2FTE
                                 case CollisionType.physicalInvincibleCollider:
                                     if (characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayGameObject.activeInHierarchy == true)
                                     {
-                                        Popcron.Gizmos.Sphere(characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.position, (characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.x + characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.y) / 4, hitBoxDisplayConfigurationScriptableObject.characterHitBoxOptions.physicalInvincibleColliderOptions.colliderColor);
+                                        Popcron.Gizmos.Sphere(characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.position, (characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.x + characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.y) / 4, hitBoxDisplayConfigurationScriptableObject.characterHitBoxOptions.physicalInvincibleColliderOptions.colliderColor, false, hitBoxDisplayConfigurationScriptableObject.popcronGizmosOptions.pointsCount);
                                     }
 
                                     if (characterHitBoxDisplayList[i].hitBoxesRectangleGameObjectArray[a].hitBoxDisplayGameObject.activeInHierarchy == true)
@@ -2736,7 +2736,7 @@ namespace UFE2FTE
                                 continue;
                             }
 
-                            Popcron.Gizmos.Sphere(characterHitBoxDisplayList[i].activeHurtBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.position, (characterHitBoxDisplayList[i].activeHurtBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.x + characterHitBoxDisplayList[i].activeHurtBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.y) / 4, hitBoxDisplayConfigurationScriptableObject.characterHitBoxOptions.activeHurtBoxOptions.colliderColor);
+                            Popcron.Gizmos.Sphere(characterHitBoxDisplayList[i].activeHurtBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.position, (characterHitBoxDisplayList[i].activeHurtBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.x + characterHitBoxDisplayList[i].activeHurtBoxesCircleGameObjectArray[a].hitBoxDisplayTransform.localScale.y) / 4, hitBoxDisplayConfigurationScriptableObject.characterHitBoxOptions.activeHurtBoxOptions.colliderColor, false, hitBoxDisplayConfigurationScriptableObject.popcronGizmosOptions.pointsCount);
                         }
 
                         lengthA = characterHitBoxDisplayList[i].activeHurtBoxesRectangleGameObjectArray.Length;
@@ -2752,7 +2752,7 @@ namespace UFE2FTE
 
                         if (characterHitBoxDisplayList[i].blockableAreaCircleGameObject.hitBoxDisplayGameObject.activeInHierarchy == true)
                         {
-                            Popcron.Gizmos.Sphere(characterHitBoxDisplayList[i].blockableAreaCircleGameObject.hitBoxDisplayTransform.position, (characterHitBoxDisplayList[i].blockableAreaCircleGameObject.hitBoxDisplayTransform.localScale.x + characterHitBoxDisplayList[i].blockableAreaCircleGameObject.hitBoxDisplayTransform.localScale.y) / 4, hitBoxDisplayConfigurationScriptableObject.projectileHitBoxOptions.blockableAreaOptions.colliderColor);
+                            Popcron.Gizmos.Sphere(characterHitBoxDisplayList[i].blockableAreaCircleGameObject.hitBoxDisplayTransform.position, (characterHitBoxDisplayList[i].blockableAreaCircleGameObject.hitBoxDisplayTransform.localScale.x + characterHitBoxDisplayList[i].blockableAreaCircleGameObject.hitBoxDisplayTransform.localScale.y) / 4, hitBoxDisplayConfigurationScriptableObject.projectileHitBoxOptions.blockableAreaOptions.colliderColor, false, hitBoxDisplayConfigurationScriptableObject.popcronGizmosOptions.pointsCount);
                         }
 
                         if (characterHitBoxDisplayList[i].blockableAreaRectangleGameObject.hitBoxDisplayGameObject.activeInHierarchy == true)
@@ -2766,7 +2766,7 @@ namespace UFE2FTE
                     {
                         if (projectileHitBoxDisplayList[i].hitAreaCircleGameObject.hitBoxDisplayGameObject.activeInHierarchy == true)
                         {
-                            Popcron.Gizmos.Sphere(projectileHitBoxDisplayList[i].hitAreaCircleGameObject.hitBoxDisplayTransform.position, (projectileHitBoxDisplayList[i].hitAreaCircleGameObject.hitBoxDisplayTransform.localScale.x + projectileHitBoxDisplayList[i].hitAreaCircleGameObject.hitBoxDisplayTransform.localScale.y) / 4, hitBoxDisplayConfigurationScriptableObject.projectileHitBoxOptions.hitAreaOptions.colliderColor);
+                            Popcron.Gizmos.Sphere(projectileHitBoxDisplayList[i].hitAreaCircleGameObject.hitBoxDisplayTransform.position, (projectileHitBoxDisplayList[i].hitAreaCircleGameObject.hitBoxDisplayTransform.localScale.x + projectileHitBoxDisplayList[i].hitAreaCircleGameObject.hitBoxDisplayTransform.localScale.y) / 4, hitBoxDisplayConfigurationScriptableObject.projectileHitBoxOptions.hitAreaOptions.colliderColor, false, hitBoxDisplayConfigurationScriptableObject.popcronGizmosOptions.pointsCount);
                         }
 
                         if (projectileHitBoxDisplayList[i].hitAreaRectangleGameObject.hitBoxDisplayGameObject.activeInHierarchy == true)
@@ -2776,7 +2776,7 @@ namespace UFE2FTE
 
                         if (projectileHitBoxDisplayList[i].blockableAreaCircleGameObject.hitBoxDisplayGameObject.activeInHierarchy == true)
                         {
-                            Popcron.Gizmos.Sphere(projectileHitBoxDisplayList[i].blockableAreaCircleGameObject.hitBoxDisplayTransform.position, (projectileHitBoxDisplayList[i].blockableAreaCircleGameObject.hitBoxDisplayTransform.localScale.x + projectileHitBoxDisplayList[i].blockableAreaCircleGameObject.hitBoxDisplayTransform.localScale.y) / 4, hitBoxDisplayConfigurationScriptableObject.projectileHitBoxOptions.blockableAreaOptions.colliderColor);
+                            Popcron.Gizmos.Sphere(projectileHitBoxDisplayList[i].blockableAreaCircleGameObject.hitBoxDisplayTransform.position, (projectileHitBoxDisplayList[i].blockableAreaCircleGameObject.hitBoxDisplayTransform.localScale.x + projectileHitBoxDisplayList[i].blockableAreaCircleGameObject.hitBoxDisplayTransform.localScale.y) / 4, hitBoxDisplayConfigurationScriptableObject.projectileHitBoxOptions.blockableAreaOptions.colliderColor, false, hitBoxDisplayConfigurationScriptableObject.popcronGizmosOptions.pointsCount);
                         }
 
                         if (projectileHitBoxDisplayList[i].blockableAreaRectangleGameObject.hitBoxDisplayGameObject.activeInHierarchy == true)

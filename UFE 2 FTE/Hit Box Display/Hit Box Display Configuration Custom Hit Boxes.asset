@@ -24,6 +24,8 @@ MonoBehaviour:
     circleFillSprite: {fileID: 21300000, guid: b44933aef4a8207418bfee2bfc01f10f, type: 3}
     rectangleFillSprite: {fileID: 21300000, guid: b337373cb89441d468aa30f2a0c75a18,
       type: 3}
+  popcronGizmosOptions:
+    pointsCount: 16
   initialOptions:
     initialAlphaValue: 128
   characterHitBoxOptions:

@@ -44,17 +44,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a770478ee33bee4d970c5b4c9698966, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fix64Range:
+  fix64RangeFloat:
     _serializedValue: 0
-  fix64RangeArray: []
-  fix64RangeList: []
+  fix64RangeFloatArray: []
+  fix64RangeFloatList: []
+  fix64RangeInt:
+    _serializedValue: 0
+  fix64RangeIntArray: []
+  fix64RangeIntList: []
   nestedClass:
-    fix64Range:
+    fix64RangeFloat:
       _serializedValue: 0
-    fix64RangeArray: []
-    fix64RangeList: []
+    fix64RangeFloatArray: []
+    fix64RangeFloatList: []
+    fix64RangeInt:
+      _serializedValue: 0
+    fix64RangeIntArray: []
+    fix64RangeIntList: []
   nestedStruct:
-    fix64Range:
+    fix64RangeFloat:
       _serializedValue: 0
-    fix64RangeArray: []
-    fix64RangeList: []
+    fix64RangeFloatArray: []
+    fix64RangeFloatList: []
+    fix64RangeInt:
+      _serializedValue: 0
+    fix64RangeIntArray: []
+    fix64RangeIntList: []

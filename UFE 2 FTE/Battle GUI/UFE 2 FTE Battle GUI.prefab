@@ -76,12 +76,12 @@ MonoBehaviour:
   muteAnnouncer: 0
   announcer:
     announcerName: 
-    round1: {fileID: 8300000, guid: f475a23da438b434989d3510c6394779, type: 3}
-    round2: {fileID: 8300000, guid: 4d2ddf6c55385b24c9d5684bf7dfdd09, type: 3}
-    round3: {fileID: 8300000, guid: 8f28c0add4599cb409fde079faf05036, type: 3}
-    otherRounds: {fileID: 8300000, guid: 8f28c0add4599cb409fde079faf05036, type: 3}
-    finalRound: {fileID: 8300000, guid: 8f28c0add4599cb409fde079faf05036, type: 3}
-    fight: {fileID: 8300000, guid: 8e39e137a16e6d44699979a55a3f5391, type: 3}
+    round1: {fileID: 0}
+    round2: {fileID: 0}
+    round3: {fileID: 0}
+    otherRounds: {fileID: 0}
+    finalRound: {fileID: 0}
+    fight: {fileID: 0}
     player1Wins: {fileID: 0}
     player2Wins: {fileID: 0}
     perfect: {fileID: 0}
@@ -14256,7 +14256,8 @@ MonoBehaviour:
   firstHitAlertColor:
     serializedVersion: 2
     rgba: 4294967295
-  useCounterHitAlertOnNewAlert: 1
+  useCounterHitAlertOnNewAlert: 0
+  useCounterHitAlertOnHit: 1
   counterHitAlertName: COUNTER HIT
   counterHitAlertColor:
     serializedVersion: 2
@@ -14332,6 +14333,10 @@ MonoBehaviour:
   onNewAlertDataArray: []
   basicMoveAlertDataOnBasicMoveArray: []
   moveNameAlertDataOnMoveArray: []
+  currentFrameDataOverrideOptionsArray:
+  - currentFrameData: 0
+    moveNameArray:
+    - Throw Reaction Launch Vertical Rise
 --- !u!1 &2600694945234385301
 GameObject:
   m_ObjectHideFlags: 0
@@ -33186,7 +33191,8 @@ MonoBehaviour:
   firstHitAlertColor:
     serializedVersion: 2
     rgba: 4294967295
-  useCounterHitAlertOnNewAlert: 1
+  useCounterHitAlertOnNewAlert: 0
+  useCounterHitAlertOnHit: 1
   counterHitAlertName: COUNTER HIT
   counterHitAlertColor:
     serializedVersion: 2
@@ -33262,6 +33268,10 @@ MonoBehaviour:
   onNewAlertDataArray: []
   basicMoveAlertDataOnBasicMoveArray: []
   moveNameAlertDataOnMoveArray: []
+  currentFrameDataOverrideOptionsArray:
+  - currentFrameData: 0
+    moveNameArray:
+    - Throw Reaction Launch Vertical Rise
 --- !u!1 &7327987771699652322
 GameObject:
   m_ObjectHideFlags: 0

@@ -319,6 +319,16 @@ namespace UFE2FTE
 
         #region Move Info Methods
 
+        public static void CastMoveByMoveName(ControlsScript player, string moveName, bool overrideCurrentMove = true, bool forceGrounded = false, bool castWarning = false)
+        {
+            if (player == null)
+            {
+                return;
+            }
+
+            player.CastMove(GetMoveInfoByMoveNameFromMoveInfoCollection(moveName, player.MoveSet.attackMoves), overrideCurrentMove, forceGrounded, castWarning);
+        }
+
         public static MoveInfo GetMoveInfoByMoveNameFromMoveInfoCollection(string moveName, MoveInfo[] moveInfoArray)
         {
             if (moveInfoArray == null)
@@ -338,16 +348,6 @@ namespace UFE2FTE
             }
 
             return null;
-        }
-
-        public static void CastMove(ControlsScript player, string moveName, bool overrideCurrentMove = true, bool forceGrounded = false, bool castWarning = false)
-        {
-            if (player == null)
-            {
-                return;
-            }
-
-            player.CastMove(GetMoveInfoByMoveNameFromMoveInfoCollection(moveName, player.MoveSet.attackMoves), overrideCurrentMove, forceGrounded, castWarning);
         }
 
         public static void KillAllMoves(ControlsScript player)
