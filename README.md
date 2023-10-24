@@ -5,7 +5,7 @@ Import the UFE 2 FTE folder or unity package into unity.<br>
 
 Base Requirements: Universal Fighting Engine 2<br>
 
-Optional Requirements (You can delete any scripts that you dont want to use that cause errors):<br>
+Optional Requirements (You can delete any scripts that cause errors):<br>
 Color Palette Swapper Shader: https://assetstore.unity.com/packages/vfx/shaders/color-palette-swapper-shader-153978<br>
 Easy Save 3: https://assetstore.unity.com/packages/tools/utilities/easy-save-the-complete-save-data-serializer-system-768<br>
 PUN 2: https://assetstore.unity.com/packages/tools/network/pun-2-free-119922<br>
