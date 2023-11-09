@@ -1,0 +1,118 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Input Display Sprite Atlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_IgnorePlatformSupport: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 2
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 1
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: edf963e6cbe0eef46901bb71e6b3c4df, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys:
+    - 7102ce60600a84043bcaefc3f7fc971d: 21300000
+    - b0ee53911ff96b34e8d5d2d54451ded2: 21300000
+    - 75277bf128510014f9f9b7f7b982cfad: 21300000
+    - d1e6333323bc6a240923f89e580517a7: 21300000
+    - 1e004855e18a1b240945943893c93158: 21300000
+    - 6e716c95e9ed4c14293e845b7539ab72: 21300000
+    - faffa137afb6bc44da01cd14df6ab14f: 21300000
+    - 79d920686d66f4643afe053a2cfc88ea: 21300000
+    - fcccd6a8cf2a8b445ac2d6bd4c422aad: 21300000
+    - bfa0a0f906742fe4aa62a4afcd109023: 21300000
+    - 7db1e9f9a11294048ab2368b3cf32119: 21300000
+    - 52c01f2a0d23cbb46a2ccd52f4fb63da: 21300000
+    - 5b5540bc28a1be64abf17877700ebd28: 21300000
+    - c41e35ec1401a47488269563c37186ae: 21300000
+    - eef4a37d4922971498860713d78480f8: 21300000
+    - 67244f7da4d100346bd561212bb00c62: 21300000
+    - d776c9de7eb62a34ca202e8b747efe70: 21300000
+    - 494222ee62c3e784cbbc3b84ea7cd6cc: 21300000
+    - 8f5c3e2f75ea3a9418bb1a7fbbc23469: 21300000
+    - 9b1d336fc318ed84d81239c4c4099dff: 21300000
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 7102ce60600a84043bcaefc3f7fc971d, type: 3}
+  - {fileID: 21300000, guid: b0ee53911ff96b34e8d5d2d54451ded2, type: 3}
+  - {fileID: 21300000, guid: 75277bf128510014f9f9b7f7b982cfad, type: 3}
+  - {fileID: 21300000, guid: d1e6333323bc6a240923f89e580517a7, type: 3}
+  - {fileID: 21300000, guid: 1e004855e18a1b240945943893c93158, type: 3}
+  - {fileID: 21300000, guid: 6e716c95e9ed4c14293e845b7539ab72, type: 3}
+  - {fileID: 21300000, guid: faffa137afb6bc44da01cd14df6ab14f, type: 3}
+  - {fileID: 21300000, guid: 79d920686d66f4643afe053a2cfc88ea, type: 3}
+  - {fileID: 21300000, guid: fcccd6a8cf2a8b445ac2d6bd4c422aad, type: 3}
+  - {fileID: 21300000, guid: bfa0a0f906742fe4aa62a4afcd109023, type: 3}
+  - {fileID: 21300000, guid: 7db1e9f9a11294048ab2368b3cf32119, type: 3}
+  - {fileID: 21300000, guid: 52c01f2a0d23cbb46a2ccd52f4fb63da, type: 3}
+  - {fileID: 21300000, guid: 5b5540bc28a1be64abf17877700ebd28, type: 3}
+  - {fileID: 21300000, guid: c41e35ec1401a47488269563c37186ae, type: 3}
+  - {fileID: 21300000, guid: eef4a37d4922971498860713d78480f8, type: 3}
+  - {fileID: 21300000, guid: 67244f7da4d100346bd561212bb00c62, type: 3}
+  - {fileID: 21300000, guid: d776c9de7eb62a34ca202e8b747efe70, type: 3}
+  - {fileID: 21300000, guid: 494222ee62c3e784cbbc3b84ea7cd6cc, type: 3}
+  - {fileID: 21300000, guid: 8f5c3e2f75ea3a9418bb1a7fbbc23469, type: 3}
+  - {fileID: 21300000, guid: 9b1d336fc318ed84d81239c4c4099dff, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Input Display Button 2
+  - Input Display Button 6
+  - Input Display Button 4
+  - Input Display Up Back
+  - Input Display Down Forward
+  - Input Display Button 8
+  - Input Display Button 7
+  - Input Display Up Forward
+  - Input Display Button 12
+  - Input Display Down
+  - Input Display Back
+  - Input Display Forward
+  - Input Display Up
+  - Input Display Button 5
+  - Input Display Button 3
+  - Input Display Down Back
+  - Input Display Button 9
+  - Input Display Button 1
+  - Input Display Button 10
+  - Input Display Button 11
+  m_RenderDataMap: {}
+  m_Tag: Input Display Sprite Atlas
+  m_IsVariant: 0

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80fa0ec8e928d5f4286a7117718147ec, type: 3}
+  m_Name: Default Air Game Settings
+  m_EditorClassIdentifier: 
+  totalRounds: 3
+  timer:
+    _serializedValue: 386547056640
+  maximumGroundBounces: 1
+  maximumWallBounces: 1
+  allowAirBlock: 1
+  parryType: 2
+  allowAirParry: 1
+  parryTiming:
+    _serializedValue: 257698032

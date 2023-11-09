@@ -1,0 +1,117 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2631787234362687395
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7339318383673677917}
+  - component: {fileID: 5456064192281693899}
+  m_Layer: 0
+  m_Name: Fix64 Attribute Example
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7339318383673677917
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2631787234362687395}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5456064192281693899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2631787234362687395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07a8000240088494991e0d09deeca3e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fix64Inspector:
+    _serializedValue: 0
+  fix64InspectorArray: []
+  fix64InspectorList: []
+  fix64InspectorVector2:
+    x:
+      _serializedValue: 0
+    y:
+      _serializedValue: 0
+  fix64InspectorVector2Array: []
+  fix64InspectorVector2List: []
+  fix64InspectorVector3:
+    x:
+      _serializedValue: 0
+    y:
+      _serializedValue: 0
+    z:
+      _serializedValue: 0
+  fix64InspectorVector3Array: []
+  fix64InspectorVector3List: []
+  fix64InspectorRect:
+    _x:
+      _serializedValue: 0
+    _y:
+      _serializedValue: 0
+    topRight:
+      x:
+        _serializedValue: 0
+      y:
+        _serializedValue: 0
+      z:
+        _serializedValue: 0
+    topLeft:
+      x:
+        _serializedValue: 0
+      y:
+        _serializedValue: 0
+      z:
+        _serializedValue: 0
+    bottomRight:
+      x:
+        _serializedValue: 0
+      y:
+        _serializedValue: 0
+      z:
+        _serializedValue: 0
+    bottomLeft:
+      x:
+        _serializedValue: 0
+      y:
+        _serializedValue: 0
+      z:
+        _serializedValue: 0
+    width:
+      _serializedValue: 0
+    height:
+      _serializedValue: 0
+    xMax:
+      _serializedValue: 0
+    yMax:
+      _serializedValue: 0
+  fix64InspectorRectArray: []
+  fix64InspectorRectList: []
+  fix64RangeFloat:
+    _serializedValue: 0
+  fix64RangeFloatArray: []
+  fix64RangeFloatList: []
+  fix64RangeInt:
+    _serializedValue: 0
+  fix64RangeIntArray: []
+  fix64RangeIntList: []

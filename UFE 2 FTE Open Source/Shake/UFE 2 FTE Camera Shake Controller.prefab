@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6014803809019139402
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 386781263470579274}
+  - component: {fileID: 3593109146074700266}
+  m_Layer: 0
+  m_Name: UFE 2 FTE Camera Shake Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &386781263470579274
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6014803809019139402}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3593109146074700266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6014803809019139402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bad6e6aa21cb7440830b56d95e40de0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myTransform: {fileID: 0}
+  onBasicMoveOptionsArray:
+  - transformShakeScriptableObject: {fileID: 11400000, guid: 88237b56d2b6de746a4e0d0741b4b24c,
+      type: 2}
+    basicMoveArray: 20000000
+  - transformShakeScriptableObject: {fileID: 11400000, guid: 4392fd10bad4dc740ad4a3643c014d58,
+      type: 2}
+    basicMoveArray: 23000000
+  onMoveOptionsArray:
+  - transformShakeScriptableObject: {fileID: 11400000, guid: 0afd466fd6e138947ac03480213817c3,
+      type: 2}
+    moveNameArray:
+    - Knockdown
+  - transformShakeScriptableObject: {fileID: 11400000, guid: ed0592da29a07de459acb01b7d9c7deb,
+      type: 2}
+    moveNameArray:
+    - Knockdown Launch Vertical Hit Ground
+  onHitOptionsArray:
+  - transformShakeScriptableObject: {fileID: 11400000, guid: e84336b78c5a2ec448a8783aeffe2d9d,
+      type: 2}
+    hitStrength: 0
+  - transformShakeScriptableObject: {fileID: 11400000, guid: 7b4874ec5a812d141bc40099c4999130,
+      type: 2}
+    hitStrength: 1
+  - transformShakeScriptableObject: {fileID: 11400000, guid: b0ddd60d85a22894e9f89af336cbca39,
+      type: 2}
+    hitStrength: 2

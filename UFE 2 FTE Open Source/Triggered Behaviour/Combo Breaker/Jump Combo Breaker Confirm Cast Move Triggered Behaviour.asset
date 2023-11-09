@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70b92beb1d81f804282f0e2f689edaa5, type: 3}
+  m_Name: Jump Combo Breaker Confirm Cast Move Triggered Behaviour
+  m_EditorClassIdentifier: 
+  castMoveName: Jump Combo Breaker Confirm
+  delayActionTimeOptions:
+    delayActionTime:
+      _serializedValue: 0
+    useFreezingTimeAsDelayActionTime: 1
+  targetOptions:
+    excludedCharacterNameArray: []
+    usePlayer: 1
+    usePlayerAssist: 1
+    useAllPlayerAssists: 0
+    useOpponent: 1
+    useOpponentAssist: 1
+    useAllOpponentAssists: 0

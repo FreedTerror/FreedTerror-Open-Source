@@ -1,0 +1,135 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92d8a659f2f3fbc48a31ba640e6c1782, type: 3}
+  m_Name: New Language Data Scriptable Object
+  m_EditorClassIdentifier: 
+  LanguageName: English
+  DefaultLanguage: 1
+  ProjectName: Project Name
+  Armor: Armor
+  ArmorBreaker: Armor Breaker
+  ArmorBroken: Armor Broken
+  ArmoredHit: Armored Hit
+  Attributes: Attributes
+  Back: Back
+  BlockAll: Block All
+  BlockStand: Stand Block
+  BlockCrouch: Crouch Block
+  Challenge: Challenge
+  ChallengeMode: Challenge Mode
+  Crouch: Crouch
+  ChargeTiming: Charge Timing
+  CounterHit: Counter Hit
+  GroundBounce: Ground Bounce
+  DoubleKo: Double K.O.
+  Draw: Draw
+  Friction: Friction
+  FinalRound: Final Round
+  Fight: Fight
+  FrameAbbrevation: ' F'
+  FirstHit: First Hit
+  ForceStand: Force Stand
+  HighKnockdown: High Knockdown
+  Human: Human
+  HitBoxDisplaySpriteRenderer2DInfront: 2D Infront
+  HitBoxDisplaySpriteRenderer2DBehind: 2D Behind
+  HitBoxDisplayMeshRenderer3D: 3D
+  HitBoxDisplayPopcronGizmos2D: Popcron Gizmos 2D
+  HitBoxDisplayPopcronGizmos3D: Popcron Gizmos 3D
+  Infinite: Infinite
+  Invincibility: Invincibility
+  InputDisplaySequence: Sequence
+  InputDisplayPress: Press
+  InputDisplayRelease: Release
+  InputDisplayForward: '>'
+  InputDisplayBack: '>'
+  InputDisplayUp: '>'
+  InputDisplayUpForward: '>'
+  InputDisplayUpBack: '>'
+  InputDisplayDown: '>'
+  InputDisplayDownForward: '>'
+  InputDisplayDownBack: '>'
+  InputDisplayButton1: 1
+  InputDisplayButton2: 2
+  InputDisplayButton3: 3
+  InputDisplayButton4: 4
+  InputDisplayButton5: 5
+  InputDisplayButton6: 6
+  InputDisplayButton7: 7
+  InputDisplayButton8: 8
+  InputDisplayButton9: 9
+  InputDisplayButton10: 10
+  InputDisplayButton11: 11
+  InputDisplayButton12: 12
+  Juggle: Juggle
+  JumpNeutral: Neutral Jump
+  JumpForward: Forward Jump
+  JumpBackward: Backward Jump
+  JumpStartupFrames: Jump Startup Frames
+  JumpLandingFrames: Jump Landing Frames
+  JumpForce: Jump Force
+  JumpForwardDistance: Jump Forward Distance
+  JumpBackDistance: Jump Back Distance
+  Knockback: Knockback
+  Ko: K.O.
+  Low: Low
+  Launcher: Launcher
+  MoveForward: Move Forward
+  MoveBackward: Move Backward
+  MoveList: Move List
+  MaxLifePoints: Maximum Life Points
+  MaxGaugePoints: Maximum Gauge Points
+  MoveForwardSpeed: Walk Forward Speed
+  MoveBackSpeed: Walk Back Speed
+  MoveSidewaysSpeed: Walk Sideways Speed
+  Mid: Mid
+  MidKnockdown: Mid Knockdown
+  No: No
+  Normal: Normal
+  NegativeAbbrevation: '-'
+  On: On
+  Off: Off
+  Overhead: Overhead
+  OnlineMode: Online Mode
+  Otg: Otg
+  Pause: Pause
+  Player1: Player 1
+  Player2: Player 2
+  PotentialParry: PotentialParry
+  Parry: Parry
+  ParryAll: Parry All
+  ParryStand: Stand Parry
+  ParryCrouch: Crouch Parry
+  ParryJump: Jump Parry
+  Perfect: Perfect
+  Punish: Punish
+  PercentAbbrevation: '%'
+  PositiveAbbrevation: +
+  Quit: Quit
+  Refill: Refill
+  Round: Round
+  Ready: Ready
+  Stand: Stand
+  Sweep: Sweep
+  Seconds: Seconds
+  Success: Success
+  SecondsAbbrevation: ' S'
+  TimeOut: Time Out
+  TrainingMode: Training Mode
+  TutorialMode: Tutorial Mode
+  Tutorial: Tutorial
+  Throw: Throw
+  Unblockable: 
+  Weight: Weight
+  WallBounce: Wall Bounce
+  WakeUp: Wake Up
+  Yes: Yes

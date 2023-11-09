@@ -1,0 +1,1223 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b736e3ebcde1ee458a6dc07dee9cf36, type: 3}
+  m_Name: Tutorial Challenges
+  m_EditorClassIdentifier: 
+  challengeOptionsArray:
+  - challengeName: Walking
+    challengeDescription: 
+    player1Character: {fileID: 11400000, guid: 9bb7e60ab2ec9bd46826321be83f95da, type: 2}
+    player2Character: {fileID: 11400000, guid: 9bb7e60ab2ec9bd46826321be83f95da, type: 2}
+    stageName: Training Room (Prefab)
+    onChallengeCompleteOptions:
+      nextChallengeDelay:
+        _serializedValue: 0
+      eventType: 0
+    resetChallengeOptions:
+      resetIfOpponentNotStunned: 0
+      resetOnHit: 0
+      resetOnBlock: 0
+      resetOnParry: 0
+    aiOptions:
+      aiOpponent: 0
+    challengeActionsArray:
+    - challengeActionName: Walk Forward
+      challengeActionDescription: Walk Forward
+      successValue:
+        _serializedValue: 12884901888
+      eventType: 0
+      resetChallengeActionOptions:
+        resetIfOpponentNotStunned: 0
+        resetOnHit: 0
+        resetOnBlock: 0
+        resetOnParry: 0
+      onButtonOptions:
+        eventType: 1
+        buttonPress: 0
+      onBasicMoveOptions:
+        eventType: 0
+        basicMove: 0
+      moveInfoOptions:
+        eventType: 0
+        moveInfo: {fileID: 0}
+        displayMoveInfoMoveName: 0
+        displayMoveInfoDefaultInputs: 0
+        displayMoveInfoAlternativeInputs: 0
+      gaugeOptions:
+        player1GaugePercent:
+          _serializedValue: 0
+        useAllGauges: 0
+        gaugeIdArray: 
+      inputDisplayOptions:
+        inputDisplayButtonPressArray: 00000000
+      scriptedActionOptionsSelectionType: 0
+      scriptedActionOptionsArrayIndex: 0
+      scriptedActionOptionsArrayIndexRandomWithExclusion: 0
+      applyRandomWithExclusion: 0
+      scriptedActionOptionsArray: []
+    - challengeActionName: Walk Backwards
+      challengeActionDescription: Walk Backwards
+      successValue:
+        _serializedValue: 12884901888
+      eventType: 0
+      resetChallengeActionOptions:
+        resetIfOpponentNotStunned: 0
+        resetOnHit: 0
+        resetOnBlock: 0
+        resetOnParry: 0
+      onButtonOptions:
+        eventType: 1
+        buttonPress: 1
+      onBasicMoveOptions:
+        eventType: 0
+        basicMove: 0
+      moveInfoOptions:
+        eventType: 0
+        moveInfo: {fileID: 0}
+        displayMoveInfoMoveName: 0
+        displayMoveInfoDefaultInputs: 0
+        displayMoveInfoAlternativeInputs: 0
+      gaugeOptions:
+        player1GaugePercent:
+          _serializedValue: 0
+        useAllGauges: 0
+        gaugeIdArray: 
+      inputDisplayOptions:
+        inputDisplayButtonPressArray: 01000000
+      scriptedActionOptionsSelectionType: 0
+      scriptedActionOptionsArrayIndex: 0
+      scriptedActionOptionsArrayIndexRandomWithExclusion: 0
+      applyRandomWithExclusion: 0
+      scriptedActionOptionsArray: []
+    - challengeActionName: Crouch
+      challengeActionDescription: Crouch
+      successValue:
+        _serializedValue: 12884901888
+      eventType: 0
+      resetChallengeActionOptions:
+        resetIfOpponentNotStunned: 0
+        resetOnHit: 0
+        resetOnBlock: 0
+        resetOnParry: 0
+      onButtonOptions:
+        eventType: 1
+        buttonPress: 3
+      onBasicMoveOptions:
+        eventType: 0
+        basicMove: 0
+      moveInfoOptions:
+        eventType: 0
+        moveInfo: {fileID: 0}
+        displayMoveInfoMoveName: 0
+        displayMoveInfoDefaultInputs: 0
+        displayMoveInfoAlternativeInputs: 0
+      gaugeOptions:
+        player1GaugePercent:
+          _serializedValue: 0
+        useAllGauges: 0
+        gaugeIdArray: 
+      inputDisplayOptions:
+        inputDisplayButtonPressArray: 03000000
+      scriptedActionOptionsSelectionType: 0
+      scriptedActionOptionsArrayIndex: 0
+      scriptedActionOptionsArrayIndexRandomWithExclusion: 0
+      applyRandomWithExclusion: 0
+      scriptedActionOptionsArray: []
+  - challengeName: Jumping
+    challengeDescription: 
+    player1Character: {fileID: 11400000, guid: 9bb7e60ab2ec9bd46826321be83f95da, type: 2}
+    player2Character: {fileID: 11400000, guid: 9bb7e60ab2ec9bd46826321be83f95da, type: 2}
+    stageName: Training Room (Prefab)
+    onChallengeCompleteOptions:
+      nextChallengeDelay:
+        _serializedValue: 0
+      eventType: 0
+    resetChallengeOptions:
+      resetIfOpponentNotStunned: 0
+      resetOnHit: 0
+      resetOnBlock: 0
+      resetOnParry: 0
+    aiOptions:
+      aiOpponent: 0
+    challengeActionsArray:
+    - challengeActionName: Neutral Jump
+      challengeActionDescription: Neutral Jump
+      successValue:
+        _serializedValue: 17179869184
+      eventType: 1
+      resetChallengeActionOptions:
+        resetIfOpponentNotStunned: 0
+        resetOnHit: 0
+        resetOnBlock: 0
+        resetOnParry: 0
+      onButtonOptions:
+        eventType: 0
+        buttonPress: 0
+      onBasicMoveOptions:
+        eventType: 0
+        basicMove: 5
+      moveInfoOptions:
+        eventType: 0
+        moveInfo: {fileID: 0}
+        displayMoveInfoMoveName: 0
+        displayMoveInfoDefaultInputs: 0
+        displayMoveInfoAlternativeInputs: 0
+      gaugeOptions:
+        player1GaugePercent:
+          _serializedValue: 0
+        useAllGauges: 0
+        gaugeIdArray: 
+      inputDisplayOptions:
+        inputDisplayButtonPressArray: 02000000
+      scriptedActionOptionsSelectionType: 0
+      scriptedActionOptionsArrayIndex: 0
+      scriptedActionOptionsArrayIndexRandomWithExclusion: 0
+      applyRandomWithExclusion: 0
+      scriptedActionOptionsArray: []
+    - challengeActionName: Forward Jump
+      challengeActionDescription: Forward Jump
+      successValue:
+        _serializedValue: 17179869184
+      eventType: 1
+      resetChallengeActionOptions:
+        resetIfOpponentNotStunned: 0
+        resetOnHit: 0
+        resetOnBlock: 0
+        resetOnParry: 0
+      onButtonOptions:
+        eventType: 0
+        buttonPress: 0
+      onBasicMoveOptions:
+        eventType: 0
+        basicMove: 7
+      moveInfoOptions:
+        eventType: 0
+        moveInfo: {fileID: 0}
+        displayMoveInfoMoveName: 0
+        displayMoveInfoDefaultInputs: 0
+        displayMoveInfoAlternativeInputs: 0
+      gaugeOptions:
+        player1GaugePercent:
+          _serializedValue: 0
+        useAllGauges: 0
+        gaugeIdArray: 
+      inputDisplayOptions:
+        inputDisplayButtonPressArray: 12000000
+      scriptedActionOptionsSelectionType: 0
+      scriptedActionOptionsArrayIndex: 0
+      scriptedActionOptionsArrayIndexRandomWithExclusion: 0
+      applyRandomWithExclusion: 0
+      scriptedActionOptionsArray: []
+    - challengeActionName: Backward Jump
+      challengeActionDescription: Backward Jump
+      successValue:
+        _serializedValue: 17179869184
+      eventType: 1
+      resetChallengeActionOptions:
+        resetIfOpponentNotStunned: 0
+        resetOnHit: 0
+        resetOnBlock: 0
+        resetOnParry: 0
+      onButtonOptions:
+        eventType: 0
+        buttonPress: 0
+      onBasicMoveOptions:
+        eventType: 0
+        basicMove: 6
+      moveInfoOptions:
+        eventType: 0
+        moveInfo: {fileID: 0}
+        displayMoveInfoMoveName: 0
+        displayMoveInfoDefaultInputs: 0
+        displayMoveInfoAlternativeInputs: 0
+      gaugeOptions:
+        player1GaugePercent:
+          _serializedValue: 0
+        useAllGauges: 0
+        gaugeIdArray: 
+      inputDisplayOptions:
+        inputDisplayButtonPressArray: 13000000
+      scriptedActionOptionsSelectionType: 0
+      scriptedActionOptionsArrayIndex: 0
+      scriptedActionOptionsArrayIndexRandomWithExclusion: 0
+      applyRandomWithExclusion: 0
+      scriptedActionOptionsArray: []
+  - challengeName: Block
+    challengeDescription: 
+    player1Character: {fileID: 11400000, guid: 9bb7e60ab2ec9bd46826321be83f95da, type: 2}
+    player2Character: {fileID: 11400000, guid: fa56bdce66ace1c4a94d54f2a50908f8, type: 2}
+    stageName: Training Room (Prefab)
+    onChallengeCompleteOptions:
+      nextChallengeDelay:
+        _serializedValue: 0
+      eventType: 0
+    resetChallengeOptions:
+      resetIfOpponentNotStunned: 0
+      resetOnHit: 0
+      resetOnBlock: 0
+      resetOnParry: 0
+    aiOptions:
+      aiOpponent: 0
+    challengeActionsArray:
+    - challengeActionName: Stand Block
+      challengeActionDescription: Stand Block
+      successValue:
+        _serializedValue: 17179869184
+      eventType: 1
+      resetChallengeActionOptions:
+        resetIfOpponentNotStunned: 0
+        resetOnHit: 1
+        resetOnBlock: 0
+        resetOnParry: 1
+      onButtonOptions:
+        eventType: 0
+        buttonPress: 0
+      onBasicMoveOptions:
+        eventType: 0
+        basicMove: 13
+      moveInfoOptions:
+        eventType: 0
+        moveInfo: {fileID: 0}
+        displayMoveInfoMoveName: 0
+        displayMoveInfoDefaultInputs: 0
+        displayMoveInfoAlternativeInputs: 0
+      gaugeOptions:
+        player1GaugePercent:
+          _serializedValue: 0
+        useAllGauges: 0
+        gaugeIdArray: 
+      inputDisplayOptions:
+        inputDisplayButtonPressArray: 01000000
+      scriptedActionOptionsSelectionType: 0
+      scriptedActionOptionsArrayIndex: 0
+      scriptedActionOptionsArrayIndexRandomWithExclusion: 0
+      applyRandomWithExclusion: 0
+      scriptedActionOptionsArray:
+      - executeScriptedActionDelay:
+          _serializedValue: 4294967296
+        executeScriptedActionTimer:
+          _serializedValue: 2576980368
+        scriptedPositionOptions:
+          positionType: 2
+          player1ManualPosition:
+            x:
+              _serializedValue: 0
+            y:
+              _serializedValue: 0
+            z:
+              _serializedValue: 0
+          player2ManualPosition:
+            x:
+              _serializedValue: 0
+            y:
+              _serializedValue: 0
+            z:
+              _serializedValue: 0
+          cornerPlayer: 0
+          cornerPositionXOffset:
+            _serializedValue: 12884901888
+        scriptedInputOptionsArray:
+        - executeScriptedActionDelay:
+            _serializedValue: 2147483648
+          executedScriptedAction: 1
+          inputPlayer: 1
+          inputHoldTime:
+            _serializedValue: 0
+          inputHoldTimer:
+            _serializedValue: 0
+          buttonPressArray: 04000000
+    - challengeActionName: Stand Block
+      challengeActionDescription: Stand Block
+      successValue:
+        _serializedValue: 17179869184
+      eventType: 1
+      resetChallengeActionOptions:
+        resetIfOpponentNotStunned: 0
+        resetOnHit: 1
+        resetOnBlock: 0
+        resetOnParry: 1
+      onButtonOptions:
+        eventType: 0
+        buttonPress: 0
+      onBasicMoveOptions:
+        eventType: 0
+        basicMove: 13
+      moveInfoOptions:
+        eventType: 0
+        moveInfo: {fileID: 0}
+        displayMoveInfoMoveName: 0
+        displayMoveInfoDefaultInputs: 0
+        displayMoveInfoAlternativeInputs: 0
+      gaugeOptions:
+        player1GaugePercent:
+          _serializedValue: 0
+        useAllGauges: 0
+        gaugeIdArray: 
+      inputDisplayOptions:
+        inputDisplayButtonPressArray: 01000000
+      scriptedActionOptionsSelectionType: 0
+      scriptedActionOptionsArrayIndex: 0
+      scriptedActionOptionsArrayIndexRandomWithExclusion: 0
+      applyRandomWithExclusion: 0
+      scriptedActionOptionsArray:
+      - executeScriptedActionDelay:
+          _serializedValue: 4294967296
+        executeScriptedActionTimer:
+          _serializedValue: 2576980368
+        scriptedPositionOptions:
+          positionType: 3
+          player1ManualPosition:
+            x:
+              _serializedValue: 0
+            y:
+              _serializedValue: 0
+            z:
+              _serializedValue: 0
+          player2ManualPosition:
+            x:
+              _serializedValue: 0
+            y:
+              _serializedValue: 0
+            z:
+              _serializedValue: 0
+          cornerPlayer: 0
+          cornerPositionXOffset:
+            _serializedValue: 12884901888
+        scriptedInputOptionsArray:
+        - executeScriptedActionDelay:
+            _serializedValue: 2147483648
+          executedScriptedAction: 1
+          inputPlayer: 1
+          inputHoldTime:
+            _serializedValue: 0
+          inputHoldTimer:
+            _serializedValue: 0
+          buttonPressArray: 04000000
+    - challengeActionName: Stand Block
+      challengeActionDescription: Stand Block
+      successValue:
+        _serializedValue: 17179869184
+      eventType: 1
+      resetChallengeActionOptions:
+        resetIfOpponentNotStunned: 0
+        resetOnHit: 1
+        resetOnBlock: 0
+        resetOnParry: 1
+      onButtonOptions:
+        eventType: 0
+        buttonPress: 0
+      onBasicMoveOptions:
+        eventType: 0
+        basicMove: 13
+      moveInfoOptions:
+        eventType: 0
+        moveInfo: {fileID: 0}
+        displayMoveInfoMoveName: 0
+        displayMoveInfoDefaultInputs: 0
+        displayMoveInfoAlternativeInputs: 0
+      gaugeOptions:
+        player1GaugePercent:
+          _serializedValue: 0
+        useAllGauges: 0
+        gaugeIdArray: 
+      inputDisplayOptions:
+        inputDisplayButtonPressArray: 01000000
+      scriptedActionOptionsSelectionType: 0
+      scriptedActionOptionsArrayIndex: 0
+      scriptedActionOptionsArrayIndexRandomWithExclusion: 0
+      applyRandomWithExclusion: 0
+      scriptedActionOptionsArray:
+      - executeScriptedActionDelay:
+          _serializedValue: 4294967296
+        executeScriptedActionTimer:
+          _serializedValue: 2576980368
+        scriptedPositionOptions:
+          positionType: 1
+          player1ManualPosition:
+            x:
+              _serializedValue: 0
+            y:
+              _serializedValue: 0
+            z:
+              _serializedValue: 0
+          player2ManualPosition:
+            x:
+              _serializedValue: 12884901888
+            y:
+              _serializedValue: 0
+            z:
+              _serializedValue: 0
+          cornerPlayer: 0
+          cornerPositionXOffset:
+            _serializedValue: 0
+        scriptedInputOptionsArray:
+        - executeScriptedActionDelay:
+            _serializedValue: 2147483648
+          executedScriptedAction: 1
+          inputPlayer: 1
+          inputHoldTime:
+            _serializedValue: 0
+          inputHoldTimer:
+            _serializedValue: 0
+          buttonPressArray: 04000000
+      - executeScriptedActionDelay:
+          _serializedValue: 4294967296
+        executeScriptedActionTimer:
+          _serializedValue: 0
+        scriptedPositionOptions:
+          positionType: 1
+          player1ManualPosition:
+            x:
+              _serializedValue: 0
+            y:
+              _serializedValue: 0
+            z:
+              _serializedValue: 0
+          player2ManualPosition:
+            x:
+              _serializedValue: -12884901888
+            y:
+              _serializedValue: 0
+            z:
+              _serializedValue: 0
+          cornerPlayer: 0
+          cornerPositionXOffset:
+            _serializedValue: 0
+        scriptedInputOptionsArray:
+        - executeScriptedActionDelay:
+            _serializedValue: 2147483648
+          executedScriptedAction: 0
+          inputPlayer: 1
+          inputHoldTime:
+            _serializedValue: 0
+          inputHoldTimer:
+            _serializedValue: 0
+          buttonPressArray: 04000000
+    - challengeActionName: Crouch Block
+      challengeActionDescription: Crouch Block
+      successValue:
+        _serializedValue: 17179869184
+      eventType: 1
+      resetChallengeActionOptions:
+        resetIfOpponentNotStunned: 0
+        resetOnHit: 1
+        resetOnBlock: 0
+        resetOnParry: 1
+      onButtonOptions:
+        eventType: 0
+        buttonPress: 0
+      onBasicMoveOptions:
+        eventType: 0
+        basicMove: 16
+      moveInfoOptions:
+        eventType: 0
+        moveInfo: {fileID: 0}
+        displayMoveInfoMoveName: 0
+        displayMoveInfoDefaultInputs: 0
+        displayMoveInfoAlternativeInputs: 0
+      gaugeOptions:
+        player1GaugePercent:
+          _serializedValue: 0
+        useAllGauges: 0
+        gaugeIdArray: 
+      inputDisplayOptions:
+        inputDisplayButtonPressArray: 10000000
+      scriptedActionOptionsSelectionType: 0
+      scriptedActionOptionsArrayIndex: 0
+      scriptedActionOptionsArrayIndexRandomWithExclusion: 0
+      applyRandomWithExclusion: 0
+      scriptedActionOptionsArray:
+      - executeScriptedActionDelay:
+          _serializedValue: 4294967296
+        executeScriptedActionTimer:
+          _serializedValue: 2576980368
+        scriptedPositionOptions:
+          positionType: 2
+          player1ManualPosition:
+            x:
+              _serializedValue: 0
+            y:
+              _serializedValue: 0
+            z:
+              _serializedValue: 0
+          player2ManualPosition:
+            x:
+              _serializedValue: 0
+            y:
+              _serializedValue: 0
+            z:
+              _serializedValue: 0
+          cornerPlayer: 0
+          cornerPositionXOffset:
+            _serializedValue: 12884901888
+        scriptedInputOptionsArray:
+        - executeScriptedActionDelay:
+            _serializedValue: 2147483648
+          executedScriptedAction: 1
+          inputPlayer: 1
+          inputHoldTime:
+            _serializedValue: 0
+          inputHoldTimer:
+            _serializedValue: 0
+          buttonPressArray: 04000000
+    - challengeActionName: Crouch Block
+      challengeActionDescription: Crouch Block
+      successValue:
+        _serializedValue: 17179869184
+      eventType: 1
+      resetChallengeActionOptions:
+        resetIfOpponentNotStunned: 0
+        resetOnHit: 1
+        resetOnBlock: 0
+        resetOnParry: 1
+      onButtonOptions:
+        eventType: 0
+        buttonPress: 0
+      onBasicMoveOptions:
+        eventType: 0
+        basicMove: 16
+      moveInfoOptions:
+        eventType: 0
+        moveInfo: {fileID: 0}
+        displayMoveInfoMoveName: 0
+        displayMoveInfoDefaultInputs: 0
+        displayMoveInfoAlternativeInputs: 0
+      gaugeOptions:
+        player1GaugePercent:
+          _serializedValue: 0
+        useAllGauges: 0
+        gaugeIdArray: 
+      inputDisplayOptions:
+        inputDisplayButtonPressArray: 10000000
+      scriptedActionOptionsSelectionType: 0
+      scriptedActionOptionsArrayIndex: 0
+      scriptedActionOptionsArrayIndexRandomWithExclusion: 0
+      applyRandomWithExclusion: 0
+      scriptedActionOptionsArray:
+      - executeScriptedActionDelay:
+          _serializedValue: 4294967296
+        executeScriptedActionTimer:
+          _serializedValue: 2576980368
+        scriptedPositionOptions:
+          positionType: 3
+          player1ManualPosition:
+            x:
+              _serializedValue: 0
+            y:
+              _serializedValue: 0
+            z:
+              _serializedValue: 0
+          player2ManualPosition:
+            x:
+              _serializedValue: 0
+            y:
+              _serializedValue: 0
+            z:
+              _serializedValue: 0
+          cornerPlayer: 0
+          cornerPositionXOffset:
+            _serializedValue: 12884901888
+        scriptedInputOptionsArray:
+        - executeScriptedActionDelay:
+            _serializedValue: 2147483648
+          executedScriptedAction: 1
+          inputPlayer: 1
+          inputHoldTime:
+            _serializedValue: 0
+          inputHoldTimer:
+            _serializedValue: 0
+          buttonPressArray: 04000000
+    - challengeActionName: Crouch Block
+      challengeActionDescription: Crouch Block
+      successValue:
+        _serializedValue: 17179869184
+      eventType: 1
+      resetChallengeActionOptions:
+        resetIfOpponentNotStunned: 0
+        resetOnHit: 1
+        resetOnBlock: 0
+        resetOnParry: 1
+      onButtonOptions:
+        eventType: 0
+        buttonPress: 0
+      onBasicMoveOptions:
+        eventType: 0
+        basicMove: 16
+      moveInfoOptions:
+        eventType: 0
+        moveInfo: {fileID: 0}
+        displayMoveInfoMoveName: 0
+        displayMoveInfoDefaultInputs: 0
+        displayMoveInfoAlternativeInputs: 0
+      gaugeOptions:
+        player1GaugePercent:
+          _serializedValue: 0
+        useAllGauges: 0
+        gaugeIdArray: 
+      inputDisplayOptions:
+        inputDisplayButtonPressArray: 10000000
+      scriptedActionOptionsSelectionType: 0
+      scriptedActionOptionsArrayIndex: 0
+      scriptedActionOptionsArrayIndexRandomWithExclusion: 0
+      applyRandomWithExclusion: 0
+      scriptedActionOptionsArray:
+      - executeScriptedActionDelay:
+          _serializedValue: 4294967296
+        executeScriptedActionTimer:
+          _serializedValue: 2576980368
+        scriptedPositionOptions:
+          positionType: 1
+          player1ManualPosition:
+            x:
+              _serializedValue: 0
+            y:
+              _serializedValue: 0
+            z:
+              _serializedValue: 0
+          player2ManualPosition:
+            x:
+              _serializedValue: 12884901888
+            y:
+              _serializedValue: 0
+            z:
+              _serializedValue: 0
+          cornerPlayer: 0
+          cornerPositionXOffset:
+            _serializedValue: 0
+        scriptedInputOptionsArray:
+        - executeScriptedActionDelay:
+            _serializedValue: 2147483648
+          executedScriptedAction: 1
+          inputPlayer: 1
+          inputHoldTime:
+            _serializedValue: 0
+          inputHoldTimer:
+            _serializedValue: 0
+          buttonPressArray: 04000000
+      - executeScriptedActionDelay:
+          _serializedValue: 4294967296
+        executeScriptedActionTimer:
+          _serializedValue: 0
+        scriptedPositionOptions:
+          positionType: 1
+          player1ManualPosition:
+            x:
+              _serializedValue: 0
+            y:
+              _serializedValue: 0
+            z:
+              _serializedValue: 0
+          player2ManualPosition:
+            x:
+              _serializedValue: -12884901888
+            y:
+              _serializedValue: 0
+            z:
+              _serializedValue: 0
+          cornerPlayer: 0
+          cornerPositionXOffset:
+            _serializedValue: 0
+        scriptedInputOptionsArray:
+        - executeScriptedActionDelay:
+            _serializedValue: 2147483648
+          executedScriptedAction: 0
+          inputPlayer: 1
+          inputHoldTime:
+            _serializedValue: 0
+          inputHoldTimer:
+            _serializedValue: 0
+          buttonPressArray: 04000000
+  - challengeName: Parry
+    challengeDescription: 
+    player1Character: {fileID: 11400000, guid: 9bb7e60ab2ec9bd46826321be83f95da, type: 2}
+    player2Character: {fileID: 11400000, guid: fa56bdce66ace1c4a94d54f2a50908f8, type: 2}
+    stageName: Training Room (Prefab)
+    onChallengeCompleteOptions:
+      nextChallengeDelay:
+        _serializedValue: 0
+      eventType: 0
+    resetChallengeOptions:
+      resetIfOpponentNotStunned: 0
+      resetOnHit: 0
+      resetOnBlock: 0
+      resetOnParry: 0
+    aiOptions:
+      aiOpponent: 0
+    challengeActionsArray:
+    - challengeActionName: Stand Parry
+      challengeActionDescription: Stand Parry
+      successValue:
+        _serializedValue: 17179869184
+      eventType: 1
+      resetChallengeActionOptions:
+        resetIfOpponentNotStunned: 0
+        resetOnHit: 1
+        resetOnBlock: 1
+        resetOnParry: 0
+      onButtonOptions:
+        eventType: 0
+        buttonPress: 0
+      onBasicMoveOptions:
+        eventType: 0
+        basicMove: 19
+      moveInfoOptions:
+        eventType: 0
+        moveInfo: {fileID: 0}
+        displayMoveInfoMoveName: 0
+        displayMoveInfoDefaultInputs: 0
+        displayMoveInfoAlternativeInputs: 0
+      gaugeOptions:
+        player1GaugePercent:
+          _serializedValue: 0
+        useAllGauges: 0
+        gaugeIdArray: 
+      inputDisplayOptions:
+        inputDisplayButtonPressArray: 00000000
+      scriptedActionOptionsSelectionType: 0
+      scriptedActionOptionsArrayIndex: 0
+      scriptedActionOptionsArrayIndexRandomWithExclusion: 0
+      applyRandomWithExclusion: 0
+      scriptedActionOptionsArray:
+      - executeScriptedActionDelay:
+          _serializedValue: 4294967296
+        executeScriptedActionTimer:
+          _serializedValue: 2576980368
+        scriptedPositionOptions:
+          positionType: 2
+          player1ManualPosition:
+            x:
+              _serializedValue: 0
+            y:
+              _serializedValue: 0
+            z:
+              _serializedValue: 0
+          player2ManualPosition:
+            x:
+              _serializedValue: 0
+            y:
+              _serializedValue: 0
+            z:
+              _serializedValue: 0
+          cornerPlayer: 0
+          cornerPositionXOffset:
+            _serializedValue: 12884901888
+        scriptedInputOptionsArray:
+        - executeScriptedActionDelay:
+            _serializedValue: 2147483648
+          executedScriptedAction: 1
+          inputPlayer: 1
+          inputHoldTime:
+            _serializedValue: 0
+          inputHoldTimer:
+            _serializedValue: 0
+          buttonPressArray: 04000000
+    - challengeActionName: Stand Parry
+      challengeActionDescription: Stand Parry
+      successValue:
+        _serializedValue: 17179869184
+      eventType: 1
+      resetChallengeActionOptions:
+        resetIfOpponentNotStunned: 0
+        resetOnHit: 1
+        resetOnBlock: 1
+        resetOnParry: 0
+      onButtonOptions:
+        eventType: 0
+        buttonPress: 0
+      onBasicMoveOptions:
+        eventType: 0
+        basicMove: 19
+      moveInfoOptions:
+        eventType: 0
+        moveInfo: {fileID: 0}
+        displayMoveInfoMoveName: 0
+        displayMoveInfoDefaultInputs: 0
+        displayMoveInfoAlternativeInputs: 0
+      gaugeOptions:
+        player1GaugePercent:
+          _serializedValue: 0
+        useAllGauges: 0
+        gaugeIdArray: 
+      inputDisplayOptions:
+        inputDisplayButtonPressArray: 00000000
+      scriptedActionOptionsSelectionType: 0
+      scriptedActionOptionsArrayIndex: 0
+      scriptedActionOptionsArrayIndexRandomWithExclusion: 0
+      applyRandomWithExclusion: 0
+      scriptedActionOptionsArray:
+      - executeScriptedActionDelay:
+          _serializedValue: 4294967296
+        executeScriptedActionTimer:
+          _serializedValue: 2576980368
+        scriptedPositionOptions:
+          positionType: 3
+          player1ManualPosition:
+            x:
+              _serializedValue: 0
+            y:
+              _serializedValue: 0
+            z:
+              _serializedValue: 0
+          player2ManualPosition:
+            x:
+              _serializedValue: 0
+            y:
+              _serializedValue: 0
+            z:
+              _serializedValue: 0
+          cornerPlayer: 0
+          cornerPositionXOffset:
+            _serializedValue: 12884901888
+        scriptedInputOptionsArray:
+        - executeScriptedActionDelay:
+            _serializedValue: 2147483648
+          executedScriptedAction: 1
+          inputPlayer: 1
+          inputHoldTime:
+            _serializedValue: 0
+          inputHoldTimer:
+            _serializedValue: 0
+          buttonPressArray: 04000000
+    - challengeActionName: Stand Parry
+      challengeActionDescription: Stand Parry
+      successValue:
+        _serializedValue: 17179869184
+      eventType: 1
+      resetChallengeActionOptions:
+        resetIfOpponentNotStunned: 0
+        resetOnHit: 1
+        resetOnBlock: 1
+        resetOnParry: 0
+      onButtonOptions:
+        eventType: 0
+        buttonPress: 0
+      onBasicMoveOptions:
+        eventType: 0
+        basicMove: 19
+      moveInfoOptions:
+        eventType: 0
+        moveInfo: {fileID: 0}
+        displayMoveInfoMoveName: 0
+        displayMoveInfoDefaultInputs: 0
+        displayMoveInfoAlternativeInputs: 0
+      gaugeOptions:
+        player1GaugePercent:
+          _serializedValue: 0
+        useAllGauges: 0
+        gaugeIdArray: 
+      inputDisplayOptions:
+        inputDisplayButtonPressArray: 00000000
+      scriptedActionOptionsSelectionType: 0
+      scriptedActionOptionsArrayIndex: 0
+      scriptedActionOptionsArrayIndexRandomWithExclusion: 0
+      applyRandomWithExclusion: 0
+      scriptedActionOptionsArray:
+      - executeScriptedActionDelay:
+          _serializedValue: 4294967296
+        executeScriptedActionTimer:
+          _serializedValue: 0
+        scriptedPositionOptions:
+          positionType: 1
+          player1ManualPosition:
+            x:
+              _serializedValue: 0
+            y:
+              _serializedValue: 0
+            z:
+              _serializedValue: 0
+          player2ManualPosition:
+            x:
+              _serializedValue: 12884901888
+            y:
+              _serializedValue: 0
+            z:
+              _serializedValue: 0
+          cornerPlayer: 0
+          cornerPositionXOffset:
+            _serializedValue: 0
+        scriptedInputOptionsArray:
+        - executeScriptedActionDelay:
+            _serializedValue: 2147483648
+          executedScriptedAction: 0
+          inputPlayer: 1
+          inputHoldTime:
+            _serializedValue: 0
+          inputHoldTimer:
+            _serializedValue: 0
+          buttonPressArray: 04000000
+      - executeScriptedActionDelay:
+          _serializedValue: 4294967296
+        executeScriptedActionTimer:
+          _serializedValue: 0
+        scriptedPositionOptions:
+          positionType: 1
+          player1ManualPosition:
+            x:
+              _serializedValue: 0
+            y:
+              _serializedValue: 0
+            z:
+              _serializedValue: 0
+          player2ManualPosition:
+            x:
+              _serializedValue: -12884901888
+            y:
+              _serializedValue: 0
+            z:
+              _serializedValue: 0
+          cornerPlayer: 0
+          cornerPositionXOffset:
+            _serializedValue: 0
+        scriptedInputOptionsArray:
+        - executeScriptedActionDelay:
+            _serializedValue: 2147483648
+          executedScriptedAction: 0
+          inputPlayer: 1
+          inputHoldTime:
+            _serializedValue: 0
+          inputHoldTimer:
+            _serializedValue: 0
+          buttonPressArray: 04000000
+    - challengeActionName: Crouch Parry
+      challengeActionDescription: Crouch Parry
+      successValue:
+        _serializedValue: 17179869184
+      eventType: 1
+      resetChallengeActionOptions:
+        resetIfOpponentNotStunned: 0
+        resetOnHit: 1
+        resetOnBlock: 1
+        resetOnParry: 0
+      onButtonOptions:
+        eventType: 0
+        buttonPress: 0
+      onBasicMoveOptions:
+        eventType: 0
+        basicMove: 21
+      moveInfoOptions:
+        eventType: 0
+        moveInfo: {fileID: 0}
+        displayMoveInfoMoveName: 0
+        displayMoveInfoDefaultInputs: 0
+        displayMoveInfoAlternativeInputs: 0
+      gaugeOptions:
+        player1GaugePercent:
+          _serializedValue: 0
+        useAllGauges: 0
+        gaugeIdArray: 
+      inputDisplayOptions:
+        inputDisplayButtonPressArray: 11000000
+      scriptedActionOptionsSelectionType: 0
+      scriptedActionOptionsArrayIndex: 0
+      scriptedActionOptionsArrayIndexRandomWithExclusion: 0
+      applyRandomWithExclusion: 0
+      scriptedActionOptionsArray:
+      - executeScriptedActionDelay:
+          _serializedValue: 4294967296
+        executeScriptedActionTimer:
+          _serializedValue: 2576980368
+        scriptedPositionOptions:
+          positionType: 2
+          player1ManualPosition:
+            x:
+              _serializedValue: 0
+            y:
+              _serializedValue: 0
+            z:
+              _serializedValue: 0
+          player2ManualPosition:
+            x:
+              _serializedValue: 0
+            y:
+              _serializedValue: 0
+            z:
+              _serializedValue: 0
+          cornerPlayer: 0
+          cornerPositionXOffset:
+            _serializedValue: 12884901888
+        scriptedInputOptionsArray:
+        - executeScriptedActionDelay:
+            _serializedValue: 2147483648
+          executedScriptedAction: 1
+          inputPlayer: 1
+          inputHoldTime:
+            _serializedValue: 0
+          inputHoldTimer:
+            _serializedValue: 0
+          buttonPressArray: 04000000
+    - challengeActionName: Crouch Parry
+      challengeActionDescription: Crouch Parry
+      successValue:
+        _serializedValue: 17179869184
+      eventType: 1
+      resetChallengeActionOptions:
+        resetIfOpponentNotStunned: 0
+        resetOnHit: 1
+        resetOnBlock: 1
+        resetOnParry: 0
+      onButtonOptions:
+        eventType: 0
+        buttonPress: 0
+      onBasicMoveOptions:
+        eventType: 0
+        basicMove: 21
+      moveInfoOptions:
+        eventType: 0
+        moveInfo: {fileID: 0}
+        displayMoveInfoMoveName: 0
+        displayMoveInfoDefaultInputs: 0
+        displayMoveInfoAlternativeInputs: 0
+      gaugeOptions:
+        player1GaugePercent:
+          _serializedValue: 0
+        useAllGauges: 0
+        gaugeIdArray: 
+      inputDisplayOptions:
+        inputDisplayButtonPressArray: 11000000
+      scriptedActionOptionsSelectionType: 0
+      scriptedActionOptionsArrayIndex: 0
+      scriptedActionOptionsArrayIndexRandomWithExclusion: 0
+      applyRandomWithExclusion: 0
+      scriptedActionOptionsArray:
+      - executeScriptedActionDelay:
+          _serializedValue: 4294967296
+        executeScriptedActionTimer:
+          _serializedValue: 2576980368
+        scriptedPositionOptions:
+          positionType: 3
+          player1ManualPosition:
+            x:
+              _serializedValue: 0
+            y:
+              _serializedValue: 0
+            z:
+              _serializedValue: 0
+          player2ManualPosition:
+            x:
+              _serializedValue: 0
+            y:
+              _serializedValue: 0
+            z:
+              _serializedValue: 0
+          cornerPlayer: 0
+          cornerPositionXOffset:
+            _serializedValue: 12884901888
+        scriptedInputOptionsArray:
+        - executeScriptedActionDelay:
+            _serializedValue: 2147483648
+          executedScriptedAction: 1
+          inputPlayer: 1
+          inputHoldTime:
+            _serializedValue: 0
+          inputHoldTimer:
+            _serializedValue: 0
+          buttonPressArray: 04000000
+    - challengeActionName: Crouch Parry
+      challengeActionDescription: Crouch Parry
+      successValue:
+        _serializedValue: 17179869184
+      eventType: 1
+      resetChallengeActionOptions:
+        resetIfOpponentNotStunned: 0
+        resetOnHit: 1
+        resetOnBlock: 1
+        resetOnParry: 0
+      onButtonOptions:
+        eventType: 0
+        buttonPress: 0
+      onBasicMoveOptions:
+        eventType: 0
+        basicMove: 21
+      moveInfoOptions:
+        eventType: 0
+        moveInfo: {fileID: 0}
+        displayMoveInfoMoveName: 0
+        displayMoveInfoDefaultInputs: 0
+        displayMoveInfoAlternativeInputs: 0
+      gaugeOptions:
+        player1GaugePercent:
+          _serializedValue: 0
+        useAllGauges: 0
+        gaugeIdArray: 
+      inputDisplayOptions:
+        inputDisplayButtonPressArray: 11000000
+      scriptedActionOptionsSelectionType: 0
+      scriptedActionOptionsArrayIndex: 0
+      scriptedActionOptionsArrayIndexRandomWithExclusion: 0
+      applyRandomWithExclusion: 0
+      scriptedActionOptionsArray:
+      - executeScriptedActionDelay:
+          _serializedValue: 4294967296
+        executeScriptedActionTimer:
+          _serializedValue: 0
+        scriptedPositionOptions:
+          positionType: 1
+          player1ManualPosition:
+            x:
+              _serializedValue: 0
+            y:
+              _serializedValue: 0
+            z:
+              _serializedValue: 0
+          player2ManualPosition:
+            x:
+              _serializedValue: 12884901888
+            y:
+              _serializedValue: 0
+            z:
+              _serializedValue: 0
+          cornerPlayer: 0
+          cornerPositionXOffset:
+            _serializedValue: 0
+        scriptedInputOptionsArray:
+        - executeScriptedActionDelay:
+            _serializedValue: 2147483648
+          executedScriptedAction: 0
+          inputPlayer: 1
+          inputHoldTime:
+            _serializedValue: 0
+          inputHoldTimer:
+            _serializedValue: 0
+          buttonPressArray: 04000000
+      - executeScriptedActionDelay:
+          _serializedValue: 4294967296
+        executeScriptedActionTimer:
+          _serializedValue: 0
+        scriptedPositionOptions:
+          positionType: 1
+          player1ManualPosition:
+            x:
+              _serializedValue: 0
+            y:
+              _serializedValue: 0
+            z:
+              _serializedValue: 0
+          player2ManualPosition:
+            x:
+              _serializedValue: -12884901888
+            y:
+              _serializedValue: 0
+            z:
+              _serializedValue: 0
+          cornerPlayer: 0
+          cornerPositionXOffset:
+            _serializedValue: 0
+        scriptedInputOptionsArray:
+        - executeScriptedActionDelay:
+            _serializedValue: 2147483648
+          executedScriptedAction: 0
+          inputPlayer: 1
+          inputHoldTime:
+            _serializedValue: 0
+          inputHoldTimer:
+            _serializedValue: 0
+          buttonPressArray: 04000000

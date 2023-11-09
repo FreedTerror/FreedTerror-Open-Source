@@ -1,0 +1,106 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26fce3fb131c28e479122eff9da97de9, type: 3}
+  m_Name: Default Hit Box Display
+  m_EditorClassIdentifier: 
+  hitBoxDisplayCirclePrefabPath: Hit Box Display Circle Prefab
+  hitBoxDisplayRectanglePrefabPath: Hit Box Display Rectangle Prefab
+  hitBoxDisplayCircleFilledSprite: {fileID: 21300000, guid: b44933aef4a8207418bfee2bfc01f10f,
+    type: 3}
+  hitBoxDisplayRectangleFilledSprite: {fileID: 21300000, guid: 69267b5a7fd183f43abea0a548213dba,
+    type: 3}
+  hitBoxDisplayHitBoxesPoolSize: 30
+  hitBoxDisplayActiveHurtBoxesPoolSize: 30
+  hitBoxDisplayPopcronGizmosLinesAmount: 16
+  characterBodyColliderOptions:
+    colliderColor:
+      serializedVersion: 2
+      rgba: 2147549183
+    orderInLayerInfront: 10090
+    orderInLayerBehind: -10030
+    disableCollider: 0
+  characterHitColliderOptions:
+    colliderColor:
+      serializedVersion: 2
+      rgba: 2147483903
+    orderInLayerInfront: 10070
+    orderInLayerBehind: -10050
+    disableCollider: 0
+  characterThrowColliderOptions:
+    colliderColor:
+      serializedVersion: 2
+      rgba: 2147516416
+    orderInLayerInfront: 10080
+    orderInLayerBehind: -10040
+    disableCollider: 0
+  characterPhysicalInvincibleColliderOptions:
+    colliderColor:
+      serializedVersion: 2
+      rgba: 2164228351
+    orderInLayerInfront: 10060
+    orderInLayerBehind: -10060
+    disableCollider: 0
+  characterProjectileInvincibleColliderOptions:
+    colliderColor:
+      serializedVersion: 2
+      rgba: 2155872384
+    orderInLayerInfront: 10050
+    orderInLayerBehind: -10070
+    disableCollider: 0
+  characterNoColliderOptions:
+    colliderColor:
+      serializedVersion: 2
+      rgba: 2164195328
+    orderInLayerInfront: 10040
+    orderInLayerBehind: -10080
+    disableCollider: 0
+  characterActiveHurtBoxColliderOptions:
+    colliderColor:
+      serializedVersion: 2
+      rgba: 2147483903
+    orderInLayerInfront: 10100
+    orderInLayerBehind: -10000
+    disableCollider: 0
+    disableCharacterCollidersEqualToCharacterActiveHurtBoxColliders: 1
+    disableCharacterBlockableAreaCollidersEqualToCharacterActiveHurtBoxCollider: 1
+  characterBlockableAreaColliderOptions:
+    colliderColor:
+      serializedVersion: 2
+      rgba: 2164260863
+    orderInLayerInfront: 10030
+    orderInLayerBehind: -10090
+    disableCollider: 0
+    disableCharacterCollidersEqualToCharacterBlockableAreaCollider: 1
+    disableCharacterActiveHurtBoxCollidersEqualToCharacterBlockableAreaCollider: 0
+  projectileHitAreaColliderOptions:
+    colliderColor:
+      serializedVersion: 2
+      rgba: 2147483903
+    orderInLayerInfront: 10100
+    orderInLayerBehind: -10000
+    disableCollider: 0
+  projectileOnlyColliderOptions:
+    colliderColor:
+      serializedVersion: 2
+      rgba: 2147516671
+    orderInLayerInfront: 10099
+    orderInLayerBehind: -10001
+    disableCollider: 0
+  projectileBlockableAreaColliderOptions:
+    colliderColor:
+      serializedVersion: 2
+      rgba: 2164260863
+    orderInLayerInfront: 10030
+    orderInLayerBehind: -10090
+    disableCollider: 0
+  projectileTotalHitsTextOptions:
+    orderInLayer: 10110
