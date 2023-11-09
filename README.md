@@ -1,5 +1,5 @@
 # UFE-2-FTE Open Source
-This is a set of scripts and templates to extend Universal Fighting Engine 2<br>
+Scripts and other various things I've made when working with Universal Fighting Engine 2<br>
 Import the UFE 2 FTE folder or unity package into unity.<br>
 
 Base Requirements: Universal Fighting Engine 2<br>
