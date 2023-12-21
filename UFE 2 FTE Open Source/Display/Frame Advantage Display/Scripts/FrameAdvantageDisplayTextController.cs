@@ -22,7 +22,7 @@ namespace UFE2FTE
                 || player != UFE2FTE.GetControlsScript(this.player)
                 || player.opControlsScript == null
                 || player.opControlsScript.isDead == true
-                || UFE.isPaused() == true)
+                || UFE.IsPaused() == true)
             {
                 return;
             }

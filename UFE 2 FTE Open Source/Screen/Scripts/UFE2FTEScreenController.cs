@@ -59,7 +59,7 @@ namespace UFE2FTE
                 return;
             }
 
-            if (UFE.gameEngine == null)
+            if (UFE.GameEngine == null)
             {
                 StartUFEScreen(screen, (float)UFE.config.gameGUI.screenFadeDuration);
             }

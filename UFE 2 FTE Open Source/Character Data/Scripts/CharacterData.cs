@@ -1,3 +1,5 @@
+using UFE3D;
+
 namespace UFE2FTE
 {
     [System.Serializable]

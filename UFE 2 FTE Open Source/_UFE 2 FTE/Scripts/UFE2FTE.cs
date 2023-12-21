@@ -753,15 +753,15 @@ namespace UFE2FTE
 
         public static T AddComponentToGameEngineGameObject<T>() where T : Component
         {
-            if (UFE.gameEngine == null)
+            if (UFE.GameEngine == null)
             {
                 return null;
             }
 
-            T component = UFE.gameEngine.GetComponent<T>();
+            T component = UFE.GameEngine.GetComponent<T>();
             if (component == null)
             {
-                return UFE.gameEngine.AddComponent<T>();
+                return UFE.GameEngine.AddComponent<T>();
             }
 
             return component;
@@ -769,12 +769,12 @@ namespace UFE2FTE
 
         public static T GetComponentFromGameEngineGameObject<T>() where T : Component
         {
-            if (UFE.gameEngine == null)
+            if (UFE.GameEngine == null)
             {
                 return null;
             }
 
-            return UFE.gameEngine.GetComponent<T>();
+            return UFE.GameEngine.GetComponent<T>();
         }
 
         public static T AddComponentToControlsScriptCharacterGameObject<T>(ControlsScript player) where T : Component
@@ -931,12 +931,12 @@ namespace UFE2FTE
 
         private static int GetOnlineFrameDelay()
         {
-            if (UFE.fluxCapacitor == null)
+            if (UFE.FluxCapacitor == null)
             {
                 return 0;
             }
 
-            return UFE.fluxCapacitor.GetOptimalFrameDelay();
+            return UFE.FluxCapacitor.GetOptimalFrameDelay();
         }
 
         public static void AddOrSubtractFrameDelay(int frameDelay)
@@ -1141,63 +1141,6 @@ namespace UFE2FTE
 
         #region Gauge Methods
 
-        public static void SetAllGaugePointsValue(ControlsScript player, Fix64 value)
-        {
-            if (player == null)
-            {
-                return;
-            }
-
-            int length = player.currentGaugesPoints.Length;
-            for (int i = 0; i < length; i++)
-            {
-                player.currentGaugesPoints[i] = value;
-
-                if (player.currentGaugesPoints[i] > player.myInfo.maxGaugePoints)
-                {
-                    player.currentGaugesPoints[i] = player.myInfo.maxGaugePoints;
-                }
-                else if (player.currentGaugesPoints[i] < 0)
-                {
-                    player.currentGaugesPoints[i] = 0;
-                }
-            }
-        }
-
-        public static void SetGaugePointsValue(ControlsScript player, GaugeId gaugeId, Fix64 value)
-        {
-            if (player == null)
-            {
-                return;
-            }
-
-            player.currentGaugesPoints[(int)gaugeId] = value;
-
-            if (player.currentGaugesPoints[(int)gaugeId] > player.myInfo.maxGaugePoints)
-            {
-                player.currentGaugesPoints[(int)gaugeId] = player.myInfo.maxGaugePoints;
-            }
-            else if (player.currentGaugesPoints[(int)gaugeId] < 0)
-            {
-                player.currentGaugesPoints[(int)gaugeId] = 0;
-            }
-        }
-
-        public static void SetGaugePointsValue(ControlsScript player, GaugeId[] gaugeId, Fix64 value)
-        {
-            if (player == null
-                || gaugeId == null)
-            {
-                return;
-            }
-
-            int length = gaugeId.Length;
-            for (int i = 0; i < length; i++)
-            {
-                SetGaugePointsValue(player, gaugeId[i], value);
-            }
-        }
-
         public static void SetAllGaugePointsPercent(ControlsScript player, Fix64 percent)
         {
             if (player == null)
@@ -1271,6 +1214,21 @@ namespace UFE2FTE
             else if (player.currentGaugesPoints[(int)gaugeId] < 0)
             {
                 player.currentGaugesPoints[(int)gaugeId] = 0;
+            }
+        }
+
+        public static void AddOrSubtractGaugePointsPercent(ControlsScript player, GaugeId[] gaugeId, Fix64 percent)
+        {
+            if (player == null
+                || gaugeId == null)
+            {
+                return;
+            }
+
+            int length = gaugeId.Length;
+            for (int i = 0; i < length; i++)
+            {
+                AddOrSubtractGaugePointsPercent(player, gaugeId[i], percent);
             }
         }
 
@@ -1773,39 +1731,39 @@ namespace UFE2FTE
             player.CastMove(GetMoveInfoFromControlsScriptByMoveName(player, moveName), overrideCurrentMove, forceGrounded, castWarning);
         }
 
-        public static void TryCastMoveOnLandingOverrideAllControlsScripts(string[] includedMoveNameArray)
+        public static void TryCastMoveOnLandingOverrideAllControlsScripts(string[] moveName)
         {
             if (UFE.GetPlayer1ControlsScript() != null)
             {
-                CastMoveOnLandingOverride(UFE.GetPlayer1ControlsScript(), includedMoveNameArray);
+                CastMoveOnLandingOverride(UFE.GetPlayer1ControlsScript(), moveName);
 
                 int count = UFE.GetPlayer1ControlsScript().assists.Count;
                 for (int i = 0; i < count; i++)
                 {
-                    CastMoveOnLandingOverride(UFE.GetPlayer1ControlsScript().assists[i], includedMoveNameArray);
+                    CastMoveOnLandingOverride(UFE.GetPlayer1ControlsScript().assists[i], moveName);
                 }
             }
 
             if (UFE.GetPlayer2ControlsScript() != null)
             {
-                CastMoveOnLandingOverride(UFE.GetPlayer2ControlsScript(), includedMoveNameArray);
+                CastMoveOnLandingOverride(UFE.GetPlayer2ControlsScript(), moveName);
 
                 int count = UFE.GetPlayer2ControlsScript().assists.Count;
                 for (int i = 0; i < count; i++)
                 {
-                    CastMoveOnLandingOverride(UFE.GetPlayer2ControlsScript().assists[i], includedMoveNameArray);
+                    CastMoveOnLandingOverride(UFE.GetPlayer2ControlsScript().assists[i], moveName);
                 }
             }
         }
 
-        public static void CastMoveOnLandingOverride(ControlsScript player, string[] includedMoveNameArray)
+        public static void CastMoveOnLandingOverride(ControlsScript player, string[] moveName)
         {
             if (player == null
                 || player.currentMove == null
                 || player.currentMove.cancelMoveWhenLanding == false
                 || player.currentMove.landingMoveLink == null
                 || player.Physics.IsGrounded() == false
-                || IsStringMatch(player.currentMove.moveName, includedMoveNameArray) == false)
+                || IsStringMatch(player.currentMove.moveName, moveName) == false)
             {
                 return;
             }
@@ -1976,12 +1934,12 @@ namespace UFE2FTE
 
         public static int GetOnlinePing()
         {
-            if (UFE.multiplayerAPI == null)
+            if (UFE.MultiplayerAPI == null)
             {
                 return 0;
             }
 
-            return UFE.multiplayerAPI.GetLastPing();
+            return UFE.MultiplayerAPI.GetLastPing();
         }
 
         #endregion
@@ -2334,23 +2292,23 @@ namespace UFE2FTE
 
         public static void SaveState()
         {
-            if (UFE.replayMode == null)
+            if (UFE.ReplayMode == null)
             {
                 return;
             }
 
-            UFE.replayMode.SaveState();
+            UFE.ReplayMode.SaveState();
         }
 
         public static void LoadState()
         {
-            if (UFE.replayMode == null
-                || UFE.fluxCapacitor.savedState == null)
+            if (UFE.ReplayMode == null
+                || UFE.FluxCapacitor.savedState == null)
             {
                 return;
             }
 
-            UFE.replayMode.LoadState();
+            UFE.ReplayMode.LoadState();
         }
 
         #endregion
@@ -3070,17 +3028,17 @@ namespace UFE2FTE
 /*
  * 
  *  // In that case, we can process pause menu events
-     //UFE.PauseGame(!UFE.isPaused());
+     //UFE.PauseGame(!UFE.IsPaused());
 
      if (player1CurrentStartButton && !player1PreviousStartButton)
      {
     UFE2FTE.UFE2FTEPlayerPausedManager.PlayerPaused = UFE2FTE.UFE2FTEPlayerPausedManager.Player.Player1Paused;
-    UFE.PauseGame(!UFE.isPaused());
+    UFE.PauseGame(!UFE.IsPaused());
 }
      else if (player2CurrentStartButton && !player2PreviousStartButton)
 {
     UFE2FTE.UFE2FTEPlayerPausedManager.PlayerPaused = UFE2FTE.UFE2FTEPlayerPausedManager.Player.Player2Paused;
-    UFE.PauseGame(!UFE.isPaused());
+    UFE.PauseGame(!UFE.IsPaused());
 }
  * 
  *

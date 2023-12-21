@@ -9,7 +9,7 @@ namespace UFE2FTE
 
         private void Update()
         {
-            if (UFE.isPaused() == true)
+            if (UFE.IsPaused() == true)
             {
                 UFE2FTE.SetGameObjectActive(gameObjectArray, false);
             }

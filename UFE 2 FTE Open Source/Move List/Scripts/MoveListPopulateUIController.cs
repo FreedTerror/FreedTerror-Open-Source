@@ -50,7 +50,7 @@ namespace UFE2FTE
                 int length = moveListScriptableObject.moveListOptionsArray.Length;
                 for (int i = 0; i < length; i++)
                 {
-                    if (UFE2FTE.IsCombatStancesMatch(player.currentCombatStance, moveListScriptableObject.moveListOptionsArray[i].combatStanceArray) == false)
+                    if (UFE2FTE.IsCombatStancesMatch(player.MoveSet.currentCombatStance, moveListScriptableObject.moveListOptionsArray[i].combatStanceArray) == false)
                     {
                         continue;
                     }

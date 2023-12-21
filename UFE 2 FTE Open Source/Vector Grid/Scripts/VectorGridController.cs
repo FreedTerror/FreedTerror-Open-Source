@@ -19,7 +19,7 @@ namespace UFE2FTE
                 return;
             }
 
-            if (UFE.isPaused() == true)
+            if (UFE.IsPaused() == true)
             {
                 vectorGrid.enabled = false;
             }

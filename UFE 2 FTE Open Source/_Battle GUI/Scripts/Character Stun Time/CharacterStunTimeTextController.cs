@@ -26,7 +26,7 @@ namespace UFE2FTE
                 || player.isDead == true
                 || player.opControlsScript == null       
                 || player.opControlsScript.isDead == true
-                || UFE.isPaused())
+                || UFE.IsPaused())
             {
                 return;
             }

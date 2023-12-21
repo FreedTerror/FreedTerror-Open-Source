@@ -49,7 +49,7 @@ namespace UFE2FTE
                 return;
             }
 
-            if (UFE.isPaused() == true)
+            if (UFE.IsPaused() == true)
             {
                 animator.enabled = false;
             }
