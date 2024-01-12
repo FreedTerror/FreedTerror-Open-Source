@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b30adea2cf3cb464c977070d7e8abe70, type: 3}
   m_Name: Gold Color Data Manager
   m_EditorClassIdentifier: 
-  colorDataScriptableObjectArray: []
+  colorDataScriptableObjectArray:
+  - {fileID: 11400000, guid: ee583d7e4313f774db041025f4d2310c, type: 2}

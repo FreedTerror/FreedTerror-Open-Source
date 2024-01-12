@@ -18,7 +18,7 @@ namespace UFE2FTE
 
         private void OnDisable()
         {
-            UFE2FTE.SetTextMessage(comboDamageText, UFE2FTE.languageOptions.GetNormalNumber(0));
+            UFE2FTE.SetTextMessage(comboDamageText, UFE2FTE.GetNormalStringNumber(0));
         }
 
         private void SetComboDamageText(ControlsScript player)
@@ -30,7 +30,7 @@ namespace UFE2FTE
                 return;
             }
 
-            UFE2FTE.SetTextMessage(comboDamageText, UFE2FTE.languageOptions.GetNormalNumber((int)FPMath.Floor(player.opControlsScript.comboDamage)));
+            UFE2FTE.SetTextMessage(comboDamageText, UFE2FTE.GetNormalStringNumber((int)FPMath.Floor(player.opControlsScript.comboDamage)));
         }
     }
 }

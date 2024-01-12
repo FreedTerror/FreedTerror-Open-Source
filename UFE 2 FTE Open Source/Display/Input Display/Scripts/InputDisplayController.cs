@@ -16,7 +16,7 @@ namespace UFE2FTE
 
         private void Start()
         {
-            inputDisplayButtonIconControllerPrefab = UFE2FTE.Instance.inputDisplayScriptableObject.GetInputDisplayButtonIconControllerPrefab();
+            inputDisplayButtonIconControllerPrefab = UFE2FTE.instance.inputDisplayScriptableObject.GetInputDisplayButtonIconControllerPrefab();
 
             FindInputDisplayGameObjects();
         }
@@ -28,7 +28,7 @@ namespace UFE2FTE
 
         private void FindInputDisplayGameObjects()
         {
-            if (UFE2FTE.Instance.inputDisplayScriptableObject.CanDisplayInputs() == false)
+            if (UFE2FTE.instance.inputDisplayScriptableObject.CanDisplayInputs() == false)
             {
                 return;
             }
@@ -88,7 +88,7 @@ namespace UFE2FTE
 
         private void SetActiveInputDisplayGameObjects()
         {
-            bool active = UFE2FTE.Instance.displayInputs;
+            bool active = UFE2FTE.instance.displayInputs;
 
             if (player1InputDisplayRectTransform != null)
             {
@@ -96,7 +96,7 @@ namespace UFE2FTE
 
                 if (active == true)
                 {
-                    player1InputDisplayRectTransform.offsetMax = new Vector2(UFE2FTE.Instance.inputDisplayScriptableObject.inputDisplayOffsetMax.x, UFE2FTE.Instance.inputDisplayScriptableObject.inputDisplayOffsetMax.y);
+                    player1InputDisplayRectTransform.offsetMax = new Vector2(UFE2FTE.instance.inputDisplayScriptableObject.inputDisplayOffsetMax.x, UFE2FTE.instance.inputDisplayScriptableObject.inputDisplayOffsetMax.y);
 
                     int count = player1ButtonIconList.Count;
                     for (int i = 0; i < count; i++)
@@ -106,7 +106,7 @@ namespace UFE2FTE
                             continue;
                         }
 
-                        player1ButtonIconList[i].sizeDelta = UFE2FTE.Instance.inputDisplayScriptableObject.inputDisplayButtonIconSizeDelta;
+                        player1ButtonIconList[i].sizeDelta = UFE2FTE.instance.inputDisplayScriptableObject.inputDisplayButtonIconSizeDelta;
                     }
                 }
             }
@@ -117,7 +117,7 @@ namespace UFE2FTE
 
                 if (active == true)
                 {
-                    player2InputDisplayRectTransform.offsetMax = new Vector2(UFE2FTE.Instance.inputDisplayScriptableObject.inputDisplayOffsetMax.x, UFE2FTE.Instance.inputDisplayScriptableObject.inputDisplayOffsetMax.y);
+                    player2InputDisplayRectTransform.offsetMax = new Vector2(UFE2FTE.instance.inputDisplayScriptableObject.inputDisplayOffsetMax.x, UFE2FTE.instance.inputDisplayScriptableObject.inputDisplayOffsetMax.y);
 
                     int count = player2ButtonIconList.Count;
                     for (int i = 0; i < count; i++)
@@ -127,7 +127,7 @@ namespace UFE2FTE
                             continue;
                         }
 
-                        player2ButtonIconList[i].sizeDelta = UFE2FTE.Instance.inputDisplayScriptableObject.inputDisplayButtonIconSizeDelta;
+                        player2ButtonIconList[i].sizeDelta = UFE2FTE.instance.inputDisplayScriptableObject.inputDisplayButtonIconSizeDelta;
                     }
                 }
             }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace UFE2FTE
 {
-    [CreateAssetMenu(menuName = "U.F.E. 2 F.T.E./Transform Shake/Transform Shake", fileName = "New Transform Shake")]
+    [CreateAssetMenu(fileName = "New Transform Shake", menuName = "U.F.E. 2 F.T.E./Shake/Transform Shake")]
     public class TransformShakeScriptableObject : ScriptableObject
     {     
         public float shakeDuration;

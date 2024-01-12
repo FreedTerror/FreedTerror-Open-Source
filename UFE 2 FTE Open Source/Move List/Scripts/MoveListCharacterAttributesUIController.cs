@@ -8,10 +8,11 @@ namespace UFE2FTE
     {
         [SerializeField]
         private Text characterAttributesText;
+        //private readonly string colonEmptySpace = ": ";
  
         private void Start()
         {
-            SetCharacterAttributesText(UFE2FTE.GetCharacterInfo(UFE2FTE.Instance.pausedPlayer));
+            SetCharacterAttributesText(UFE2FTE.GetCharacterInfo(UFE2FTE.instance.pausedPlayer));
         }
 
         private void SetCharacterAttributesText(UFE3D.CharacterInfo characterInfo)
@@ -40,12 +41,12 @@ namespace UFE2FTE
 
             string characterAttributesMessage = "";
 
-            if (UFE2FTE.languageOptions.selectedLanguage.MaxLifePoints != "")
+            /*if (UFE2FTE.languageOptions.selectedLanguage.MaxLifePoints != "")
             {
                 characterAttributesMessage = 
                     characterAttributesMessage +
                     UFE2FTE.languageOptions.selectedLanguage.MaxLifePoints + 
-                    " " +
+                    colonEmptySpace +
                     characterInfo.lifePoints +
                     System.Environment.NewLine;
             }
@@ -54,8 +55,8 @@ namespace UFE2FTE
             {
                 characterAttributesMessage = 
                     characterAttributesMessage +
-                    UFE2FTE.languageOptions.selectedLanguage.MaxGaugePoints + 
-                    " " +
+                    UFE2FTE.languageOptions.selectedLanguage.MaxGaugePoints +
+                    colonEmptySpace +
                     characterInfo.maxGaugePoints + 
                     System.Environment.NewLine;
             }
@@ -65,7 +66,7 @@ namespace UFE2FTE
                 characterAttributesMessage = 
                     characterAttributesMessage +
                     UFE2FTE.languageOptions.selectedLanguage.MoveForwardSpeed + 
-                    " " +
+                    colonEmptySpace +
                     characterInfo.physics._moveForwardSpeed + 
                     System.Environment.NewLine;
             }
@@ -75,7 +76,7 @@ namespace UFE2FTE
                 characterAttributesMessage = 
                     characterAttributesMessage +
                     UFE2FTE.languageOptions.selectedLanguage.MoveBackSpeed +
-                    " " +
+                    colonEmptySpace +
                     characterInfo.physics._moveBackSpeed + 
                     System.Environment.NewLine;
             }
@@ -89,7 +90,7 @@ namespace UFE2FTE
                         characterAttributesMessage =
                             characterAttributesMessage +
                             UFE2FTE.languageOptions.selectedLanguage.MoveSidewaysSpeed +
-                            " " +
+                            colonEmptySpace +
                             characterInfo.physics._moveSidewaysSpeed +
                             System.Environment.NewLine;
                         break;
@@ -101,7 +102,7 @@ namespace UFE2FTE
                 characterAttributesMessage = 
                     characterAttributesMessage +
                     UFE2FTE.languageOptions.selectedLanguage.JumpStartupFrames +
-                    " " +
+                    colonEmptySpace +
                     characterInfo.physics.jumpDelay + 
                     System.Environment.NewLine;
             }
@@ -111,7 +112,7 @@ namespace UFE2FTE
                 characterAttributesMessage = 
                     characterAttributesMessage +
                     UFE2FTE.languageOptions.selectedLanguage.JumpLandingFrames +
-                    " " +
+                    colonEmptySpace +
                     characterInfo.physics.landingDelay + 
                     System.Environment.NewLine;
             }
@@ -121,7 +122,7 @@ namespace UFE2FTE
                 characterAttributesMessage =
                     characterAttributesMessage +
                     UFE2FTE.languageOptions.selectedLanguage.JumpForce +
-                    " " +
+                    colonEmptySpace +
                     characterInfo.physics._jumpForce +
                     System.Environment.NewLine;
             }
@@ -131,7 +132,7 @@ namespace UFE2FTE
                 characterAttributesMessage =
                     characterAttributesMessage +
                     UFE2FTE.languageOptions.selectedLanguage.JumpForwardDistance +
-                    " " +
+                    colonEmptySpace +
                     characterInfo.physics._jumpDistance +
                     System.Environment.NewLine;
             }
@@ -141,7 +142,7 @@ namespace UFE2FTE
                 characterAttributesMessage =
                     characterAttributesMessage +
                     UFE2FTE.languageOptions.selectedLanguage.JumpBackDistance +
-                    " " +
+                    colonEmptySpace +
                     characterInfo.physics._jumpBackDistance +
                     System.Environment.NewLine;
             }
@@ -151,7 +152,7 @@ namespace UFE2FTE
                 characterAttributesMessage =
                     characterAttributesMessage +
                     UFE2FTE.languageOptions.selectedLanguage.Weight +
-                    " " +
+                    colonEmptySpace +
                     characterInfo.physics._weight +
                     System.Environment.NewLine;
             }
@@ -161,14 +162,17 @@ namespace UFE2FTE
                 characterAttributesMessage =
                     characterAttributesMessage +
                     UFE2FTE.languageOptions.selectedLanguage.Friction +
-                    " " +
+                    colonEmptySpace +
                     characterInfo.physics._friction;
-            }
-            //Remove System.Environment.NewLine on last string concat to not add a new line to the bottom
+            }*/
 
             if (characterAttributesMessage != "")
             {
-                characterAttributesMessage = characterAttributesMessage.Insert(0, characterInfo.characterName + " " + UFE2FTE.languageOptions.selectedLanguage.Attributes + System.Environment.NewLine);
+                characterAttributesMessage = 
+                    characterAttributesMessage.Insert(
+                        0,
+                        "Attributes" + 
+                        System.Environment.NewLine);
             }
 
             return characterAttributesMessage;

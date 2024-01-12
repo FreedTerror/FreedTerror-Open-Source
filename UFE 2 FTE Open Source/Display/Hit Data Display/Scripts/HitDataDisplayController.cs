@@ -84,7 +84,7 @@ namespace UFE2FTE
                 return;
             }
 
-            UFE2FTE.SetTextMessage(hitTypeText, UFE2FTE.languageOptions.selectedLanguage.GetStringFromHitType(hit.hitType, hit.hitConfirmType));
+            UFE2FTE.SetTextMessage(hitTypeText, UFE2FTE.GetStringFromEnum(hit.hitType, hit.hitConfirmType));
 
             UFE2FTE.SetTextMessage(damageOnHitText, GetStringFromDamageType(hit.damageType, hit._damageOnHit));
 
@@ -148,7 +148,7 @@ namespace UFE2FTE
                     value = 0;
                 }
 
-                return UFE2FTE.languageOptions.GetNormalPercentNumber((int)Fix64.Floor(value));
+                return UFE2FTE.GetNormalPercentStringNumber((int)Fix64.Floor(value));
             }
             else if (damageType == DamageType.Points)
             {
@@ -157,7 +157,7 @@ namespace UFE2FTE
                     value = 0;
                 }
 
-                return UFE2FTE.languageOptions.GetNormalNumber((int)Fix64.Floor(value));
+                return UFE2FTE.GetNormalStringNumber((int)Fix64.Floor(value));
             }
 
             return "";
@@ -170,15 +170,15 @@ namespace UFE2FTE
                 case HitStunType.FrameAdvantage:
                     if (value == 0)
                     {
-                        return UFE2FTE.languageOptions.GetNormalNumber((int)value);
+                        return UFE2FTE.GetNormalStringNumber((int)value);
                     }
                     if (value > 0)
                     {
-                        return UFE2FTE.languageOptions.GetPositiveNumber((int)value);
+                        return UFE2FTE.GetPositiveStringNumber((int)value);
                     }
                     else if (value < 0)
                     {
-                        return UFE2FTE.languageOptions.GetNegativeNumber((int)Fix64.Abs(value));
+                        return UFE2FTE.GetNegativeStringNumber((int)Fix64.Abs(value));
                     }
                     return "";
 
@@ -188,7 +188,7 @@ namespace UFE2FTE
                         value = 0;
                     }
 
-                    return UFE2FTE.languageOptions.GetNormalFrameNumber((int)value);
+                    return UFE2FTE.GetNormalFrameStringNumber((int)value);
 
                 default:
                     return "";

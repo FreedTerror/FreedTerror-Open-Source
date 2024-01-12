@@ -122,7 +122,7 @@ namespace UFE2FTE
                 return;
             }
 
-            hitBoxDisplayScriptableObject.SetAllColliderColorAlphaValue((byte)UFE2FTE.Instance.hitBoxDisplayAlphaValue);
+            hitBoxDisplayScriptableObject.SetAllColliderColorAlphaValue((byte)UFE2FTE.instance.hitBoxDisplayAlphaValue);
 
             SetHitBoxDisplayLists();
 
@@ -1032,11 +1032,11 @@ namespace UFE2FTE
                         case CollisionType.bodyCollider:
                             if (characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplaySpriteRendererGameObject.activeInHierarchy == true)
                             {
-                                if (UFE2FTE.Instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DInfront)
+                                if (UFE2FTE.instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DInfront)
                                 {
                                     characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplaySpriteRenderer.sortingOrder = hitBoxDisplayScriptableObject.characterBodyColliderOptions.orderInLayerInfront;
                                 }
-                                else if (UFE2FTE.Instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DBehind)
+                                else if (UFE2FTE.instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DBehind)
                                 {
                                     characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplaySpriteRenderer.sortingOrder = hitBoxDisplayScriptableObject.characterBodyColliderOptions.orderInLayerBehind;
                                 }
@@ -1044,11 +1044,11 @@ namespace UFE2FTE
 
                             if (characterHitBoxDisplayList[i].hitBoxesRectangleGameObjectArray[a].hitBoxDisplaySpriteRendererGameObject.activeInHierarchy == true)
                             {
-                                if (UFE2FTE.Instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DInfront)
+                                if (UFE2FTE.instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DInfront)
                                 {
                                     characterHitBoxDisplayList[i].hitBoxesRectangleGameObjectArray[a].hitBoxDisplaySpriteRenderer.sortingOrder = hitBoxDisplayScriptableObject.characterBodyColliderOptions.orderInLayerInfront;
                                 }
-                                else if (UFE2FTE.Instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DBehind)
+                                else if (UFE2FTE.instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DBehind)
                                 {
                                     characterHitBoxDisplayList[i].hitBoxesRectangleGameObjectArray[a].hitBoxDisplaySpriteRenderer.sortingOrder = hitBoxDisplayScriptableObject.characterBodyColliderOptions.orderInLayerBehind;
                                 }
@@ -1058,11 +1058,11 @@ namespace UFE2FTE
                         case CollisionType.hitCollider:
                             if (characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplaySpriteRendererGameObject.activeInHierarchy == true)
                             {
-                                if (UFE2FTE.Instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DInfront)
+                                if (UFE2FTE.instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DInfront)
                                 {
                                     characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplaySpriteRenderer.sortingOrder = hitBoxDisplayScriptableObject.characterHitColliderOptions.orderInLayerInfront;
                                 }
-                                else if (UFE2FTE.Instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DBehind)
+                                else if (UFE2FTE.instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DBehind)
                                 {
                                     characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplaySpriteRenderer.sortingOrder = hitBoxDisplayScriptableObject.characterHitColliderOptions.orderInLayerBehind;
                                 }
@@ -1070,11 +1070,11 @@ namespace UFE2FTE
 
                             if (characterHitBoxDisplayList[i].hitBoxesRectangleGameObjectArray[a].hitBoxDisplaySpriteRendererGameObject.activeInHierarchy == true)
                             {
-                                if (UFE2FTE.Instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DInfront)
+                                if (UFE2FTE.instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DInfront)
                                 {
                                     characterHitBoxDisplayList[i].hitBoxesRectangleGameObjectArray[a].hitBoxDisplaySpriteRenderer.sortingOrder = hitBoxDisplayScriptableObject.characterHitColliderOptions.orderInLayerInfront;
                                 }
-                                else if (UFE2FTE.Instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DBehind)
+                                else if (UFE2FTE.instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DBehind)
                                 {
                                     characterHitBoxDisplayList[i].hitBoxesRectangleGameObjectArray[a].hitBoxDisplaySpriteRenderer.sortingOrder = hitBoxDisplayScriptableObject.characterHitColliderOptions.orderInLayerBehind;
                                 }
@@ -1084,11 +1084,11 @@ namespace UFE2FTE
                         case CollisionType.noCollider:
                             if (characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplaySpriteRendererGameObject.activeInHierarchy == true)
                             {
-                                if (UFE2FTE.Instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DInfront)
+                                if (UFE2FTE.instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DInfront)
                                 {
                                     characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplaySpriteRenderer.sortingOrder = hitBoxDisplayScriptableObject.characterNoColliderOptions.orderInLayerInfront;
                                 }
-                                else if (UFE2FTE.Instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DBehind)
+                                else if (UFE2FTE.instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DBehind)
                                 {
                                     characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplaySpriteRenderer.sortingOrder = hitBoxDisplayScriptableObject.characterNoColliderOptions.orderInLayerBehind;
                                 }
@@ -1096,11 +1096,11 @@ namespace UFE2FTE
 
                             if (characterHitBoxDisplayList[i].hitBoxesRectangleGameObjectArray[a].hitBoxDisplaySpriteRendererGameObject.activeInHierarchy == true)
                             {
-                                if (UFE2FTE.Instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DInfront)
+                                if (UFE2FTE.instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DInfront)
                                 {
                                     characterHitBoxDisplayList[i].hitBoxesRectangleGameObjectArray[a].hitBoxDisplaySpriteRenderer.sortingOrder = hitBoxDisplayScriptableObject.characterNoColliderOptions.orderInLayerInfront;
                                 }
-                                else if (UFE2FTE.Instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DBehind)
+                                else if (UFE2FTE.instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DBehind)
                                 {
                                     characterHitBoxDisplayList[i].hitBoxesRectangleGameObjectArray[a].hitBoxDisplaySpriteRenderer.sortingOrder = hitBoxDisplayScriptableObject.characterNoColliderOptions.orderInLayerBehind;
                                 }
@@ -1110,11 +1110,11 @@ namespace UFE2FTE
                         case CollisionType.throwCollider:
                             if (characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplaySpriteRendererGameObject.activeInHierarchy == true)
                             {
-                                if (UFE2FTE.Instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DInfront)
+                                if (UFE2FTE.instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DInfront)
                                 {
                                     characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplaySpriteRenderer.sortingOrder = hitBoxDisplayScriptableObject.characterThrowColliderOptions.orderInLayerInfront;
                                 }
-                                else if (UFE2FTE.Instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DBehind)
+                                else if (UFE2FTE.instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DBehind)
                                 {
                                     characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplaySpriteRenderer.sortingOrder = hitBoxDisplayScriptableObject.characterThrowColliderOptions.orderInLayerBehind;
                                 }
@@ -1122,11 +1122,11 @@ namespace UFE2FTE
 
                             if (characterHitBoxDisplayList[i].hitBoxesRectangleGameObjectArray[a].hitBoxDisplaySpriteRendererGameObject.activeInHierarchy == true)
                             {
-                                if (UFE2FTE.Instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DInfront)
+                                if (UFE2FTE.instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DInfront)
                                 {
                                     characterHitBoxDisplayList[i].hitBoxesRectangleGameObjectArray[a].hitBoxDisplaySpriteRenderer.sortingOrder = hitBoxDisplayScriptableObject.characterThrowColliderOptions.orderInLayerInfront;
                                 }
-                                else if (UFE2FTE.Instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DBehind)
+                                else if (UFE2FTE.instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DBehind)
                                 {
                                     characterHitBoxDisplayList[i].hitBoxesRectangleGameObjectArray[a].hitBoxDisplaySpriteRenderer.sortingOrder = hitBoxDisplayScriptableObject.characterThrowColliderOptions.orderInLayerBehind;
                                 }
@@ -1136,11 +1136,11 @@ namespace UFE2FTE
                         case CollisionType.projectileInvincibleCollider:
                             if (characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplaySpriteRendererGameObject.activeInHierarchy == true)
                             {
-                                if (UFE2FTE.Instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DInfront)
+                                if (UFE2FTE.instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DInfront)
                                 {
                                     characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplaySpriteRenderer.sortingOrder = hitBoxDisplayScriptableObject.characterProjectileInvincibleColliderOptions.orderInLayerInfront;
                                 }
-                                else if (UFE2FTE.Instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DBehind)
+                                else if (UFE2FTE.instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DBehind)
                                 {
                                     characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplaySpriteRenderer.sortingOrder = hitBoxDisplayScriptableObject.characterProjectileInvincibleColliderOptions.orderInLayerBehind;
                                 }
@@ -1148,11 +1148,11 @@ namespace UFE2FTE
 
                             if (characterHitBoxDisplayList[i].hitBoxesRectangleGameObjectArray[a].hitBoxDisplaySpriteRendererGameObject.activeInHierarchy == true)
                             {
-                                if (UFE2FTE.Instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DInfront)
+                                if (UFE2FTE.instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DInfront)
                                 {
                                     characterHitBoxDisplayList[i].hitBoxesRectangleGameObjectArray[a].hitBoxDisplaySpriteRenderer.sortingOrder = hitBoxDisplayScriptableObject.characterProjectileInvincibleColliderOptions.orderInLayerInfront;
                                 }
-                                else if (UFE2FTE.Instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DBehind)
+                                else if (UFE2FTE.instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DBehind)
                                 {
                                     characterHitBoxDisplayList[i].hitBoxesRectangleGameObjectArray[a].hitBoxDisplaySpriteRenderer.sortingOrder = hitBoxDisplayScriptableObject.characterProjectileInvincibleColliderOptions.orderInLayerBehind;
                                 }
@@ -1162,11 +1162,11 @@ namespace UFE2FTE
                         case CollisionType.physicalInvincibleCollider:
                             if (characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplaySpriteRendererGameObject.activeInHierarchy == true)
                             {
-                                if (UFE2FTE.Instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DInfront)
+                                if (UFE2FTE.instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DInfront)
                                 {
                                     characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplaySpriteRenderer.sortingOrder = hitBoxDisplayScriptableObject.characterPhysicalInvincibleColliderOptions.orderInLayerInfront;
                                 }
-                                else if (UFE2FTE.Instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DBehind)
+                                else if (UFE2FTE.instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DBehind)
                                 {
                                     characterHitBoxDisplayList[i].hitBoxesCircleGameObjectArray[a].hitBoxDisplaySpriteRenderer.sortingOrder = hitBoxDisplayScriptableObject.characterPhysicalInvincibleColliderOptions.orderInLayerBehind;
                                 }
@@ -1174,11 +1174,11 @@ namespace UFE2FTE
 
                             if (characterHitBoxDisplayList[i].hitBoxesRectangleGameObjectArray[a].hitBoxDisplaySpriteRendererGameObject.activeInHierarchy == true)
                             {
-                                if (UFE2FTE.Instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DInfront)
+                                if (UFE2FTE.instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DInfront)
                                 {
                                     characterHitBoxDisplayList[i].hitBoxesRectangleGameObjectArray[a].hitBoxDisplaySpriteRenderer.sortingOrder = hitBoxDisplayScriptableObject.characterPhysicalInvincibleColliderOptions.orderInLayerInfront;
                                 }
-                                else if (UFE2FTE.Instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DBehind)
+                                else if (UFE2FTE.instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DBehind)
                                 {
                                     characterHitBoxDisplayList[i].hitBoxesRectangleGameObjectArray[a].hitBoxDisplaySpriteRenderer.sortingOrder = hitBoxDisplayScriptableObject.characterPhysicalInvincibleColliderOptions.orderInLayerBehind;
                                 }
@@ -1195,11 +1195,11 @@ namespace UFE2FTE
                         continue;
                     }
 
-                    if (UFE2FTE.Instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DInfront)
+                    if (UFE2FTE.instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DInfront)
                     {
                         characterHitBoxDisplayList[i].activeHurtBoxesCircleGameObjectArray[a].hitBoxDisplaySpriteRenderer.sortingOrder = hitBoxDisplayScriptableObject.characterActiveHurtBoxColliderOptions.orderInLayerInfront;
                     }
-                    else if (UFE2FTE.Instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DBehind)
+                    else if (UFE2FTE.instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DBehind)
                     {
                         characterHitBoxDisplayList[i].activeHurtBoxesCircleGameObjectArray[a].hitBoxDisplaySpriteRenderer.sortingOrder = hitBoxDisplayScriptableObject.characterActiveHurtBoxColliderOptions.orderInLayerBehind;
                     }
@@ -1213,17 +1213,17 @@ namespace UFE2FTE
                         continue;
                     }
 
-                    if (UFE2FTE.Instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DInfront)
+                    if (UFE2FTE.instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DInfront)
                     {
                         characterHitBoxDisplayList[i].activeHurtBoxesRectangleGameObjectArray[a].hitBoxDisplaySpriteRenderer.sortingOrder = hitBoxDisplayScriptableObject.characterActiveHurtBoxColliderOptions.orderInLayerInfront;
                     }
-                    else if (UFE2FTE.Instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DBehind)
+                    else if (UFE2FTE.instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DBehind)
                     {
                         characterHitBoxDisplayList[i].activeHurtBoxesRectangleGameObjectArray[a].hitBoxDisplaySpriteRenderer.sortingOrder = hitBoxDisplayScriptableObject.characterActiveHurtBoxColliderOptions.orderInLayerBehind;
                     }
                 }
 
-                if (UFE2FTE.Instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DInfront)
+                if (UFE2FTE.instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DInfront)
                 {
                     if (characterHitBoxDisplayList[i].blockableAreaCircleGameObject.hitBoxDisplaySpriteRendererGameObject.activeInHierarchy == true)
                     {
@@ -1235,7 +1235,7 @@ namespace UFE2FTE
                         characterHitBoxDisplayList[i].blockableAreaRectangleGameObject.hitBoxDisplaySpriteRenderer.sortingOrder = hitBoxDisplayScriptableObject.characterBlockableAreaColliderOptions.orderInLayerInfront;
                     }
                 }
-                else if (UFE2FTE.Instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DBehind)
+                else if (UFE2FTE.instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DBehind)
                 {
                     if (characterHitBoxDisplayList[i].blockableAreaCircleGameObject.hitBoxDisplaySpriteRendererGameObject.activeInHierarchy == true)
                     {
@@ -1575,7 +1575,7 @@ namespace UFE2FTE
 
         private void SetCharacterGameObjectsByDisplayMode()
         {
-            switch (UFE2FTE.Instance.hitBoxDisplayMode)
+            switch (UFE2FTE.instance.hitBoxDisplayMode)
             {
                 case UFE2FTE.HitBoxDisplayMode.Off:
                     int count = characterHitBoxDisplayList.Count;
@@ -1812,7 +1812,7 @@ namespace UFE2FTE
                     }
                     break;
 
-                case UFE2FTE.HitBoxDisplayMode.PopcronGizmos2D:
+                /*case UFE2FTE.HitBoxDisplayMode.PopcronGizmos2D:
                 case UFE2FTE.HitBoxDisplayMode.PopcronGizmos3D:
                     count = characterHitBoxDisplayList.Count;
                     for (int i = 0; i < count; i++)
@@ -1889,7 +1889,7 @@ namespace UFE2FTE
                             characterHitBoxDisplayList[i].blockableAreaRectangleGameObject.hitBoxDisplayGizmosGameObject.SetActive(true);
                         }
                     }
-                    break;
+                    break;*/
             }
         }
 
@@ -1941,7 +1941,7 @@ namespace UFE2FTE
 
         private void SetAllProjectileGameObjectsSpriteRendererSprite()
         {
-            switch (UFE2FTE.Instance.hitBoxDisplayMode)
+            switch (UFE2FTE.instance.hitBoxDisplayMode)
             {
                 case UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DInfront:
                 case UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DBehind:
@@ -2093,7 +2093,7 @@ namespace UFE2FTE
                     && projectileHitBoxDisplayList[i].projectileMoveScript.data.airHit == false
                     && projectileHitBoxDisplayList[i].projectileMoveScript.data.downHit == false)
                 {
-                    if (UFE2FTE.Instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DInfront)
+                    if (UFE2FTE.instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DInfront)
                     {
                         if (projectileHitBoxDisplayList[i].hitAreaCircleGameObject.hitBoxDisplaySpriteRendererGameObject.activeInHierarchy == true)
                         {
@@ -2105,7 +2105,7 @@ namespace UFE2FTE
                             projectileHitBoxDisplayList[i].hitAreaRectangleGameObject.hitBoxDisplaySpriteRenderer.sortingOrder = hitBoxDisplayScriptableObject.projectileOnlyColliderOptions.orderInLayerInfront;
                         }
                     }
-                    else if (UFE2FTE.Instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DBehind)
+                    else if (UFE2FTE.instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DBehind)
                     {
                         if (projectileHitBoxDisplayList[i].hitAreaCircleGameObject.hitBoxDisplaySpriteRendererGameObject.activeInHierarchy == true)
                         {
@@ -2120,7 +2120,7 @@ namespace UFE2FTE
                 }
                 else
                 {
-                    if (UFE2FTE.Instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DInfront)
+                    if (UFE2FTE.instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DInfront)
                     {
                         if (projectileHitBoxDisplayList[i].hitAreaCircleGameObject.hitBoxDisplaySpriteRendererGameObject.activeInHierarchy == true)
                         {
@@ -2132,7 +2132,7 @@ namespace UFE2FTE
                             projectileHitBoxDisplayList[i].hitAreaRectangleGameObject.hitBoxDisplaySpriteRenderer.sortingOrder = hitBoxDisplayScriptableObject.projectileHitAreaColliderOptions.orderInLayerInfront;
                         }
                     }
-                    else if (UFE2FTE.Instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DBehind)
+                    else if (UFE2FTE.instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DBehind)
                     {
                         if (projectileHitBoxDisplayList[i].hitAreaCircleGameObject.hitBoxDisplaySpriteRendererGameObject.activeInHierarchy == true)
                         {
@@ -2146,7 +2146,7 @@ namespace UFE2FTE
                     }
                 }
 
-                if (UFE2FTE.Instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DInfront)
+                if (UFE2FTE.instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DInfront)
                 {
                     if (projectileHitBoxDisplayList[i].blockableAreaCircleGameObject.hitBoxDisplaySpriteRendererGameObject.activeInHierarchy == true)
                     {
@@ -2158,7 +2158,7 @@ namespace UFE2FTE
                         projectileHitBoxDisplayList[i].blockableAreaRectangleGameObject.hitBoxDisplaySpriteRenderer.sortingOrder = hitBoxDisplayScriptableObject.projectileBlockableAreaColliderOptions.orderInLayerInfront;
                     }
                 }
-                else if (UFE2FTE.Instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DBehind)
+                else if (UFE2FTE.instance.hitBoxDisplayMode == UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DBehind)
                 {
                     if (projectileHitBoxDisplayList[i].blockableAreaCircleGameObject.hitBoxDisplaySpriteRendererGameObject.activeInHierarchy == true)
                     {
@@ -2257,7 +2257,7 @@ namespace UFE2FTE
 
         private void SetProjectileGameObjectsByDisplayMode()
         {
-            switch (UFE2FTE.Instance.hitBoxDisplayMode)
+            switch (UFE2FTE.instance.hitBoxDisplayMode)
             {
                 case UFE2FTE.HitBoxDisplayMode.Off:
                     int count = projectileHitBoxDisplayList.Count;
@@ -2374,7 +2374,7 @@ namespace UFE2FTE
                     }
                     break;
 
-                case UFE2FTE.HitBoxDisplayMode.PopcronGizmos2D:
+                /*case UFE2FTE.HitBoxDisplayMode.PopcronGizmos2D:
                 case UFE2FTE.HitBoxDisplayMode.PopcronGizmos3D:
                     count = projectileHitBoxDisplayList.Count;
                     for (int i = 0; i < count; i++)
@@ -2411,7 +2411,7 @@ namespace UFE2FTE
                             projectileHitBoxDisplayList[i].blockableAreaRectangleGameObject.hitBoxDisplayGizmosGameObject.SetActive(true);
                         }
                     }
-                    break;
+                    break;*/
             }
         }
 
@@ -2445,7 +2445,7 @@ namespace UFE2FTE
 
         private void SetGizmos()
         {
-            switch (UFE2FTE.Instance.hitBoxDisplayMode)
+            /*switch (UFE2FTE.instance.hitBoxDisplayMode)
             {
                 case UFE2FTE.HitBoxDisplayMode.PopcronGizmos2D:
                     Popcron.Gizmos.Enabled = true;
@@ -2732,7 +2732,7 @@ namespace UFE2FTE
                         }
                     }
                     break;
-            }
+            }*/
         }
 
         #endregion
@@ -2754,7 +2754,8 @@ namespace UFE2FTE
 
         private float GetZPositionFromHurtBox(HurtBox hurtBox)
         {
-            if (hurtBox == null)
+            if (hurtBox == null
+                || UFE.config == null)
             {
                 return 0;
             }
@@ -2769,7 +2770,8 @@ namespace UFE2FTE
 
         private float GetZPositionFromBlockArea(BlockArea blockArea)
         {
-            if (blockArea == null)
+            if (blockArea == null
+                || UFE.config == null)
             {
                 return 0;
             }

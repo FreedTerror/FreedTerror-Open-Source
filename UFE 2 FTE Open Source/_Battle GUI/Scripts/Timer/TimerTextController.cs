@@ -1,7 +1,6 @@
+using FPLibrary;
 using UnityEngine;
 using UnityEngine.UI;
-using UFE3D;
-using FPLibrary;
 
 namespace UFE2FTE
 {
@@ -22,7 +21,7 @@ namespace UFE2FTE
                 return;
             }
 
-            timerText.text = UFE2FTE.languageOptions.GetNormalNumber((int)Fix64.Ceiling(timer));
+            timerText.text = UFE2FTE.GetNormalStringNumber((int)Fix64.Ceiling(timer));
         }
     }
 }

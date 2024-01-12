@@ -1,15 +1,18 @@
-using UnityEngine;
-using UFE3D;
 using FPLibrary;
+using UFE3D;
+using UnityEngine;
 
 namespace UFE2FTE
 {
-    [CreateAssetMenu()]
+    [CreateAssetMenu(fileName = "New Game Settings", menuName = "U.F.E. 2 F.T.E./Settings/Game Settings")]
     public class GameSettingsScriptableObject : ScriptableObject
     {
         [Header("Round Options")]
         public int totalRounds = 3;
         public Fix64 timer = 99;
+        [Header("Deterioration Options")]
+        public Sizes damageDeterioration;
+        public Sizes hitStunDeterioration;
         [Header("Bounce Options")]
         public int maximumGroundBounces = 1;
         public int maximumWallBounces = 1;
@@ -29,6 +32,9 @@ namespace UFE2FTE
 
             UFE.config.roundOptions.totalRounds = totalRounds;
             UFE.config.roundOptions._timer = timer;
+
+            UFE.config.comboOptions.damageDeterioration = damageDeterioration;
+            UFE.config.comboOptions.hitStunDeterioration = hitStunDeterioration;
 
             UFE.config.groundBounceOptions._maximumBounces = maximumGroundBounces;
             UFE.config.wallBounceOptions._maximumBounces = maximumWallBounces;

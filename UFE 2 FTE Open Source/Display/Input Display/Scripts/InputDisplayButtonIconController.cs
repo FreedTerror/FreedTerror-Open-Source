@@ -33,9 +33,9 @@ namespace UFE2FTE
             {
                 targetImage.enabled = false;
 
-                UFE2FTE.SetInputDisplayRotation(rectTransform, UFE2FTE.Instance.inputDisplayScriptableObject.GetButtonPressFromInputDisplaySprite(targetImage.sprite));
+                UFE2FTE.SetInputDisplayRotation(rectTransform, UFE2FTE.instance.inputDisplayScriptableObject.GetButtonPressFromInputDisplaySprite(targetImage.sprite));
 
-                inputDisplayText.text = UFE2FTE.Instance.inputDisplayScriptableObject.GetInputDisplayStringFromSprite(targetImage.sprite);
+                inputDisplayText.text = UFE2FTE.instance.inputDisplayScriptableObject.GetInputDisplayStringFromSprite(targetImage.sprite);
             }
         }
     }

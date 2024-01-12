@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b30adea2cf3cb464c977070d7e8abe70, type: 3}
   m_Name: Green Color Data Manager
   m_EditorClassIdentifier: 
-  colorDataScriptableObjectArray: []
+  colorDataScriptableObjectArray:
+  - {fileID: 11400000, guid: 35f3058a2f6ccd04b9fe1347f48ccb71, type: 2}

@@ -46,7 +46,7 @@ namespace UFE2FTE
                 return;
             }
 
-            chargeTimingText.text = UFE2FTE.languageOptions.selectedLanguage.ChargeTiming + " " + moveInputs._chargeTiming + " " + UFE2FTE.languageOptions.selectedLanguage.Seconds;
+            chargeTimingText.text = "Charge Timing" + " " + moveInputs._chargeTiming + " " + "Seconds";
             if (moveInputs.chargeMove == false)
             {
                 chargeTimingText.gameObject.SetActive(false);

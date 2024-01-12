@@ -22,11 +22,11 @@ namespace UFE2FTE
 
             if (usePercentNumbers == true)
             {
-                text.text = UFE2FTE.languageOptions.GetNormalPercentNumber(Mathf.FloorToInt((float)(image.fillAmount / 1 * 100)));
+                text.text = UFE2FTE.GetNormalPercentStringNumber(Mathf.FloorToInt((float)(image.fillAmount / 1 * 100)));
             }
             else
             {
-                text.text = UFE2FTE.languageOptions.GetNormalNumber(Mathf.FloorToInt((float)(image.fillAmount / 1 * 100)));
+                text.text = UFE2FTE.GetNormalStringNumber(Mathf.FloorToInt((float)(image.fillAmount / 1 * 100)));
             }
         }
     }

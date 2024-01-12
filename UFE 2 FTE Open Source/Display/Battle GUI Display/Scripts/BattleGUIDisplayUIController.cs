@@ -10,12 +10,12 @@ namespace UFE2FTE
  
         private void Update()
         {
-            UFE2FTE.SetTextMessage(battleGUIDisplayToggleText, UFE2FTE.GetStringFromBool(UFE2FTE.Instance.displayBattleGUI));
+            UFE2FTE.SetTextMessage(battleGUIDisplayToggleText, UFE2FTE.GetStringFromBool(UFE2FTE.instance.displayBattleGUI));
         }
 
         public void ToggleBattleGUIDisplay()
         {
-            UFE2FTE.Instance.displayBattleGUI = UFE2FTE.ToggleBool(UFE2FTE.Instance.displayBattleGUI);
+            UFE2FTE.instance.displayBattleGUI = UFE2FTE.ToggleBool(UFE2FTE.instance.displayBattleGUI);
         }
     }
 }

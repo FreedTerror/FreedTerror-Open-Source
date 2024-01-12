@@ -17,7 +17,7 @@ namespace UFE2FTE
 
         public void StartChallenge()
         {
-            ChallengeModeController.Instance.StartChallenge(challengeOptions);
+            ChallengeModeController.instance.StartChallenge(challengeOptions);
         }
 
         private void SetChallengeNameText()

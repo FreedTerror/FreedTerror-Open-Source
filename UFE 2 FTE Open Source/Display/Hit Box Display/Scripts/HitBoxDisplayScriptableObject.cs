@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace UFE2FTE
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(fileName = "New Hit Box Display", menuName = "U.F.E. 2 F.T.E./Display/Hit Box Display")]
     public class HitBoxDisplayScriptableObject : ScriptableObject
     {
         public string hitBoxDisplayCirclePrefabPath = "Hit Box Display Circle Prefab";
@@ -161,55 +161,6 @@ namespace UFE2FTE
             projectileHitAreaColliderOptions.colliderColor.a = alphaValue;
             projectileOnlyColliderOptions.colliderColor.a = alphaValue;
             projectileBlockableAreaColliderOptions.colliderColor.a = alphaValue;
-        }
-
-        public UFE2FTE.HitBoxDisplayMode GetNextEnum(UFE2FTE.HitBoxDisplayMode value)
-        {
-            int index = (int)value;
-            index++;
-            if (System.Enum.IsDefined(typeof(UFE2FTE.HitBoxDisplayMode), (UFE2FTE.HitBoxDisplayMode)index) == false)
-            {
-                index = 0;
-            }
-            return (UFE2FTE.HitBoxDisplayMode)index;
-        }
-
-        public UFE2FTE.HitBoxDisplayMode GetPreviousEnum(UFE2FTE.HitBoxDisplayMode value)
-        {
-            int index = (int)value;
-            index--;
-            if (System.Enum.IsDefined(typeof(UFE2FTE.HitBoxDisplayMode), (UFE2FTE.HitBoxDisplayMode)index) == false)
-            {
-                index = System.Enum.GetValues(typeof(UFE2FTE.HitBoxDisplayMode)).Length - 1;
-            }
-            return (UFE2FTE.HitBoxDisplayMode)index;
-        }
-
-        public string GetStringFromEnum(UFE2FTE.HitBoxDisplayMode hitBoxDisplayMode)
-        {
-            switch (hitBoxDisplayMode)
-            {
-                case UFE2FTE.HitBoxDisplayMode.Off:
-                    return UFE2FTE.GetStringFromBool(false);
-
-                case UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DInfront:
-                    return UFE2FTE.languageOptions.selectedLanguage.HitBoxDisplaySpriteRenderer2DInfront;
-
-                case UFE2FTE.HitBoxDisplayMode.SpriteRenderer2DBehind:
-                    return UFE2FTE.languageOptions.selectedLanguage.HitBoxDisplaySpriteRenderer2DBehind;
-
-                case UFE2FTE.HitBoxDisplayMode.MeshRenderer3D:
-                    return UFE2FTE.languageOptions.selectedLanguage.HitBoxDisplayMeshRenderer3D;
-
-                case UFE2FTE.HitBoxDisplayMode.PopcronGizmos2D:
-                    return UFE2FTE.languageOptions.selectedLanguage.HitBoxDisplayPopcronGizmos2D;
-
-                case UFE2FTE.HitBoxDisplayMode.PopcronGizmos3D:
-                    return UFE2FTE.languageOptions.selectedLanguage.HitBoxDisplayPopcronGizmos3D;
-
-                default:
-                    return "";
-            }
         }
     }
 }

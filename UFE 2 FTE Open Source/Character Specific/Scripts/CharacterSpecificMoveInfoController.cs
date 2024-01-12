@@ -5,10 +5,11 @@ using UFE3D;
 namespace UFE2FTE
 {
     public class CharacterSpecificMoveInfoController : MonoBehaviour
-    {
-        private List<StanceInfo> stanceInfoList = new List<StanceInfo>();
+    {        
         [SerializeField]
         private CharacterInfoReferencesScriptableObject characterInfoReferencesScriptableObject;
+
+        private List<StanceInfo> stanceInfoList = new List<StanceInfo>();
 
         private void Update()
         {
@@ -21,8 +22,8 @@ namespace UFE2FTE
 
         private void SetDefaultMoveInfoOptions(UFE3D.CharacterInfo characterInfo)
         {
-            if (characterInfo == null
-                || characterInfoReferencesScriptableObject == null)
+            if (characterInfoReferencesScriptableObject == null
+                || characterInfo == null)
             {
                 return;
             }
@@ -49,10 +50,10 @@ namespace UFE2FTE
                         continue;
                     }
 
-                    characterInfo.moves[a].cinematicIntro = GetMoveInfo(characterSpecificMoveInfoScriptableObject.defaultMoveInfoOptionsArray[i].introMoveInfo, characterInfo.moves[a].attackMoves);
-                    characterInfo.moves[a].roundOutro = GetMoveInfo(characterSpecificMoveInfoScriptableObject.defaultMoveInfoOptionsArray[i].roundWinOutroMoveInfo, characterInfo.moves[a].attackMoves);
-                    characterInfo.moves[a].timeOutOutro = GetMoveInfo(characterSpecificMoveInfoScriptableObject.defaultMoveInfoOptionsArray[i].timeOutOutroMoveInfo, characterInfo.moves[a].attackMoves);
-                    characterInfo.moves[a].cinematicOutro = GetMoveInfo(characterSpecificMoveInfoScriptableObject.defaultMoveInfoOptionsArray[i].gameWinOutroMoveInfo, characterInfo.moves[a].attackMoves);
+                    characterInfo.moves[a].basicMoves.intro.moveInfo = GetMoveInfo(characterSpecificMoveInfoScriptableObject.defaultMoveInfoOptionsArray[i].introMoveInfo, characterInfo.moves[a].attackMoves);
+                    characterInfo.moves[a].basicMoves.roundWon.moveInfo = GetMoveInfo(characterSpecificMoveInfoScriptableObject.defaultMoveInfoOptionsArray[i].roundWonMoveInfo, characterInfo.moves[a].attackMoves);
+                    characterInfo.moves[a].basicMoves.timeOut.moveInfo = GetMoveInfo(characterSpecificMoveInfoScriptableObject.defaultMoveInfoOptionsArray[i].timeOutMoveInfo, characterInfo.moves[a].attackMoves);
+                    characterInfo.moves[a].basicMoves.gameWon.moveInfo = GetMoveInfo(characterSpecificMoveInfoScriptableObject.defaultMoveInfoOptionsArray[i].gameWonMoveInfo, characterInfo.moves[a].attackMoves);
 
                     break;
                 }
@@ -66,10 +67,10 @@ namespace UFE2FTE
                         continue;
                     }
 
-                    stanceInfoList[a].cinematicIntro = GetMoveInfo(characterSpecificMoveInfoScriptableObject.defaultMoveInfoOptionsArray[i].introMoveInfo, stanceInfoList[a].attackMoves);
-                    stanceInfoList[a].roundOutro = GetMoveInfo(characterSpecificMoveInfoScriptableObject.defaultMoveInfoOptionsArray[i].roundWinOutroMoveInfo, stanceInfoList[a].attackMoves);
-                    stanceInfoList[a].timeOutOutro = GetMoveInfo(characterSpecificMoveInfoScriptableObject.defaultMoveInfoOptionsArray[i].roundWinOutroMoveInfo, stanceInfoList[a].attackMoves);
-                    stanceInfoList[a].cinematicOutro = GetMoveInfo(characterSpecificMoveInfoScriptableObject.defaultMoveInfoOptionsArray[i].roundWinOutroMoveInfo, stanceInfoList[a].attackMoves);
+                    stanceInfoList[a].basicMoves.intro.moveInfo = GetMoveInfo(characterSpecificMoveInfoScriptableObject.defaultMoveInfoOptionsArray[i].introMoveInfo, characterInfo.moves[a].attackMoves);
+                    stanceInfoList[a].basicMoves.roundWon.moveInfo = GetMoveInfo(characterSpecificMoveInfoScriptableObject.defaultMoveInfoOptionsArray[i].roundWonMoveInfo, characterInfo.moves[a].attackMoves);
+                    stanceInfoList[a].basicMoves.timeOut.moveInfo = GetMoveInfo(characterSpecificMoveInfoScriptableObject.defaultMoveInfoOptionsArray[i].timeOutMoveInfo, characterInfo.moves[a].attackMoves);
+                    stanceInfoList[a].basicMoves.gameWon.moveInfo = GetMoveInfo(characterSpecificMoveInfoScriptableObject.defaultMoveInfoOptionsArray[i].gameWonMoveInfo, characterInfo.moves[a].attackMoves);
 
                     break;
                 }
@@ -80,9 +81,9 @@ namespace UFE2FTE
 
         private void SetOpponentMoveInfoOptions(UFE3D.CharacterInfo characterInfo, UFE3D.CharacterInfo opponentCharacterInfo)
         {
-            if (characterInfo == null
-                || opponentCharacterInfo == null
-                || characterInfoReferencesScriptableObject == null)
+            if (characterInfoReferencesScriptableObject == null
+                || characterInfo == null
+                || opponentCharacterInfo == null)
             {
                 return;
             }
@@ -114,10 +115,10 @@ namespace UFE2FTE
                         continue;
                     }
 
-                    characterInfo.moves[a].cinematicIntro = GetMoveInfo(characterSpecificMoveInfoScriptableObject.opponentMoveInfoOptionsArray[i].introMoveInfo, characterInfo.moves[a].attackMoves);
-                    characterInfo.moves[a].roundOutro = GetMoveInfo(characterSpecificMoveInfoScriptableObject.opponentMoveInfoOptionsArray[i].roundWinOutroMoveInfo, characterInfo.moves[a].attackMoves);
-                    characterInfo.moves[a].timeOutOutro = GetMoveInfo(characterSpecificMoveInfoScriptableObject.opponentMoveInfoOptionsArray[i].timeOutOutroMoveInfo, characterInfo.moves[a].attackMoves);
-                    characterInfo.moves[a].cinematicOutro = GetMoveInfo(characterSpecificMoveInfoScriptableObject.opponentMoveInfoOptionsArray[i].gameWinOutroMoveInfo, characterInfo.moves[a].attackMoves);
+                    characterInfo.moves[a].basicMoves.intro.moveInfo = GetMoveInfo(characterSpecificMoveInfoScriptableObject.opponentMoveInfoOptionsArray[i].introMoveInfo, characterInfo.moves[a].attackMoves);
+                    characterInfo.moves[a].basicMoves.roundWon.moveInfo = GetMoveInfo(characterSpecificMoveInfoScriptableObject.opponentMoveInfoOptionsArray[i].roundWonMoveInfo, characterInfo.moves[a].attackMoves);
+                    characterInfo.moves[a].basicMoves.timeOut.moveInfo = GetMoveInfo(characterSpecificMoveInfoScriptableObject.opponentMoveInfoOptionsArray[i].timeOutMoveInfo, characterInfo.moves[a].attackMoves);
+                    characterInfo.moves[a].basicMoves.gameWon.moveInfo = GetMoveInfo(characterSpecificMoveInfoScriptableObject.opponentMoveInfoOptionsArray[i].gameWonMoveInfo, characterInfo.moves[a].attackMoves);
 
                     break;
                 }
@@ -131,10 +132,10 @@ namespace UFE2FTE
                         continue;
                     }
 
-                    stanceInfoList[a].cinematicIntro = GetMoveInfo(characterSpecificMoveInfoScriptableObject.opponentMoveInfoOptionsArray[i].introMoveInfo, stanceInfoList[a].attackMoves);
-                    stanceInfoList[a].roundOutro = GetMoveInfo(characterSpecificMoveInfoScriptableObject.opponentMoveInfoOptionsArray[i].roundWinOutroMoveInfo, stanceInfoList[a].attackMoves);
-                    stanceInfoList[a].timeOutOutro = GetMoveInfo(characterSpecificMoveInfoScriptableObject.opponentMoveInfoOptionsArray[i].roundWinOutroMoveInfo, stanceInfoList[a].attackMoves);
-                    stanceInfoList[a].cinematicOutro = GetMoveInfo(characterSpecificMoveInfoScriptableObject.opponentMoveInfoOptionsArray[i].roundWinOutroMoveInfo, stanceInfoList[a].attackMoves);
+                    stanceInfoList[a].basicMoves.intro.moveInfo = GetMoveInfo(characterSpecificMoveInfoScriptableObject.opponentMoveInfoOptionsArray[i].introMoveInfo, characterInfo.moves[a].attackMoves);
+                    stanceInfoList[a].basicMoves.roundWon.moveInfo = GetMoveInfo(characterSpecificMoveInfoScriptableObject.opponentMoveInfoOptionsArray[i].roundWonMoveInfo, characterInfo.moves[a].attackMoves);
+                    stanceInfoList[a].basicMoves.timeOut.moveInfo = GetMoveInfo(characterSpecificMoveInfoScriptableObject.opponentMoveInfoOptionsArray[i].timeOutMoveInfo, characterInfo.moves[a].attackMoves);
+                    stanceInfoList[a].basicMoves.gameWon.moveInfo = GetMoveInfo(characterSpecificMoveInfoScriptableObject.opponentMoveInfoOptionsArray[i].gameWonMoveInfo, characterInfo.moves[a].attackMoves);
 
                     break;
                 }

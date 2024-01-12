@@ -19,7 +19,7 @@ namespace UFE2FTE
                 return;
             }
 
-            UFE2FTE.SetTextMessage(characterDataArmorHitsRemainingText, UFE2FTE.languageOptions.GetNormalNumber(characterAlertController.GetCharacterData(player).armorHitsRemaining));
+            UFE2FTE.SetTextMessage(characterDataArmorHitsRemainingText, UFE2FTE.GetNormalStringNumber(characterAlertController.GetCharacterData(player).armorHitsRemaining));
         }
     }
 }

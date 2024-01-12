@@ -10,12 +10,12 @@ namespace UFE2FTE
 
         private void Update()
         {
-            UFE2FTE.SetTextMessage(inputDisplayToggleText, UFE2FTE.GetStringFromBool(UFE2FTE.Instance.displayInputs));
+            UFE2FTE.SetTextMessage(inputDisplayToggleText, UFE2FTE.GetStringFromBool(UFE2FTE.instance.displayInputs));
         }
 
         public void ToggleInputDisplay()
         {
-            UFE2FTE.Instance.displayInputs = UFE2FTE.ToggleBool(UFE2FTE.Instance.displayInputs);
+            UFE2FTE.instance.displayInputs = UFE2FTE.ToggleBool(UFE2FTE.instance.displayInputs);
         }
     }
 }

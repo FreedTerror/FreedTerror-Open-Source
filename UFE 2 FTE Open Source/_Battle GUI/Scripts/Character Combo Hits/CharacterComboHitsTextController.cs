@@ -17,7 +17,7 @@ namespace UFE2FTE
 
         private void OnDisable()
         {
-            UFE2FTE.SetTextMessage(comboHitsText, UFE2FTE.languageOptions.GetNormalNumber(0));
+            UFE2FTE.SetTextMessage(comboHitsText, UFE2FTE.GetNormalStringNumber(0));
         }
 
         private void SetComboHitsText(ControlsScript player)
@@ -28,7 +28,7 @@ namespace UFE2FTE
                 return;
             }
 
-            UFE2FTE.SetTextMessage(comboHitsText, UFE2FTE.languageOptions.GetNormalNumber(player.opControlsScript.comboHits));
+            UFE2FTE.SetTextMessage(comboHitsText, UFE2FTE.GetNormalStringNumber(player.opControlsScript.comboHits));
         }
     }
 }

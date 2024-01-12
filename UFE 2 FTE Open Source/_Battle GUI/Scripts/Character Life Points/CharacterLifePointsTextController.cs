@@ -24,7 +24,7 @@ namespace UFE2FTE
                 return;
             }
 
-            UFE2FTE.SetTextMessage(lifePointsText, UFE2FTE.languageOptions.GetNormalNumber((int)FPMath.Floor(player.currentLifePoints)));
+            UFE2FTE.SetTextMessage(lifePointsText, UFE2FTE.GetNormalStringNumber((int)FPMath.Floor(player.currentLifePoints)));
         }
     }
 }

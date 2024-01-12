@@ -13,11 +13,11 @@ namespace UFE2FTE
         {
             if (UFE.gameMode != GameMode.NetworkGame)
             {
-                UFE2FTE.SetTextMessage(pingText, UFE2FTE.languageOptions.GetNormalNumber(0));
+                UFE2FTE.SetTextMessage(pingText, UFE2FTE.GetNormalStringNumber(0));
             }
             else
             {
-                UFE2FTE.SetTextMessage(pingText, UFE2FTE.languageOptions.GetNormalNumber(UFE2FTE.GetOnlinePing()));
+                UFE2FTE.SetTextMessage(pingText, UFE2FTE.GetNormalStringNumber(UFE2FTE.GetOnlinePing()));
             }
         }
     }

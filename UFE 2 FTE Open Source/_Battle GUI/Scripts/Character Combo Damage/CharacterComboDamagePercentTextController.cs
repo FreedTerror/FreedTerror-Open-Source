@@ -18,7 +18,7 @@ namespace UFE2FTE
 
         private void OnDisable()
         {
-            UFE2FTE.SetTextMessage(comboDamagePercentText, UFE2FTE.languageOptions.GetNormalPercentNumber(0));
+            UFE2FTE.SetTextMessage(comboDamagePercentText, UFE2FTE.GetNormalPercentStringNumber(0));
         }
 
         private void SetComboDamagePercentText(ControlsScript player)
@@ -30,7 +30,7 @@ namespace UFE2FTE
                 return;
             }
 
-            UFE2FTE.SetTextMessage(comboDamagePercentText, UFE2FTE.languageOptions.GetNormalPercentNumber((int)FPMath.Round(player.opControlsScript.comboDamage / player.opControlsScript.myInfo.lifePoints * 100)));
+            UFE2FTE.SetTextMessage(comboDamagePercentText, UFE2FTE.GetNormalPercentStringNumber((int)FPMath.Round(player.opControlsScript.comboDamage / player.opControlsScript.myInfo.lifePoints * 100)));
         }
     }
 }

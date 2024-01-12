@@ -9,7 +9,7 @@ namespace UFE2FTE
 
         private void Update()
         {
-            UFE2FTE.SetGameObjectActive(battleGUIDisplayGameObjectArray, UFE2FTE.Instance.displayBattleGUI);
+            UFE2FTE.SetGameObjectActive(battleGUIDisplayGameObjectArray, UFE2FTE.instance.displayBattleGUI);
         }
     }
 }

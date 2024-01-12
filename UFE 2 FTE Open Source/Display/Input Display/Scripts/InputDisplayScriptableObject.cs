@@ -3,9 +3,12 @@ using UFE3D;
 
 namespace UFE2FTE
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(fileName = "New Input Display", menuName = "U.F.E. 2 F.T.E./Display/Input Display")]
     public class InputDisplayScriptableObject : ScriptableObject
     {
+        //Add to DefaultBattleGUI
+        //Sprite sprite = UFE2FTE.UFE2FTE.GetInputDisplaySpriteFromTexture(inputRef.activeIcon);
+
         public Vector2 inputDisplayButtonIconSizeDelta = new Vector2(80, 80);
         public Vector2 inputDisplayOffsetMax;
         public string inputDisplayButtonIconControllerPrefabPath = "Input Display Button Icon Controller Prefab";
@@ -193,7 +196,9 @@ namespace UFE2FTE
 
         public string GetInputDisplayStringFromButtonPress(ButtonPress buttonPress)
         {
-            switch (buttonPress)
+            return "?";
+
+            /*switch (buttonPress)
             {
                 case ButtonPress.Forward:
                     return UFE2FTE.languageOptions.selectedLanguage.InputDisplayForward;
@@ -257,7 +262,7 @@ namespace UFE2FTE
 
                 default:
                     return "";
-            }
+            }*/
         }
 
         public string GetInputDisplayStringFromMoveInputs(MoveInputs moveInputs)
@@ -269,12 +274,12 @@ namespace UFE2FTE
 
             if (moveInputs.onPressExecution == true)
             {
-                return UFE2FTE.languageOptions.selectedLanguage.InputDisplayPress;
+                return "Press";
             }
 
             if (moveInputs.onReleaseExecution == true)
             {
-                return UFE2FTE.languageOptions.selectedLanguage.InputDisplayRelease;
+                return "Release";
             }
 
             return "";
@@ -287,7 +292,9 @@ namespace UFE2FTE
                 return "";
             }
 
-            if (sprite == inputDisplayForwardSprite)
+            return "?";
+
+            /*if (sprite == inputDisplayForwardSprite)
             {
                 return UFE2FTE.languageOptions.selectedLanguage.InputDisplayForward;
             }
@@ -368,7 +375,7 @@ namespace UFE2FTE
                 return UFE2FTE.languageOptions.selectedLanguage.InputDisplayButton12;
             }
 
-            return "";
+            return "";*/
         }
 
         #endregion

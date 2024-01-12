@@ -111,7 +111,7 @@ namespace UFE2FTE
 
         private void OnRoundBegins(int newInt)
         {
-            StartMainAlert(UFE2FTE.languageOptions.selectedLanguage.Ready);
+            StartMainAlert("Ready");
         }
 
         private void OnRoundEnds(ControlsScript winner, ControlsScript loser)
@@ -123,19 +123,19 @@ namespace UFE2FTE
                    && UFE.GetPlayer1ControlsScript().currentLifePoints == UFE.GetPlayer2ControlsScript().currentLifePoints
                    && UFE.GetPlayer2ControlsScript().currentLifePoints == UFE.GetPlayer1ControlsScript().currentLifePoints)
                 {
-                    StartMainAlert(UFE2FTE.languageOptions.selectedLanguage.Draw);
+                    StartMainAlert("Draw");
                 }
                 else if (UFE.timer <= 0
                     && UFE.GetPlayer1ControlsScript().currentLifePoints != UFE.GetPlayer2ControlsScript().currentLifePoints
                     && UFE.GetPlayer2ControlsScript().currentLifePoints != UFE.GetPlayer1ControlsScript().currentLifePoints)
                 {
-                    StartMainAlert(UFE2FTE.languageOptions.selectedLanguage.TimeOut);
+                    StartMainAlert("TimeOut");
                 }
                 else if (UFE.timer > 0
                     && UFE.GetPlayer1ControlsScript().currentLifePoints <= 0
                     && UFE.GetPlayer2ControlsScript().currentLifePoints <= 0)
                 {
-                    StartMainAlert(UFE2FTE.languageOptions.selectedLanguage.DoubleKo);
+                    StartMainAlert("DoubleKo");
                 }
 
                 return;
@@ -152,17 +152,17 @@ namespace UFE2FTE
                     case GameMode.NetworkGame:
                         if (UFE.timer <= 0)
                         {
-                            StartMainAlert(UFE2FTE.languageOptions.selectedLanguage.TimeOut);
+                            StartMainAlert("TimeOut");
                         }
                         else if (UFE.timer > 0
                             && winner.currentLifePoints == winner.myInfo.lifePoints)
                         {
-                            StartMainAlert(UFE2FTE.languageOptions.selectedLanguage.Perfect);
+                            StartMainAlert("Perfect");
                         }
                         else if (UFE.timer > 0
                             && winner.currentLifePoints != winner.myInfo.lifePoints)
                         {
-                            StartMainAlert(UFE2FTE.languageOptions.selectedLanguage.Ko);
+                            StartMainAlert("Ko");
                         }
                         break;
 

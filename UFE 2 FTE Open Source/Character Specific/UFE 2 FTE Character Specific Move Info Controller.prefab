@@ -44,6 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f27335038bb59c49b1bed47c0a9db76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterSpecificMoveInfoScriptableObjectOptionsArray:
-  - characterSpecificMoveInfoScriptableObjectPath: 
-    characterInfo: {fileID: 0}
+  characterInfoReferencesScriptableObject: {fileID: 11400000, guid: 05c948d5e6affef468ab0440e87d04a3, type: 2}

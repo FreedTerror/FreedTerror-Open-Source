@@ -17,12 +17,12 @@ namespace UFE2FTE
                 }
                 else
                 {
-                    UFE2FTE.SetGameObjectActive(frameDelayDisplayGameObjectArray, UFE2FTE.Instance.displayFrameDelay);
+                    UFE2FTE.SetGameObjectActive(frameDelayDisplayGameObjectArray, UFE2FTE.instance.displayFrameDelay);
                 }
             }
             else
             {
-                UFE2FTE.SetGameObjectActive(frameDelayDisplayGameObjectArray, UFE2FTE.Instance.displayFrameDelay);
+                UFE2FTE.SetGameObjectActive(frameDelayDisplayGameObjectArray, UFE2FTE.instance.displayFrameDelay);
             }
         }
     }

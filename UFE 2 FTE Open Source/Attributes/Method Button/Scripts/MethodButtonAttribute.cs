@@ -41,21 +41,8 @@ namespace UFE2FTE
     [CustomPropertyDrawer(typeof(MethodButtonAttribute))]
     public class MethodButtonAttributeDrawer : PropertyDrawer
     {
-        private string GetTargetPropertyErrorMessage(string propertyPath)
-        {
-            return nameof(MethodButtonAttribute) + " is unable to find " + nameof(SerializedProperty) + ": " + propertyPath;
-        }
-        private string GetMethodInfoErrorMessage(string methodName)
-        {
-            return nameof(MethodButtonAttribute) + " is unable to find " + nameof(MethodInfo) + ": " + methodName;
-        }
         private int buttonCount = 0;
         private readonly float buttonHeight = EditorGUIUtility.singleLineHeight;
-
-        private Rect GetButtonRect(Rect position)
-        {
-            return new Rect(position.x, position.y + ((buttonHeight) * (buttonCount)), position.width, buttonHeight);
-        }
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
@@ -122,6 +109,21 @@ namespace UFE2FTE
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
             return EditorGUI.GetPropertyHeight(property, label, true) + (buttonHeight) * (buttonCount);
+        }
+
+        private Rect GetButtonRect(Rect position)
+        {
+            return new Rect(position.x, position.y + ((buttonHeight) * (buttonCount)), position.width, buttonHeight);
+        }
+
+        private string GetTargetPropertyErrorMessage(string propertyPath)
+        {
+            return nameof(MethodButtonAttribute) + " is unable to find " + nameof(SerializedProperty) + ": " + propertyPath;
+        }
+
+        private string GetMethodInfoErrorMessage(string methodName)
+        {
+            return nameof(MethodButtonAttribute) + " is unable to find " + nameof(MethodInfo) + ": " + methodName;
         }
 
         private static string AddSpacesBeforeCapitalLetters(string message)

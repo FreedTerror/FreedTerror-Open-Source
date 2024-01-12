@@ -81,7 +81,7 @@ namespace UFE2FTE
                 characterData.invincibility = false;
             }
 
-            switch (player.currentBasicMove)
+            switch (player.currentBasicMoveReference)
             {
                 case BasicMoveReference.StandUpDefault:
                 case BasicMoveReference.StandUpFromAirJuggle:

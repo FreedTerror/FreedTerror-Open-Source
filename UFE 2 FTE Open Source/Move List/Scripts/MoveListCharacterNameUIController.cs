@@ -10,7 +10,7 @@ namespace UFE2FTE
   
         private void Start()
         {
-            SetCharacterNameText(UFE2FTE.GetControlsScript(UFE2FTE.Instance.pausedPlayer));
+            SetCharacterNameText(UFE2FTE.GetControlsScript(UFE2FTE.instance.pausedPlayer));
         }
 
         private void SetCharacterNameText(ControlsScript player)
@@ -22,7 +22,7 @@ namespace UFE2FTE
                 return;
             }
 
-            characterNameText.text = player.myInfo.characterName + " " + UFE2FTE.languageOptions.selectedLanguage.MoveList;
+            characterNameText.text = player.myInfo.characterName + " Move List";
         }
     }
 }

@@ -22,7 +22,7 @@ namespace UFE2FTE
                 return;
             }
 
-            UFE2FTE.SetTextMessage(roundsWonText, UFE2FTE.languageOptions.GetNormalNumber(player.roundsWon));
+            UFE2FTE.SetTextMessage(roundsWonText, UFE2FTE.GetNormalStringNumber(player.roundsWon));
         }
     }
 }

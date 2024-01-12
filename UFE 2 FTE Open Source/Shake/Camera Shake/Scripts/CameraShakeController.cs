@@ -69,7 +69,7 @@ namespace UFE2FTE
         private void LateUpdate()
         {
             if (UFE.IsPaused() == true
-                || UFE2FTE.Instance.useCameraShake == false)
+                || UFE2FTE.instance.useCameraShake == false)
             {
                 return;
             }

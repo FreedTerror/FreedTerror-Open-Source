@@ -12,29 +12,29 @@ namespace UFE2FTE
 
         private void Update()
         {
-            UFE2FTE.SetTextMessage(aiModeText, UFE2FTE.Instance.GetStringFromEnum(UFE2FTE.Instance.aiMode));
+            UFE2FTE.SetTextMessage(aiModeText, System.Enum.GetName(typeof(UFE2FTE.AIMode), UFE2FTE.instance.aiMode));
 
-            UFE2FTE.SetTextMessage(aiThrowTechModeText, UFE2FTE.GetStringFromEnum(UFE2FTE.Instance.aiThrowTechMode));
+            UFE2FTE.SetTextMessage(aiThrowTechModeText, UFE2FTE.GetStringFromEnum(UFE2FTE.instance.aiThrowTechMode));
         }
 
         public void NextAIMode()
         {
-            UFE2FTE.Instance.aiMode = UFE2FTE.GetNextEnum(UFE2FTE.Instance.aiMode);
+            UFE2FTE.instance.aiMode = UFE2FTE.GetNextEnum(UFE2FTE.instance.aiMode);
         }
 
         public void PreviousAIMode()
         {
-            UFE2FTE.Instance.aiMode = UFE2FTE.GetPreviousEnum(UFE2FTE.Instance.aiMode);
+            UFE2FTE.instance.aiMode = UFE2FTE.GetPreviousEnum(UFE2FTE.instance.aiMode);
         }
 
         public void NextAIThrowTechMode()
         {
-            UFE2FTE.Instance.aiThrowTechMode = UFE2FTE.GetNextEnum(UFE2FTE.Instance.aiThrowTechMode);
+            UFE2FTE.instance.aiThrowTechMode = UFE2FTE.GetNextEnum(UFE2FTE.instance.aiThrowTechMode);
         }
 
         public void PreviousAIThrowTechMode()
         {
-            UFE2FTE.Instance.aiThrowTechMode = UFE2FTE.GetPreviousEnum(UFE2FTE.Instance.aiThrowTechMode);
+            UFE2FTE.instance.aiThrowTechMode = UFE2FTE.GetPreviousEnum(UFE2FTE.instance.aiThrowTechMode);
         }
     }
 }

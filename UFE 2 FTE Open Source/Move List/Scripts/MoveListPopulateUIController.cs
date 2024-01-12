@@ -26,7 +26,7 @@ namespace UFE2FTE
 
         private void Awake()
         {
-            Populate(UFE2FTE.GetControlsScript(UFE2FTE.Instance.pausedPlayer));
+            Populate(UFE2FTE.GetControlsScript(UFE2FTE.instance.pausedPlayer));
         }
 
         private void Populate(ControlsScript player)

@@ -11,8 +11,8 @@ namespace UFE2FTE
         private ScrollRect scrollRect;
         [SerializeField]
         private ScrollRectScrollDataScriptableObject scrollRectScrollDataScriptableObject;
-        [SerializeField]
-        private bool matchCurrentScrollSpeed;
+        //[SerializeField]
+        //private bool matchCurrentScrollSpeed;
         private float currentHorizontalScrollSpeed;
         private float currentVerticalScrollSpeed;
 
@@ -40,7 +40,7 @@ namespace UFE2FTE
         {
             SetScrollRectPositionToLoadedPosition();
 
-            MatchCurrentScrollSpeed();
+            //MatchCurrentScrollSpeed();
 
             SaveToPlayerPrefs();
         }
@@ -64,7 +64,7 @@ namespace UFE2FTE
             }
         }
 
-        private void MatchCurrentScrollSpeed()
+        /*private void MatchCurrentScrollSpeed()
         {
             if (matchCurrentScrollSpeed == false)
             {
@@ -80,15 +80,15 @@ namespace UFE2FTE
             {
                 currentHorizontalScrollSpeed = currentVerticalScrollSpeed;
             }
-        }
+        }*/
 
         private void DoFixedUpdateEvent(IDictionary<InputReferences, InputEvents> player1PreviousInputs, IDictionary<InputReferences, InputEvents> player1CurrentInputs, IDictionary<InputReferences, InputEvents> player2PreviousInputs, IDictionary<InputReferences, InputEvents> player2CurrentInputs)
         {
-            if (UFE2FTE.Instance.pausedPlayer == UFE2FTE.Player.Player1)
+            if (UFE2FTE.instance.pausedPlayer == UFE2FTE.Player.Player1)
             {
                 CheckInputs(player1CurrentInputs);
             }
-            else if (UFE2FTE.Instance.pausedPlayer == UFE2FTE.Player.Player2)
+            else if (UFE2FTE.instance.pausedPlayer == UFE2FTE.Player.Player2)
             {
                 CheckInputs(player2CurrentInputs);
             }

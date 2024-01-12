@@ -66,13 +66,13 @@ namespace UFE2FTE
 
             UFE2FTE.SetTextMessage(moveNameText, moveInfo.moveName);
 
-            UFE2FTE.SetTextMessage(startupFramesText, UFE2FTE.languageOptions.GetNormalNumber(moveInfo.startUpFrames));
+            UFE2FTE.SetTextMessage(startupFramesText, UFE2FTE.GetNormalStringNumber(moveInfo.startUpFrames));
 
-            UFE2FTE.SetTextMessage(activeFramesText, UFE2FTE.languageOptions.GetNormalNumber(moveInfo.activeFrames));
+            UFE2FTE.SetTextMessage(activeFramesText, UFE2FTE.GetNormalStringNumber(moveInfo.activeFrames));
 
-            UFE2FTE.SetTextMessage(recoveryFramesText, UFE2FTE.languageOptions.GetNormalNumber(moveInfo.recoveryFrames));
+            UFE2FTE.SetTextMessage(recoveryFramesText, UFE2FTE.GetNormalStringNumber(moveInfo.recoveryFrames));
 
-            UFE2FTE.SetTextMessage(totalFramesText, UFE2FTE.languageOptions.GetNormalNumber(moveInfo.totalFrames));
+            UFE2FTE.SetTextMessage(totalFramesText, UFE2FTE.GetNormalStringNumber(moveInfo.totalFrames));
 
             if (moveInfo.armorOptions.hitAbsorption <= 0)
             {
@@ -86,11 +86,11 @@ namespace UFE2FTE
                 UFE2FTE.SetGameObjectActive(armorHitAbsorptionGameObject, true);
                 UFE2FTE.SetGameObjectActive(armorDamageAbsorptionGameObject, true);
 
-                UFE2FTE.SetTextMessage(armorActiveFramesBeginText, UFE2FTE.languageOptions.GetNormalNumber(moveInfo.armorOptions.activeFramesBegin));
-                UFE2FTE.SetTextMessage(armorActiveFramesText, UFE2FTE.languageOptions.GetNormalNumber(moveInfo.armorOptions.activeFramesEnds - moveInfo.armorOptions.activeFramesBegin));
-                UFE2FTE.SetTextMessage(armorActiveFramesEndsText, UFE2FTE.languageOptions.GetNormalNumber(moveInfo.armorOptions.activeFramesEnds));
-                UFE2FTE.SetTextMessage(armorHitAbsorptionText, UFE2FTE.languageOptions.GetNormalNumber(moveInfo.armorOptions.hitAbsorption));
-                UFE2FTE.SetTextMessage(armorDamageAbsorptionText, UFE2FTE.languageOptions.GetNormalPercentNumber(moveInfo.armorOptions.damageAbsorption));
+                UFE2FTE.SetTextMessage(armorActiveFramesBeginText, UFE2FTE.GetNormalStringNumber(moveInfo.armorOptions.activeFramesBegin));
+                UFE2FTE.SetTextMessage(armorActiveFramesText, UFE2FTE.GetNormalStringNumber(moveInfo.armorOptions.activeFramesEnds - moveInfo.armorOptions.activeFramesBegin));
+                UFE2FTE.SetTextMessage(armorActiveFramesEndsText, UFE2FTE.GetNormalStringNumber(moveInfo.armorOptions.activeFramesEnds));
+                UFE2FTE.SetTextMessage(armorHitAbsorptionText, UFE2FTE.GetNormalStringNumber(moveInfo.armorOptions.hitAbsorption));
+                UFE2FTE.SetTextMessage(armorDamageAbsorptionText, UFE2FTE.GetNormalPercentStringNumber(moveInfo.armorOptions.damageAbsorption));
             }
         }
 

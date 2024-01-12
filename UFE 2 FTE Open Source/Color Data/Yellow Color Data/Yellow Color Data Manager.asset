@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b30adea2cf3cb464c977070d7e8abe70, type: 3}
   m_Name: Yellow Color Data Manager
   m_EditorClassIdentifier: 
-  colorDataScriptableObjectArray: []
+  colorDataScriptableObjectArray:
+  - {fileID: 11400000, guid: 65c5bb0839975564dbfc463eff1fef7d, type: 2}

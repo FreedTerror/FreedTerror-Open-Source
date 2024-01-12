@@ -61,15 +61,15 @@ namespace UFE2FTE
         {
             if (frameAdvantage == 0)
             {
-                UFE2FTE.SetTextMessage(frameAdvantageText, UFE2FTE.languageOptions.GetNormalNumber(frameAdvantage));
+                UFE2FTE.SetTextMessage(frameAdvantageText, UFE2FTE.GetNormalStringNumber(frameAdvantage));
             }
             else if (frameAdvantage > 0)
             {
-                UFE2FTE.SetTextMessage(frameAdvantageText, UFE2FTE.languageOptions.GetPositiveNumber(frameAdvantage));
+                UFE2FTE.SetTextMessage(frameAdvantageText, UFE2FTE.GetPositiveStringNumber(frameAdvantage));
             }
             else
             {
-                UFE2FTE.SetTextMessage(frameAdvantageText, UFE2FTE.languageOptions.GetNegativeNumber(Mathf.Abs(frameAdvantage)));
+                UFE2FTE.SetTextMessage(frameAdvantageText, UFE2FTE.GetNegativeStringNumber(Mathf.Abs(frameAdvantage)));
             } 
         }
     }

@@ -33,7 +33,7 @@ namespace UFE2FTE
 
         private void Update()
         {
-            if (ChallengeModeController.Instance.GetCurrentChallenges().Count <= 0)
+            if (ChallengeModeController.instance.GetCurrentChallenges().Count <= 0)
             {
                 return;
             }
@@ -56,7 +56,7 @@ namespace UFE2FTE
             if (challengeNameGameObject != null
                 && challengeNameText != null)
             {
-                challengeNameText.text = ChallengeModeController.Instance.GetCurrentChallenge().challengeName;
+                challengeNameText.text = ChallengeModeController.instance.GetCurrentChallenge().challengeName;
 
                 if (challengeNameText.text == "")
                 {
@@ -74,7 +74,7 @@ namespace UFE2FTE
             if (challengeDescriptionGameObject != null
                 && challengeDescriptionText != null)
             {
-                challengeDescriptionText.text = ChallengeModeController.Instance.GetCurrentChallenge().challengeDescription;
+                challengeDescriptionText.text = ChallengeModeController.instance.GetCurrentChallenge().challengeDescription;
 
                 if (challengeDescriptionText.text == "")
                 {
@@ -92,7 +92,7 @@ namespace UFE2FTE
             if (challengeActionNameGameObject != null
                 && challengeActionNameText != null)
             {
-                challengeActionNameText.text = ChallengeModeController.Instance.GetCurrentChallengeAction().challengeActionName;
+                challengeActionNameText.text = ChallengeModeController.instance.GetCurrentChallengeAction().challengeActionName;
 
                 if (challengeActionNameText.text == "")
                 {
@@ -110,7 +110,7 @@ namespace UFE2FTE
             if (challengeActionDescriptionGameObject != null
                 && challengeActionDescriptionText != null)
             {
-                challengeActionDescriptionText.text = ChallengeModeController.Instance.GetCurrentChallengeAction().challengeActionDescription;
+                challengeActionDescriptionText.text = ChallengeModeController.instance.GetCurrentChallengeAction().challengeActionDescription;
 
                 if (challengeActionDescriptionText.text == "")
                 {
@@ -125,8 +125,8 @@ namespace UFE2FTE
 
         private void UpdateInputDisplay()
         {
-            int arrayBounds = inputDisplayTextArray.Length;
-            for (int i = 0; i < arrayBounds; i++)
+            int bounds = inputDisplayTextArray.Length;
+            for (int i = 0; i < bounds; i++)
             {
                 if (inputDisplayTextArray[i] == null)
                 {
@@ -136,82 +136,82 @@ namespace UFE2FTE
                 inputDisplayTextArray[i].gameObject.SetActive(false);
             }
 
-            if (ChallengeModeController.Instance.GetCurrentChallengeAction().moveInfoOptions.moveInfo != null)
+            if (ChallengeModeController.instance.GetCurrentChallengeAction().moveInfoOptions.moveInfo != null)
             {
-                if (ChallengeModeController.Instance.GetCurrentChallengeAction().moveInfoOptions.displayMoveInfoDefaultInputs == true)
+                if (ChallengeModeController.instance.GetCurrentChallengeAction().moveInfoOptions.displayMoveInfoDefaultInputs == true)
                 {
-                    int length = ChallengeModeController.Instance.GetCurrentChallengeAction().moveInfoOptions.moveInfo.defaultInputs.buttonSequence.Length;
+                    int length = ChallengeModeController.instance.GetCurrentChallengeAction().moveInfoOptions.moveInfo.defaultInputs.buttonSequence.Length;
                     for (int i = 0; i < length; i++)
                     {
-                        if (i >= arrayBounds
+                        if (i >= bounds
                             || inputDisplayTextArray[i] == null)
                         {
                             continue;
                         }
 
-                        UFE2FTE.SetInputDisplayRotation(inputDisplayTextArray[GetFirstDisabledGameObjectIndex()].transform, ChallengeModeController.Instance.GetCurrentChallengeAction().moveInfoOptions.moveInfo.defaultInputs.buttonSequence[i], ChallengeModeController.Instance.player1ControlsScript);
-                        inputDisplayTextArray[GetFirstDisabledGameObjectIndex()].text = UFE2FTE.Instance.inputDisplayScriptableObject.GetInputDisplayStringFromButtonPress(ChallengeModeController.Instance.GetCurrentChallengeAction().moveInfoOptions.moveInfo.defaultInputs.buttonSequence[i]);
+                        UFE2FTE.SetInputDisplayRotation(inputDisplayTextArray[GetFirstDisabledGameObjectIndex()].transform, ChallengeModeController.instance.GetCurrentChallengeAction().moveInfoOptions.moveInfo.defaultInputs.buttonSequence[i], ChallengeModeController.instance.player1ControlsScript);
+                        inputDisplayTextArray[GetFirstDisabledGameObjectIndex()].text = UFE2FTE.instance.inputDisplayScriptableObject.GetInputDisplayStringFromButtonPress(ChallengeModeController.instance.GetCurrentChallengeAction().moveInfoOptions.moveInfo.defaultInputs.buttonSequence[i]);
                         inputDisplayTextArray[GetFirstDisabledGameObjectIndex()].gameObject.SetActive(true);
                     }
 
-                    length = ChallengeModeController.Instance.GetCurrentChallengeAction().moveInfoOptions.moveInfo.defaultInputs.buttonExecution.Length;
+                    length = ChallengeModeController.instance.GetCurrentChallengeAction().moveInfoOptions.moveInfo.defaultInputs.buttonExecution.Length;
                     for (int i = 0; i < length; i++)
                     {
-                        if (i >= arrayBounds
+                        if (i >= bounds
                             || inputDisplayTextArray[i] == null)
                         {
                             continue;
                         }
 
-                        UFE2FTE.SetInputDisplayRotation(inputDisplayTextArray[GetFirstDisabledGameObjectIndex()].transform, ChallengeModeController.Instance.GetCurrentChallengeAction().moveInfoOptions.moveInfo.defaultInputs.buttonExecution[i], ChallengeModeController.Instance.player1ControlsScript);
-                        inputDisplayTextArray[GetFirstDisabledGameObjectIndex()].text = UFE2FTE.Instance.inputDisplayScriptableObject.GetInputDisplayStringFromButtonPress(ChallengeModeController.Instance.GetCurrentChallengeAction().moveInfoOptions.moveInfo.defaultInputs.buttonExecution[i]);
+                        UFE2FTE.SetInputDisplayRotation(inputDisplayTextArray[GetFirstDisabledGameObjectIndex()].transform, ChallengeModeController.instance.GetCurrentChallengeAction().moveInfoOptions.moveInfo.defaultInputs.buttonExecution[i], ChallengeModeController.instance.player1ControlsScript);
+                        inputDisplayTextArray[GetFirstDisabledGameObjectIndex()].text = UFE2FTE.instance.inputDisplayScriptableObject.GetInputDisplayStringFromButtonPress(ChallengeModeController.instance.GetCurrentChallengeAction().moveInfoOptions.moveInfo.defaultInputs.buttonExecution[i]);
                         inputDisplayTextArray[GetFirstDisabledGameObjectIndex()].gameObject.SetActive(true);
                     }
                 }
 
-                if (ChallengeModeController.Instance.GetCurrentChallengeAction().moveInfoOptions.displayMoveInfoAlternativeInputs == true)
+                if (ChallengeModeController.instance.GetCurrentChallengeAction().moveInfoOptions.displayMoveInfoAlternativeInputs == true)
                 {
-                    int length = ChallengeModeController.Instance.GetCurrentChallengeAction().moveInfoOptions.moveInfo.altInputs.buttonSequence.Length;
+                    int length = ChallengeModeController.instance.GetCurrentChallengeAction().moveInfoOptions.moveInfo.altInputs.buttonSequence.Length;
                     for (int i = 0; i < length; i++)
                     {
-                        if (i >= arrayBounds
+                        if (i >= bounds
                             || inputDisplayTextArray[i] == null)
                         {
                             continue;
                         }
 
-                        UFE2FTE.SetInputDisplayRotation(inputDisplayTextArray[GetFirstDisabledGameObjectIndex()].transform, ChallengeModeController.Instance.GetCurrentChallengeAction().moveInfoOptions.moveInfo.altInputs.buttonSequence[i], ChallengeModeController.Instance.player1ControlsScript);
-                        inputDisplayTextArray[GetFirstDisabledGameObjectIndex()].text = UFE2FTE.Instance.inputDisplayScriptableObject.GetInputDisplayStringFromButtonPress(ChallengeModeController.Instance.GetCurrentChallengeAction().moveInfoOptions.moveInfo.altInputs.buttonSequence[i]);
+                        UFE2FTE.SetInputDisplayRotation(inputDisplayTextArray[GetFirstDisabledGameObjectIndex()].transform, ChallengeModeController.instance.GetCurrentChallengeAction().moveInfoOptions.moveInfo.altInputs.buttonSequence[i], ChallengeModeController.instance.player1ControlsScript);
+                        inputDisplayTextArray[GetFirstDisabledGameObjectIndex()].text = UFE2FTE.instance.inputDisplayScriptableObject.GetInputDisplayStringFromButtonPress(ChallengeModeController.instance.GetCurrentChallengeAction().moveInfoOptions.moveInfo.altInputs.buttonSequence[i]);
                         inputDisplayTextArray[GetFirstDisabledGameObjectIndex()].gameObject.SetActive(true);
                     }
 
-                    length = ChallengeModeController.Instance.GetCurrentChallengeAction().moveInfoOptions.moveInfo.altInputs.buttonExecution.Length;
+                    length = ChallengeModeController.instance.GetCurrentChallengeAction().moveInfoOptions.moveInfo.altInputs.buttonExecution.Length;
                     for (int i = 0; i < length; i++)
                     {
-                        if (i >= arrayBounds
+                        if (i >= bounds
                             || inputDisplayTextArray[i] == null)
                         {
                             continue;
                         }
 
-                        UFE2FTE.SetInputDisplayRotation(inputDisplayTextArray[GetFirstDisabledGameObjectIndex()].transform, ChallengeModeController.Instance.GetCurrentChallengeAction().moveInfoOptions.moveInfo.altInputs.buttonExecution[i], ChallengeModeController.Instance.player1ControlsScript);
-                        inputDisplayTextArray[GetFirstDisabledGameObjectIndex()].text = UFE2FTE.Instance.inputDisplayScriptableObject.GetInputDisplayStringFromButtonPress(ChallengeModeController.Instance.GetCurrentChallengeAction().moveInfoOptions.moveInfo.altInputs.buttonExecution[i]);
+                        UFE2FTE.SetInputDisplayRotation(inputDisplayTextArray[GetFirstDisabledGameObjectIndex()].transform, ChallengeModeController.instance.GetCurrentChallengeAction().moveInfoOptions.moveInfo.altInputs.buttonExecution[i], ChallengeModeController.instance.player1ControlsScript);
+                        inputDisplayTextArray[GetFirstDisabledGameObjectIndex()].text = UFE2FTE.instance.inputDisplayScriptableObject.GetInputDisplayStringFromButtonPress(ChallengeModeController.instance.GetCurrentChallengeAction().moveInfoOptions.moveInfo.altInputs.buttonExecution[i]);
                         inputDisplayTextArray[GetFirstDisabledGameObjectIndex()].gameObject.SetActive(true);
                     }
                 }
             }
 
-            int length1 = ChallengeModeController.Instance.GetCurrentChallengeAction().inputDisplayOptions.inputDisplayButtonPressArray.Length;
+            int length1 = ChallengeModeController.instance.GetCurrentChallengeAction().inputDisplayOptions.inputDisplayButtonPressArray.Length;
             for (int i = 0; i < length1; i++)
             {
-                if (i >= arrayBounds
+                if (i >= bounds
                     || inputDisplayTextArray[i] == null)
                 {
                     continue;
                 }
 
-                UFE2FTE.SetInputDisplayRotation(inputDisplayTextArray[GetFirstDisabledGameObjectIndex()].transform, ChallengeModeController.Instance.GetCurrentChallengeAction().inputDisplayOptions.inputDisplayButtonPressArray[i], ChallengeModeController.Instance.player1ControlsScript);
-                inputDisplayTextArray[GetFirstDisabledGameObjectIndex()].text = UFE2FTE.Instance.inputDisplayScriptableObject.GetInputDisplayStringFromButtonPress(ChallengeModeController.Instance.GetCurrentChallengeAction().inputDisplayOptions.inputDisplayButtonPressArray[i]);
+                UFE2FTE.SetInputDisplayRotation(inputDisplayTextArray[GetFirstDisabledGameObjectIndex()].transform, ChallengeModeController.instance.GetCurrentChallengeAction().inputDisplayOptions.inputDisplayButtonPressArray[i], ChallengeModeController.instance.player1ControlsScript);
+                inputDisplayTextArray[GetFirstDisabledGameObjectIndex()].text = UFE2FTE.instance.inputDisplayScriptableObject.GetInputDisplayStringFromButtonPress(ChallengeModeController.instance.GetCurrentChallengeAction().inputDisplayOptions.inputDisplayButtonPressArray[i]);
                 inputDisplayTextArray[GetFirstDisabledGameObjectIndex()].gameObject.SetActive(true);
             }
 
@@ -235,7 +235,7 @@ namespace UFE2FTE
 
         private void UpdateChallengeActionDisplayUI()
         {
-            int arrayBounds = ChallengeModeController.Instance.GetCurrentChallengeActions().Length;
+            int bounds = ChallengeModeController.instance.GetCurrentChallengeActions().Length;
             int challengeActionDisplayLength = challengeActionDisplayUIControllerArray.Length;
             for (int i = 0; i < challengeActionDisplayLength; i++)
             {
@@ -244,7 +244,7 @@ namespace UFE2FTE
                     continue;
                 }
 
-                if (i < arrayBounds)
+                if (i < bounds)
                 {
                     challengeActionDisplayUIControllerArray[i].gameObject.SetActive(true);
 
@@ -252,7 +252,7 @@ namespace UFE2FTE
                     {
                         if (challengeActionDisplayUIControllerArray[i].challengeActionNameText != null)
                         {
-                            challengeActionDisplayUIControllerArray[i].challengeActionNameText.text = ChallengeModeController.Instance.GetCurrentChallengeActions()[i].challengeActionName;
+                            challengeActionDisplayUIControllerArray[i].challengeActionNameText.text = ChallengeModeController.instance.GetCurrentChallengeActions()[i].challengeActionName;
 
                             if (challengeActionDisplayUIControllerArray[i].challengeActionNameText.text != "")
                             {
@@ -269,7 +269,7 @@ namespace UFE2FTE
                     {
                         if (challengeActionDisplayUIControllerArray[i].challengeActionDescriptionText != null)
                         {
-                            challengeActionDisplayUIControllerArray[i].challengeActionDescriptionText.text = ChallengeModeController.Instance.GetCurrentChallengeActions()[i].challengeActionDescription;
+                            challengeActionDisplayUIControllerArray[i].challengeActionDescriptionText.text = ChallengeModeController.instance.GetCurrentChallengeActions()[i].challengeActionDescription;
 
                             if (challengeActionDisplayUIControllerArray[i].challengeActionDescriptionText.text != "")
                             {
@@ -286,13 +286,13 @@ namespace UFE2FTE
                     {
                         if (challengeActionDisplayUIControllerArray[i].moveInfoMoveNameText != null)
                         {
-                            if (ChallengeModeController.Instance.GetCurrentChallengeActions()[i].moveInfoOptions.displayMoveInfoMoveName == true
-                                && ChallengeModeController.Instance.GetCurrentChallengeActions()[i].moveInfoOptions.moveInfo != null)
+                            if (ChallengeModeController.instance.GetCurrentChallengeActions()[i].moveInfoOptions.displayMoveInfoMoveName == true
+                                && ChallengeModeController.instance.GetCurrentChallengeActions()[i].moveInfoOptions.moveInfo != null)
                             {
-                                challengeActionDisplayUIControllerArray[i].moveInfoMoveNameText.text = ChallengeModeController.Instance.GetCurrentChallengeActions()[i].moveInfoOptions.moveInfo.moveName;
+                                challengeActionDisplayUIControllerArray[i].moveInfoMoveNameText.text = ChallengeModeController.instance.GetCurrentChallengeActions()[i].moveInfoOptions.moveInfo.moveName;
                             }
-                            else if (ChallengeModeController.Instance.GetCurrentChallengeActions()[i].moveInfoOptions.displayMoveInfoMoveName == false
-                                || ChallengeModeController.Instance.GetCurrentChallengeActions()[i].moveInfoOptions.moveInfo == null)
+                            else if (ChallengeModeController.instance.GetCurrentChallengeActions()[i].moveInfoOptions.displayMoveInfoMoveName == false
+                                || ChallengeModeController.instance.GetCurrentChallengeActions()[i].moveInfoOptions.moveInfo == null)
                             {
                                 challengeActionDisplayUIControllerArray[i].moveInfoMoveNameText.text = "";
                             }
@@ -313,46 +313,46 @@ namespace UFE2FTE
                     challengeActionDisplayUIControllerArray[i].gameObject.SetActive(false);
                 }
 
-                if (i < ChallengeModeController.Instance.currentChallengeActionNumber)
+                if (i < ChallengeModeController.instance.currentChallengeActionNumber)
                 {
                     if (challengeActionDisplayUIControllerArray[i].challengeActionProgressImage != null)
                     {
-                        challengeActionDisplayUIControllerArray[i].challengeActionProgressImage.color = ChallengeModeController.Instance.challengeActionCompleteColor;
+                        challengeActionDisplayUIControllerArray[i].challengeActionProgressImage.color = ChallengeModeController.instance.challengeActionCompleteColor;
                         challengeActionDisplayUIControllerArray[i].challengeActionProgressImage.fillAmount = 1;
                     }
 
                     if (challengeActionDisplayUIControllerArray[i].challengeActionProgressRemainderImage != null)
                     {
-                        challengeActionDisplayUIControllerArray[i].challengeActionProgressRemainderImage.color = ChallengeModeController.Instance.challengeActionCompleteColor;
+                        challengeActionDisplayUIControllerArray[i].challengeActionProgressRemainderImage.color = ChallengeModeController.instance.challengeActionCompleteColor;
                         challengeActionDisplayUIControllerArray[i].challengeActionProgressRemainderImage.fillAmount = 0;
                     }
                 }
-                else if (i == ChallengeModeController.Instance.currentChallengeActionNumber)
+                else if (i == ChallengeModeController.instance.currentChallengeActionNumber)
                 {
                     if (challengeActionDisplayUIControllerArray[i].challengeActionProgressImage != null)
                     {
-                        challengeActionDisplayUIControllerArray[i].challengeActionProgressImage.color = ChallengeModeController.Instance.challengeActionCompleteColor;
-                        challengeActionDisplayUIControllerArray[i].challengeActionProgressImage.fillAmount = (float)ChallengeModeController.Instance.currentChallengeActionProgress / (float)ChallengeModeController.Instance.GetCurrentChallengeAction().successValue;
+                        challengeActionDisplayUIControllerArray[i].challengeActionProgressImage.color = ChallengeModeController.instance.challengeActionCompleteColor;
+                        challengeActionDisplayUIControllerArray[i].challengeActionProgressImage.fillAmount = (float)ChallengeModeController.instance.currentChallengeActionProgress / (float)ChallengeModeController.instance.GetCurrentChallengeAction().successValue;
                     }
 
                     if (challengeActionDisplayUIControllerArray[i].challengeActionProgressRemainderImage != null)
                     {
-                        challengeActionDisplayUIControllerArray[i].challengeActionProgressRemainderImage.color = ChallengeModeController.Instance.challengeActionCurrentColor;
+                        challengeActionDisplayUIControllerArray[i].challengeActionProgressRemainderImage.color = ChallengeModeController.instance.challengeActionCurrentColor;
                         challengeActionDisplayUIControllerArray[i].challengeActionProgressRemainderImage.fillAmount = 1 - challengeActionDisplayUIControllerArray[i].challengeActionProgressImage.fillAmount;
                     }
                 }
-                else if (i > ChallengeModeController.Instance.currentChallengeActionNumber
-                    && i != ChallengeModeController.Instance.highestChallengeActionNumber)
+                else if (i > ChallengeModeController.instance.currentChallengeActionNumber
+                    && i != ChallengeModeController.instance.highestChallengeActionNumber)
                 {
                     if (challengeActionDisplayUIControllerArray[i].challengeActionProgressImage != null)
                     {
-                        challengeActionDisplayUIControllerArray[i].challengeActionProgressImage.color = ChallengeModeController.Instance.challengeActionIncompleteColor;
+                        challengeActionDisplayUIControllerArray[i].challengeActionProgressImage.color = ChallengeModeController.instance.challengeActionIncompleteColor;
                         challengeActionDisplayUIControllerArray[i].challengeActionProgressImage.fillAmount = 0;
                     }
 
                     if (challengeActionDisplayUIControllerArray[i].challengeActionProgressRemainderImage != null)
                     {
-                        challengeActionDisplayUIControllerArray[i].challengeActionProgressRemainderImage.color = ChallengeModeController.Instance.challengeActionIncompleteColor;
+                        challengeActionDisplayUIControllerArray[i].challengeActionProgressRemainderImage.color = ChallengeModeController.instance.challengeActionIncompleteColor;
                         challengeActionDisplayUIControllerArray[i].challengeActionProgressRemainderImage.fillAmount = 1;
                     }
                 }

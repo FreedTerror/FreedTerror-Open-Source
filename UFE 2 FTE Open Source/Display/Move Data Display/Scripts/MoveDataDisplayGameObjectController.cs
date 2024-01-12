@@ -9,7 +9,7 @@ namespace UFE2FTE
 
         private void Update()
         {
-            UFE2FTE.SetGameObjectActive(moveDataDisplayGameObjectArray, UFE2FTE.Instance.displayMoveData);
+            UFE2FTE.SetGameObjectActive(moveDataDisplayGameObjectArray, UFE2FTE.instance.displayMoveData);
         }
     }
 }

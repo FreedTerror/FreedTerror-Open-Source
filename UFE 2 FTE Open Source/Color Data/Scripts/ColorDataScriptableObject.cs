@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace UFE2FTE
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(fileName = "New Color Data", menuName = "U.F.E. 2 F.T.E./Color/Color Data")]
     public class ColorDataScriptableObject : ScriptableObject
     {
         public Color32 color;
@@ -10,6 +10,7 @@ namespace UFE2FTE
 #if UNITY_EDITOR
         [SerializeField]
         private string hexColorCode;
+
         [NaughtyAttributes.Button]
         private void GenerateHexCodeColor()
         {

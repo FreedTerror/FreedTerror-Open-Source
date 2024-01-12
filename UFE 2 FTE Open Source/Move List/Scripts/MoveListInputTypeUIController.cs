@@ -62,7 +62,7 @@ namespace UFE2FTE
                 {
                     Text spawnedText = Instantiate(textToSpawn, spawnParent);
                     spawnedText.gameObject.SetActive(true);
-                    spawnedText.text = UFE2FTE.languageOptions.selectedLanguage.InputDisplaySequence;
+                    spawnedText.text = "Sequence";
                 }
             }
 
@@ -75,7 +75,7 @@ namespace UFE2FTE
                 {
                     Text spawnedText = Instantiate(textToSpawn, spawnParent);
                     spawnedText.gameObject.SetActive(true);
-                    spawnedText.text = UFE2FTE.Instance.inputDisplayScriptableObject.GetInputDisplayStringFromMoveInputs(moveInputs);
+                    spawnedText.text = UFE2FTE.instance.inputDisplayScriptableObject.GetInputDisplayStringFromMoveInputs(moveInputs);
                 }
             }
         }

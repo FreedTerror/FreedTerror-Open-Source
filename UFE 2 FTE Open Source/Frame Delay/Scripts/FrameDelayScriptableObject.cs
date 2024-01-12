@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace UFE2FTE
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(fileName = "New Frame Delay Settings", menuName = "U.F.E. 2 F.T.E./Settings/Frame Delay Settings")]
     public class FrameDelayScriptableObject : ScriptableObject
     {
         public int minFrameDelay = 3;

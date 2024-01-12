@@ -211,7 +211,7 @@ namespace UFE2FTE
                 return;
             }
 
-            StartCharacterAlert(UFE2FTE.languageOptions.selectedLanguage.WakeUp);
+            StartCharacterAlert("Wake Up");
         }
 
         #endregion
@@ -255,7 +255,7 @@ namespace UFE2FTE
                 return;
             }
 
-            StartCharacterAlert(UFE2FTE.languageOptions.selectedLanguage.CounterHit);
+            StartCharacterAlert("Counter Hit");
         }
 
         private void StartPunishAlertOnHit(ControlsScript player, CharacterData characterData)
@@ -276,7 +276,7 @@ namespace UFE2FTE
                 return;
             }
 
-            StartCharacterAlert(UFE2FTE.languageOptions.selectedLanguage.Punish);
+            StartCharacterAlert("Punish");
         }
 
         private void StartArmorAlertOnHit(ControlsScript player, CharacterData characterData)
@@ -293,7 +293,7 @@ namespace UFE2FTE
                 return;
             }
 
-            StartCharacterAlert(UFE2FTE.languageOptions.selectedLanguage.ArmoredHit);
+            StartCharacterAlert("Armored Hit");
         }
 
         private void StartArmorBreakerAlertOnHit(ControlsScript player, Hit hit)
@@ -311,7 +311,7 @@ namespace UFE2FTE
                 return;
             }
 
-            StartCharacterAlert(UFE2FTE.languageOptions.selectedLanguage.ArmorBreaker);
+            StartCharacterAlert("Armor Breaker");
         }
 
         private void StartArmorBrokenAlertOnHit(ControlsScript player, CharacterData characterData, Hit hit)
@@ -331,7 +331,7 @@ namespace UFE2FTE
                 return;
             }
 
-            StartCharacterAlert(UFE2FTE.languageOptions.selectedLanguage.ArmorBroken);
+            StartCharacterAlert("Armor Broken");
         }
 
         private void StartUnblockableAlertOnHit(ControlsScript player, Hit hit)
@@ -349,7 +349,7 @@ namespace UFE2FTE
                 return;
             }
 
-            StartCharacterAlert(UFE2FTE.languageOptions.selectedLanguage.Unblockable);
+            StartCharacterAlert("Unblockable");
         }
 
         private void StartForceStandAlertOnHit(ControlsScript player, Hit hit)
@@ -368,7 +368,7 @@ namespace UFE2FTE
                 return;
             }
 
-            StartCharacterAlert(UFE2FTE.languageOptions.selectedLanguage.ForceStand);
+            StartCharacterAlert("Force Stand");
         }
 
         private void StartOtgAlertOnHit(ControlsScript player, Hit hit)
@@ -387,7 +387,7 @@ namespace UFE2FTE
                 return;
             }
 
-            StartCharacterAlert(UFE2FTE.languageOptions.selectedLanguage.Otg);
+            StartCharacterAlert("Otg");
         }
 
         #endregion
@@ -408,7 +408,7 @@ namespace UFE2FTE
                 return;
             }
 
-            StartCharacterAlert(UFE2FTE.languageOptions.selectedLanguage.Parry);
+            StartCharacterAlert("Parry");
         }
 
         #endregion

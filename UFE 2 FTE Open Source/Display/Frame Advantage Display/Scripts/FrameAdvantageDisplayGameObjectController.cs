@@ -9,7 +9,7 @@ namespace UFE2FTE
 
         private void Update()
         {
-            UFE2FTE.SetGameObjectActive(frameAdvantageDisplayGameObjectArray, UFE2FTE.Instance.displayFrameAdvantage);
+            UFE2FTE.SetGameObjectActive(frameAdvantageDisplayGameObjectArray, UFE2FTE.instance.displayFrameAdvantage);
         }
     }
 }

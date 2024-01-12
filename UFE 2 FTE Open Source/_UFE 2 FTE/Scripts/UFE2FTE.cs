@@ -1,13 +1,13 @@
+using FPLibrary;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using UFE3D;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using UFE3D;
-using FPLibrary;
 
 namespace UFE2FTE
 {
@@ -39,9 +39,7 @@ namespace UFE2FTE
             Off,
             SpriteRenderer2DInfront,
             SpriteRenderer2DBehind,
-            MeshRenderer3D,
-            PopcronGizmos2D,
-            PopcronGizmos3D
+            MeshRenderer3D
         }
 
         public enum Player
@@ -58,38 +56,36 @@ namespace UFE2FTE
 
         #endregion
 
-        private static UFE2FTE instance = null;
-        public static UFE2FTE Instance
+        private static UFE2FTE _instance = null;
+        public static UFE2FTE instance
         {
             get
             {
-                return instance;
+                if (_instance == null)
+                {
+                    GameObject newGameObject = new GameObject();
+                    UFE2FTE newUFE2FTE = newGameObject.AddComponent<UFE2FTE>();
+                    _instance = newUFE2FTE;
+                }
+
+                return _instance;
             }
         }
 
-        public static UFEScreen currentScreen = null;
         private AIController player2AIController;
 
+        #region Scriptable Object Variables
+
+        [Header("Scriptable Object Variables")]
         public FrameDelayScriptableObject defaultFrameDelayScriptableObject;
-
         public GameSettingsScriptableObject defaultGameSettingsScriptableObject;
-        public ParryType[] allowedParryTypeArray;
-
         public InputDisplayScriptableObject inputDisplayScriptableObject;
 
+        #endregion
+
+        [Header("Sort These Variables Later")]
         public AIMode aiMode = AIMode.Human;
         public Toggle aiThrowTechMode = Toggle.Off;
-
-        public bool useCameraShake;
-        public bool useCharacterPortraitShake;
-
-        public bool displayBattleGUI;
-        public bool displayFrameAdvantage;
-        public bool displayFrameDelay;
-        public bool displayHitData;
-        public bool displayInputs;
-        public bool displayMoveData;
-        public bool displayPing;
 
         public HitBoxDisplayMode hitBoxDisplayMode = HitBoxDisplayMode.Off;
         [Range(0, 255)]
@@ -100,27 +96,263 @@ namespace UFE2FTE
         public Player trainingModeCornerTarget = Player.Player2;
         public Fix64 trainingModeCornerPositionXOffset = 3;
 
-        [SerializeField]
-        private LanguageOptions _languageOptions;
-        public static LanguageOptions languageOptions { get { return Instance._languageOptions; } }
+        #region Bool Variables
+
+        [Header("Bool Variables")]
+        public bool displayBattleGUI;
+        public bool displayFrameAdvantage;
+        public bool displayFrameDelay;
+        public bool displayHitData;
+        public bool displayInputs;
+        public bool displayMoveData;
+        public bool displayPing;
+
+        public bool useCameraShake;
+        public bool useCharacterPortraitShake;
+
+        #endregion
+
+        #region String Variables
+
+        [Header("String Variables")]
+        public string on = "On";
+        public string off = "Off";
+
+        public int normalStringNumberAmount = 1000;
+        public string[] normalStringNumberArray = System.Array.Empty<string>();
+
+        public int normalPercentStringNumberAmount = 100;
+        public string[] normalPercentStringNumberArray = System.Array.Empty<string>();
+
+        public int normalFrameStringNumberAmount = 1000;
+        public string[] normalFrameStringNumberArray = System.Array.Empty<string>();
+
+        public int positiveStringNumberAmount = 1000;
+        public string[] positiveStringNumberArray = System.Array.Empty<string>();
+
+        public int negativeStringNumberAmount = 1000;
+        public string[] negativeStringNumberArray = System.Array.Empty<string>();
+
+        private void InitializeNormalStringNumberArray()
+        {
+            if (normalStringNumberAmount > 0)
+            {
+                int stringNumberArrayLength = normalStringNumberAmount + 1;
+                normalStringNumberArray = new string[stringNumberArrayLength];
+                for (int i = 0; i < stringNumberArrayLength; i++)
+                {
+                    normalStringNumberArray[i] = i.ToString();
+                }
+            }
+            else
+            {
+                normalStringNumberArray = System.Array.Empty<string>();
+            }
+        }
+
+        private void InitializeNormalPercentStringNumberArray()
+        {
+            if (normalPercentStringNumberAmount > 0)
+            {
+                int stringNumberArrayLength = normalPercentStringNumberAmount + 1;
+                normalPercentStringNumberArray = new string[stringNumberArrayLength];
+                for (int i = 0; i < stringNumberArrayLength; i++)
+                {
+                    normalPercentStringNumberArray[i] = i + "%";
+                }
+            }
+            else
+            {
+                normalPercentStringNumberArray = System.Array.Empty<string>();
+            }
+        }
+
+        private void InitializeNormalFrameStringNumberArray()
+        {
+            if (normalFrameStringNumberAmount > 0)
+            {
+                int stringNumberArrayLength = normalFrameStringNumberAmount + 1;
+                normalFrameStringNumberArray = new string[stringNumberArrayLength];
+                for (int i = 0; i < stringNumberArrayLength; i++)
+                {
+                    normalFrameStringNumberArray[i] = i + "F";
+                }
+            }
+            else
+            {
+                normalFrameStringNumberArray = System.Array.Empty<string>();
+            }
+        }
+
+        private void InitializePositiveStringNumberArray()
+        {
+            if (positiveStringNumberAmount > 0)
+            {
+                int stringNumberArrayLength = positiveStringNumberAmount + 1;
+                positiveStringNumberArray = new string[stringNumberArrayLength];
+                for (int i = 0; i < stringNumberArrayLength; i++)
+                {
+                    positiveStringNumberArray[i] = "+" + i;
+                }
+            }
+            else
+            {
+                positiveStringNumberArray = System.Array.Empty<string>();
+            }
+        }
+
+        private void InitializeNegativeStringNumberArray()
+        {
+            if (negativeStringNumberAmount > 0)
+            {
+                int stringNumberArrayLength = negativeStringNumberAmount + 1;
+                negativeStringNumberArray = new string[stringNumberArrayLength];
+                for (int i = 0; i < stringNumberArrayLength; i++)
+                {
+                    negativeStringNumberArray[i] = "-" + i;
+                }
+            }
+            else
+            {
+                negativeStringNumberArray = System.Array.Empty<string>();
+            }
+        }
+
+        public static string GetNormalStringNumber(int stringArrayIndex)
+        {
+            if (stringArrayIndex < 0)
+            {
+#if UNITY_EDITOR
+                Debug.Log("[" + stringArrayIndex + "] This causes memory allocation!");
+#endif
+
+                return stringArrayIndex.ToString();
+            }
+
+            if (stringArrayIndex < instance.normalStringNumberArray.Length)
+            {
+                return instance.normalStringNumberArray[stringArrayIndex];
+            }
+            else
+            {
+#if UNITY_EDITOR
+                Debug.Log(nameof(normalStringNumberArray) + " [" + stringArrayIndex + "] This causes memory allocation! Consider increasing the array size avoid this memory allocation.");
+#endif
+
+                return stringArrayIndex.ToString();
+            }
+        }
+
+        public static string GetNormalPercentStringNumber(int stringArrayIndex)
+        {
+            if (stringArrayIndex < instance.normalPercentStringNumberArray.Length)
+            {
+                return instance.normalPercentStringNumberArray[stringArrayIndex];
+            }
+            else
+            {
+#if UNITY_EDITOR
+                Debug.Log(nameof(normalPercentStringNumberArray) + " [" + stringArrayIndex + "] This causes memory allocation! Consider increasing the array size avoid this memory allocation.");
+#endif
+
+                return stringArrayIndex + "%";
+            }
+        }
+
+        public static string GetNormalFrameStringNumber(int stringArrayIndex)
+        {
+            if (stringArrayIndex < 0)
+            {
+                return "";
+            }
+
+            if (stringArrayIndex < instance.normalFrameStringNumberArray.Length)
+            {
+                return instance.normalFrameStringNumberArray[stringArrayIndex];
+            }
+            else
+            {
+#if UNITY_EDITOR
+                Debug.Log(nameof(instance.normalFrameStringNumberArray) + " [" + stringArrayIndex + "] This causes memory allocation! Consider increasing the array size avoid this memory allocation.");
+#endif
+
+                return stringArrayIndex + "F";
+            }
+        }
+
+        public static string GetPositiveStringNumber(int stringArrayIndex)
+        {
+            if (stringArrayIndex < 0)
+            {
+                return "";
+            }
+
+            if (stringArrayIndex < instance.positiveStringNumberArray.Length)
+            {
+                return instance.positiveStringNumberArray[stringArrayIndex];
+            }
+            else
+            {
+#if UNITY_EDITOR
+                Debug.Log(nameof(positiveStringNumberArray) + " [" + stringArrayIndex + "] This causes memory allocation! Consider increasing the array size avoid this memory allocation.");
+#endif
+
+                return "+" + stringArrayIndex;
+            }
+        }
+
+        public static string GetNegativeStringNumber(int stringArrayIndex)
+        {
+            if (stringArrayIndex < 0)
+            {
+                return "";
+            }
+
+            if (stringArrayIndex < instance.negativeStringNumberArray.Length)
+            {
+                return instance.negativeStringNumberArray[stringArrayIndex];
+            }
+            else
+            {
+#if UNITY_EDITOR
+                Debug.Log(nameof(instance.negativeStringNumberArray) + " [" + stringArrayIndex + "] This causes memory allocation! Consider increasing the array size avoid this memory allocation.");
+#endif
+
+                return "-" + stringArrayIndex;
+            }
+        }
+
+        #endregion
 
         private void Awake()
         {
-            if (instance != null && instance != this)
+            if (_instance != null && _instance != this)
             {
                 Destroy(this);
             }
             else
             {
-                instance = this;
+                _instance = this;
             }
         }
 
         private void Start()
         {         
-            defaultFrameDelayScriptableObject.UpdateFrameDelaySettings();
-            defaultGameSettingsScriptableObject.UpdateGameSettings();
-            languageOptions.Initialize();
+            if (defaultFrameDelayScriptableObject != null)
+            {
+                defaultFrameDelayScriptableObject.UpdateFrameDelaySettings();
+            }
+
+            if (defaultGameSettingsScriptableObject != null)
+            {
+                defaultGameSettingsScriptableObject.UpdateGameSettings();
+            }
+
+            InitializeNormalStringNumberArray();
+            InitializeNormalPercentStringNumberArray();
+            InitializeNormalFrameStringNumberArray();
+            InitializePositiveStringNumberArray();
+            InitializeNegativeStringNumberArray();
         }
 
         private void Update()
@@ -128,8 +360,15 @@ namespace UFE2FTE
             switch (UFE.gameMode)
             {
                 case GameMode.NetworkGame:
-                    defaultFrameDelayScriptableObject.UpdateFrameDelaySettings();
-                    defaultGameSettingsScriptableObject.UpdateGameSettings();
+                    if (defaultFrameDelayScriptableObject != null)
+                    {
+                        defaultFrameDelayScriptableObject.UpdateFrameDelaySettings();
+                    }
+
+                    if (defaultGameSettingsScriptableObject != null)
+                    {
+                        defaultGameSettingsScriptableObject.UpdateGameSettings();
+                    }
                     break;
             }
 
@@ -145,14 +384,36 @@ namespace UFE2FTE
             {
                 player2AIController = AddComponentToControlsScriptCharacterGameObject<AIController>(UFE.GetPlayer2ControlsScript());
             }
+
+            PatchStuff();
+        }
+
+        private void PatchStuff()
+        {
+            if (UFE.GetPlayer1ControlsScript() != null)
+            {
+                SetAnimationClipWrapMode(UFE.GetPlayer1ControlsScript(), UFE.GetPlayer1ControlsScript().MoveSet.GetAnimationString(BasicMoveReference.Crouching, 1), WrapMode.ClampForever);
+                SetAnimationClipWrapMode(UFE.GetPlayer1ControlsScript(), UFE.GetPlayer1ControlsScript().MoveSet.GetAnimationString(BasicMoveReference.Crouching, 2), WrapMode.ClampForever);
+
+                if (UFE.GetPlayer1ControlsScript().currentMove != null)
+                {
+                    UFE.GetPlayer1ControlsScript().currentSubState = SubStates.Resting;
+                }
+            }
+
+            if (UFE.GetPlayer2ControlsScript() != null)
+            {
+                SetAnimationClipWrapMode(UFE.GetPlayer2ControlsScript(), UFE.GetPlayer2ControlsScript().MoveSet.GetAnimationString(BasicMoveReference.Crouching, 1), WrapMode.ClampForever);
+                SetAnimationClipWrapMode(UFE.GetPlayer2ControlsScript(), UFE.GetPlayer2ControlsScript().MoveSet.GetAnimationString(BasicMoveReference.Crouching, 2), WrapMode.ClampForever);
+
+                if (UFE.GetPlayer2ControlsScript().currentMove != null)
+                {
+                    UFE.GetPlayer2ControlsScript().currentSubState = SubStates.Resting;
+                }
+            }
         }
 
         #region Bool Methods
-
-        public static bool IsInMinMaxRange(float comparing, float min, float max)
-        {
-            return comparing >= min && comparing <= max;
-        }
 
         /// <summary>
         /// 1 returns true. Any other number returns false.
@@ -195,11 +456,11 @@ namespace UFE2FTE
         {
             if (value == true)
             {
-                return languageOptions.selectedLanguage.On;
+                return instance.on;
             }
             else
             {
-                return languageOptions.selectedLanguage.Off;
+                return instance.off;
             }
         }
 
@@ -229,6 +490,11 @@ namespace UFE2FTE
             value = GetBoolFromInt(PlayerPrefs.GetInt(key));
         }
 
+        public static bool IsInMinMaxRange(float comparing, float min, float max)
+        {
+            return comparing >= min && comparing <= max;
+        }
+
         #endregion
 
         #region Enum Methods
@@ -255,60 +521,6 @@ namespace UFE2FTE
             return (AIMode)index;
         }
 
-        public string GetStringFromEnum(AIMode aiMode)
-        {
-            switch (aiMode)
-            {
-                case AIMode.Human:
-                    return languageOptions.selectedLanguage.Human;
-
-                case AIMode.Stand:
-                    return languageOptions.selectedLanguage.Stand;
-
-                case AIMode.Crouch:
-                    return languageOptions.selectedLanguage.Crouch;
-
-                case AIMode.MoveForward:
-                    return languageOptions.selectedLanguage.MoveForward;
-
-                case AIMode.MoveBackward:
-                    return languageOptions.selectedLanguage.MoveBackward;
-
-                case AIMode.BlockAll:
-                    return languageOptions.selectedLanguage.BlockAll;
-
-                case AIMode.StandBlock:
-                    return languageOptions.selectedLanguage.BlockStand;
-
-                case AIMode.CrouchBlock:
-                    return languageOptions.selectedLanguage.BlockCrouch;
-
-                case AIMode.ParryAll:
-                    return languageOptions.selectedLanguage.ParryAll;
-
-                case AIMode.StandParry:
-                    return languageOptions.selectedLanguage.ParryStand;
-
-                case AIMode.CrouchParry:
-                    return languageOptions.selectedLanguage.ParryCrouch;
-
-                case AIMode.JumpParry:
-                    return languageOptions.selectedLanguage.ParryJump;
-
-                case AIMode.NeutralJump:
-                    return languageOptions.selectedLanguage.JumpNeutral;
-
-                case AIMode.ForwardJump:
-                    return languageOptions.selectedLanguage.JumpForward;
-
-                case AIMode.BackwardJump:
-                    return languageOptions.selectedLanguage.JumpBackward;
-
-                default:
-                    return languageOptions.selectedLanguage.Human;
-            }
-        }
-
         public static Player GetNextEnum(Player value)
         {
             int index = (int)value;
@@ -329,21 +541,6 @@ namespace UFE2FTE
                 index = System.Enum.GetValues(typeof(Player)).Length - 1;
             }
             return (Player)index;
-        }
-
-        public static string GetStringFromEnum(Player value)
-        {
-            switch (value)
-            {
-                case Player.Player1:
-                    return languageOptions.selectedLanguage.Player1;
-
-                case Player.Player2:
-                    return languageOptions.selectedLanguage.Player2;
-
-                default:
-                    return "";
-            }
         }
 
         public static Toggle GetNextEnum(Toggle value)
@@ -368,120 +565,26 @@ namespace UFE2FTE
             return (Toggle)index;
         }
 
-        public static string GetStringFromEnum(Toggle value)
+        public static Sizes GetNextEnum(Sizes value)
         {
-            if (value == Toggle.On)
+            int index = (int)value;
+            index++;
+            if (System.Enum.IsDefined(typeof(Sizes), (Sizes)index) == false)
             {
-                return languageOptions.selectedLanguage.On;
+                index = 0;
             }
-            else
-            {
-                return languageOptions.selectedLanguage.Off;
-            }
+            return (Sizes)index;
         }
 
-        public static BlockType GetNextEnum(BlockType value, BlockType[] allowedValue)
+        public static Sizes GetPreviousEnum(Sizes value)
         {
-            int index = 0;
-            if (allowedValue == null)
+            int index = (int)value;
+            index--;
+            if (System.Enum.IsDefined(typeof(Sizes), (Sizes)index) == false)
             {
-                return (BlockType)index;
+                index = System.Enum.GetValues(typeof(Sizes)).Length - 1;
             }
-            int length = allowedValue.Length;
-            for (int i = 0; i < length; i++)
-            {
-                if (value != allowedValue[i])
-                {
-                    continue;
-                }
-
-                index = i;
-                index++;
-                if (index >= length)
-                {
-                    index = 0;
-                }
-            }
-
-            return allowedValue[index];
-        }
-
-        public static BlockType GetPreviousEnum(BlockType value, BlockType[] allowedValue)
-        {
-            int index = 0;
-            if (allowedValue == null)
-            {
-                return (BlockType)index;
-            }
-            int length = allowedValue.Length;
-            for (int i = 0; i < length; i++)
-            {
-                if (value != allowedValue[i])
-                {
-                    continue;
-                }
-
-                index = i;
-                index--;
-                if (index < 0)
-                {
-                    index = length - 1;
-                }
-            }
-
-            return allowedValue[index];
-        }
-
-        public static ParryType GetNextEnum(ParryType value, ParryType[] allowedValue)
-        {
-            int index = 0;
-            if (allowedValue == null)
-            {
-                return (ParryType)index;
-            }
-            int length = allowedValue.Length;
-            for (int i = 0; i < length; i++)
-            {
-                if (value != allowedValue[i])
-                {
-                    continue;
-                }
-
-                index = i;
-                index++;
-                if (index >= length)
-                {
-                    index = 0;
-                }
-            }
-
-            return allowedValue[index];
-        }
-
-        public static ParryType GetPreviousEnum(ParryType value, ParryType[] allowedValue)
-        {
-            int index = 0;
-            if (allowedValue == null)
-            {
-                return (ParryType)index;
-            }
-            int length = allowedValue.Length;
-            for (int i = 0; i < length; i++)
-            {
-                if (value != allowedValue[i])
-                {
-                    continue;
-                }
-
-                index = i;
-                index--;
-                if (index < 0)
-                {
-                    index = length - 1;
-                }
-            }
-
-            return allowedValue[index];
+            return (Sizes)index;
         }
 
         public HitBoxDisplayMode GetNextEnum(HitBoxDisplayMode value)
@@ -506,46 +609,9 @@ namespace UFE2FTE
             return (HitBoxDisplayMode)index;
         }
 
-        public string GetStringFromEnum(HitBoxDisplayMode hitBoxDisplayMode)
-        {
-            switch (hitBoxDisplayMode)
-            {
-                case HitBoxDisplayMode.Off:
-                    return GetStringFromBool(false);
-
-                case HitBoxDisplayMode.SpriteRenderer2DInfront:
-                    return languageOptions.selectedLanguage.HitBoxDisplaySpriteRenderer2DInfront;
-
-                case HitBoxDisplayMode.SpriteRenderer2DBehind:
-                    return languageOptions.selectedLanguage.HitBoxDisplaySpriteRenderer2DBehind;
-
-                case HitBoxDisplayMode.MeshRenderer3D:
-                    return languageOptions.selectedLanguage.HitBoxDisplayMeshRenderer3D;
-
-                case HitBoxDisplayMode.PopcronGizmos2D:
-                    return languageOptions.selectedLanguage.HitBoxDisplayPopcronGizmos2D;
-
-                case HitBoxDisplayMode.PopcronGizmos3D:
-                    return languageOptions.selectedLanguage.HitBoxDisplayPopcronGizmos3D;
-
-                default:
-                    return "";
-            }
-        }
-
         #endregion
 
         #region Int Methods
-
-        public static void SetInt(ref int value, int setValue, bool saveInt = true)
-        {
-            value = setValue;
-
-            if (saveInt == true)
-            {
-                SaveInt(nameof(value), setValue);
-            }
-        }
 
         public static void SaveInt(string key, int value)
         {
@@ -555,6 +621,51 @@ namespace UFE2FTE
         public static void LoadInt(ref int value, string key)
         {
             value = PlayerPrefs.GetInt(key);
+        }
+
+        #endregion
+
+        #region String Methods
+
+        public static string AddSpacesBeforeCapitalLetters(string message)
+        {
+            return message = string.Concat(message.Select(x => System.Char.IsUpper(x) ? " " + x : x.ToString())).TrimStart(' ');
+        }
+
+        public static string GetStringFromEnum(Player value)
+        {
+            return System.Enum.GetName(typeof(Player), value);
+        }
+
+        public static string GetStringFromEnum(Toggle value)
+        {
+            if (value == Toggle.On)
+            {
+                return instance.on;
+            }
+            else
+            {
+                return instance.off;
+            }
+        }
+
+        public string GetStringFromEnum(HitBoxDisplayMode value)
+        {
+            return System.Enum.GetName(typeof(HitBoxDisplayMode), value);
+        }
+
+        public static string GetStringFromEnum(HitType hitType, HitConfirmType hitConfirmType)
+        {
+            if (hitConfirmType == HitConfirmType.Hit)
+            {
+                System.Enum.GetName(typeof(HitType), hitType);
+            }
+            else if (hitConfirmType == HitConfirmType.Throw)
+            {
+                System.Enum.GetName(typeof(HitConfirmType), hitConfirmType);
+            }
+
+            return "";
         }
 
         #endregion
@@ -644,6 +755,26 @@ namespace UFE2FTE
         #endregion
 
         #region Button Press Methods
+
+        public static void AddButtonPressToListIfButtonIsPressed(ref List<ButtonPress> buttonPressList, IDictionary<InputReferences, InputEvents> playerInputs)
+        {
+            if (buttonPressList == null
+                || playerInputs == null)
+            {
+                return;
+            }
+
+            foreach (KeyValuePair<InputReferences, InputEvents> pair in playerInputs)
+            {
+                if (pair.Key.inputType != InputType.Button
+                    || pair.Value.button == false)
+                {
+                    continue;
+                }
+
+                buttonPressList.Add(pair.Key.engineRelatedButton);
+            }
+        }
 
         public static ButtonPress GetButtonPress(BlockType blockType)
         {
@@ -851,7 +982,7 @@ namespace UFE2FTE
 
         #endregion
 
-        #region DoFixedUpdate Methods
+        #region Event Methods
 
         public delegate void DoFixedUpdateEventHandler(IDictionary<InputReferences, InputEvents> player1PreviousInputs, IDictionary<InputReferences, InputEvents> player1CurrentInputs, IDictionary<InputReferences, InputEvents> player2PreviousInputs, IDictionary<InputReferences, InputEvents> player2CurrentInputs);
         public static event DoFixedUpdateEventHandler DoFixedUpdateEvent;
@@ -867,31 +998,6 @@ namespace UFE2FTE
             }
 
             DoFixedUpdateEvent(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
-        }
-
-        /// <summary>
-        /// The ComparingScreen parameter is needed to prevent crashes.
-        /// </summary>
-        /// <param name="comparingScreen"></param>
-        /// <param name="player1PreviousInputs"></param>
-        /// <param name="player1CurrentInputs"></param>
-        /// <param name="player2PreviousInputs"></param>
-        /// <param name="player2CurrentInputs"></param>
-        public static void DoFixedUpdate(UFEScreen comparingScreen, IDictionary<InputReferences, InputEvents> player1PreviousInputs, IDictionary<InputReferences, InputEvents> player1CurrentInputs, IDictionary<InputReferences, InputEvents> player2PreviousInputs, IDictionary<InputReferences, InputEvents> player2CurrentInputs)
-        {
-            if (UFE.currentScreen == null
-                && comparingScreen != null
-                && currentScreen != null
-                && comparingScreen != currentScreen)
-            {
-                currentScreen.DoFixedUpdate(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
-
-                CallDoFixedUpdateEvent(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
-            }
-            else if (UFE.currentScreen != null)
-            {
-                CallDoFixedUpdateEvent(player1PreviousInputs, player1CurrentInputs, player2PreviousInputs, player2CurrentInputs);
-            }
         }
 
         #endregion
@@ -1123,17 +1229,17 @@ namespace UFE2FTE
             UFE.SpawnGameObject(gameObject, new Vector3(0, 0, 0), Quaternion.identity, true, 0);
         }
 
-        public static void SpawnNetworkGameObject(GameObject[] gameObjectArray)
+        public static void SpawnNetworkGameObject(GameObject[] gameObject)
         {
-            if (gameObjectArray == null)
+            if (gameObject == null)
             {
                 return;
             }
 
-            int length = gameObjectArray.Length;
+            int length = gameObject.Length;
             for (int i = 0; i < length; i++)
             {
-                SpawnNetworkGameObject(gameObjectArray[i]);
+                SpawnNetworkGameObject(gameObject[i]);
             }
         }
 
@@ -1529,16 +1635,6 @@ namespace UFE2FTE
 
         #region Matching Methods
 
-        public static bool IsIntMatch(int comparing, int matching)
-        {
-            if (comparing == matching)
-            {
-                return true;
-            }
-
-            return false;
-        }
-
         public static bool IsIntMatch(int comparing, int[] matching)
         {
             if (matching == null)
@@ -1549,21 +1645,11 @@ namespace UFE2FTE
             int length = matching.Length;
             for (int i = 0; i < length; i++)
             {
-                if (IsIntMatch(comparing, matching[i]) == false)
+                if (comparing != matching[i])
                 {
                     continue;
                 }
 
-                return true;
-            }
-
-            return false;
-        }
-
-        public static bool IsStringMatch(string comparing, string matching)
-        {
-            if (comparing == matching)
-            {
                 return true;
             }
 
@@ -1580,21 +1666,11 @@ namespace UFE2FTE
             int length = matching.Length;
             for (int i = 0; i < length; i++)
             {
-                if (IsStringMatch(comparing, matching[i]) == false)
+                if (comparing != matching[i])
                 {
                     continue;
                 }
 
-                return true;
-            }
-
-            return false;
-        }
-
-        public static bool IsBasicMoveReferenceMatch(BasicMoveReference comparing, BasicMoveReference matching)
-        {
-            if (comparing == matching)
-            {
                 return true;
             }
 
@@ -1611,21 +1687,11 @@ namespace UFE2FTE
             int length = matching.Length;
             for (int i = 0; i < length; i++)
             {
-                if (IsBasicMoveReferenceMatch(comparing, matching[i]) == false)
+                if (comparing != matching[i])
                 {
                     continue;
                 }
 
-                return true;
-            }
-
-            return false;
-        }
-
-        public static bool IsButtonPressMatch(ButtonPress comparing, ButtonPress matching)
-        {
-            if (comparing == matching)
-            {
                 return true;
             }
 
@@ -1642,21 +1708,11 @@ namespace UFE2FTE
             int length = matching.Length;
             for (int i = 0; i < length; i++)
             {
-                if (IsButtonPressMatch(comparing, matching[i]) == false)
+                if (comparing != matching[i])
                 {
                     continue;
                 }
 
-                return true;
-            }
-
-            return false;
-        }
-
-        public static bool IsCombatStancesMatch(CombatStances comparing, CombatStances matching)
-        {
-            if (comparing == matching)
-            {
                 return true;
             }
 
@@ -1673,21 +1729,11 @@ namespace UFE2FTE
             int length = matching.Length;
             for (int i = 0; i < length; i++)
             {
-                if (IsCombatStancesMatch(comparing, matching[i]) == false)
+                if (comparing != matching[i])
                 {
                     continue;
                 }
 
-                return true;
-            }
-
-            return false;
-        }
-
-        public static bool IsGameModeMatch(GameMode comparing, GameMode matching)
-        {
-            if (comparing == matching)
-            {
                 return true;
             }
 
@@ -1704,7 +1750,7 @@ namespace UFE2FTE
             int length = matching.Length;
             for (int i = 0; i < length; i++)
             {
-                if (IsGameModeMatch(comparing, matching[i]) == false)
+                if (comparing != matching[i])
                 {
                     continue;
                 }
@@ -1714,7 +1760,6 @@ namespace UFE2FTE
 
             return false;
         }
-
 
         #endregion
 
@@ -1846,13 +1891,14 @@ namespace UFE2FTE
                 int count = moveInfoList.Count - 1;
                 for (int i = count; i >= 0; i--)
                 {
-                    if (IsStringMatch(moveName, moveInfoList[i].moveName) == false)
+                    if (moveName != moveInfoList[i].moveName)
                     {
                         continue;
                     }
 
                     moveInfoList.RemoveAt(i);
                 }
+
                 player.MoveSet.moves = moveInfoList.ToArray();
             }
 
@@ -1862,70 +1908,16 @@ namespace UFE2FTE
                 int count = moveInfoList.Count - 1;
                 for (int i = count; i >= 0; i--)
                 {
-                    if (IsStringMatch(moveName, moveInfoList[i].moveName) == false)
+                    if (moveName != moveInfoList[i].moveName)
                     {
                         continue;
                     }
 
                     moveInfoList.RemoveAt(i);
                 }
+
                 player.MoveSet.attackMoves = moveInfoList.ToArray();
             }
-        }
-
-        #endregion
-
-        #region Move Set Script Methods
-
-        public static void ChangeMoveStances(ControlsScript player, CombatStances newStance)
-        {
-            if (player == null
-                || player.MoveSet == null)
-            {
-                return;
-            }
-
-            player.MoveSet.ChangeMoveStances(newStance);
-        }
-
-        #endregion
-
-        #region Physics Methods
-
-        public static void ForceGrounded(ControlsScript player, int timesToExecute = 1)
-        {
-            if (player == null
-                || player.Physics == null)
-            {
-                return;
-            }
-
-            for (int i = 0; i < timesToExecute; i++)
-            {
-                player.Physics.ForceGrounded();
-            }
-        }
-
-        public static void AddForce(ControlsScript player, FPVector forces)
-        {
-            if (player == null
-                || player.Physics == null)
-            {
-                return;
-            }
-
-            player.Physics.AddForce(forces, player.GetDirection(), true);
-        }
-
-        public static void ResetForces(ControlsScript player, bool resetXForce, bool resetYForce, bool resetZForce)
-        {
-            if (player == null
-                || player.Physics == null)
-            {
-                return;
-            }
-
-            player.Physics.ResetForces(resetXForce, resetYForce, resetZForce);
         }
 
         #endregion
@@ -2521,20 +2513,7 @@ namespace UFE2FTE
 
         public static string GetStringFromEnum(LifeBarTrainingMode value)
         {
-            switch (value)
-            {
-                case LifeBarTrainingMode.Normal:
-                    return languageOptions.selectedLanguage.Normal;
-
-                case LifeBarTrainingMode.Refill:
-                    return languageOptions.selectedLanguage.Refill;
-
-                case LifeBarTrainingMode.Infinite:
-                    return languageOptions.selectedLanguage.Infinite;
-
-                default:
-                    return "";
-            }
+            return System.Enum.GetName(typeof(LifeBarTrainingMode), value);
         }
 
         #endregion
@@ -2727,17 +2706,17 @@ namespace UFE2FTE
             selectable.interactable = interactable;      
         }
 
-        public static void SetSelectableInteractable(Selectable[] selectableArray, bool interactable)
+        public static void SetSelectableInteractable(Selectable[] selectable, bool interactable)
         {
-            if (selectableArray == null)
+            if (selectable == null)
             {
                 return;
             }
 
-            int length = selectableArray.Length;
+            int length = selectable.Length;
             for (int i = 0; i < length; i++)
             {
-                SetSelectableInteractable(selectableArray[i], interactable);
+                SetSelectableInteractable(selectable[i], interactable);
             }
         }
 
@@ -3002,9 +2981,43 @@ namespace UFE2FTE
 
         #endregion
 
-        public static string AddSpacesBeforeCapitalLetters(string message)
+        public static void SetAnimationClipWrapMode(ControlsScript player, string clipName, WrapMode wrapMode)
         {
-            return message = string.Concat(message.Select(x => System.Char.IsUpper(x) ? " " + x : x.ToString())).TrimStart(' ');
+            if (player == null)
+            {
+                return;
+            }
+
+            if (player.myInfo.animationType == AnimationType.Legacy)
+            {
+                int length = player.MoveSet.LegacyControl.animations.Length;
+                for (int i = 0; i < length; i++)
+                {
+                    if (player.MoveSet.LegacyControl.animations[i].clipName != clipName)
+                    {
+                        continue;
+                    }
+
+                    player.MoveSet.LegacyControl.animations[i].clip.wrapMode = wrapMode;
+
+                    break;
+                }
+            }
+            else
+            {
+                int length = player.MoveSet.MecanimControl.animations.Length;
+                for (int i = 0; i < length; i++)
+                {
+                    if (player.MoveSet.MecanimControl.animations[i].clipName != clipName)
+                    {
+                        continue;
+                    }
+
+                    player.MoveSet.MecanimControl.animations[i].clip.wrapMode = wrapMode;
+
+                    break;
+                }
+            }
         }
 
         [NaughtyAttributes.Button()]

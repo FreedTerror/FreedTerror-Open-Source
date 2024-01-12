@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 namespace UFE2FTE
 {
-    [CreateAssetMenu(fileName = "New Stage Preview", menuName = "U.F.E. 2 F.T.E./Stage Preview/Stage Preview")]
+    [CreateAssetMenu(fileName = "New Stage Preview", menuName = "U.F.E. 2 F.T.E./Preview/Stage Preview")]
     public class StagePreviewScriptableObject : ScriptableObject
     {
         [System.Serializable]

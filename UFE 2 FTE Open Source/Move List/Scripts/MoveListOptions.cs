@@ -18,7 +18,7 @@ namespace UFE2FTE
             int length = moveListScriptableObjectOptionsArray.Length;
             for (int i = 0; i < length; i++)
             {
-                if (UFE2FTE.IsStringMatch(path, moveListScriptableObjectOptionsArray[i].moveListScriptableObjectPath) == false)
+                if (path != moveListScriptableObjectOptionsArray[i].moveListScriptableObjectPath)
                 {
                     continue;
                 }

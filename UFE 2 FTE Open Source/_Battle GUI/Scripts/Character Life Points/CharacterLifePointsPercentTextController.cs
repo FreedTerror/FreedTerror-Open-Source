@@ -24,7 +24,7 @@ namespace UFE2FTE
                 return;
             }
 
-            UFE2FTE.SetTextMessage(lifePointsPercentText, UFE2FTE.languageOptions.GetNormalPercentNumber((int)Fix64.Floor(player.currentLifePoints / player.myInfo.lifePoints * 100)));
+            UFE2FTE.SetTextMessage(lifePointsPercentText, UFE2FTE.GetNormalPercentStringNumber((int)Fix64.Floor(player.currentLifePoints / player.myInfo.lifePoints * 100)));
         }
     }
 }

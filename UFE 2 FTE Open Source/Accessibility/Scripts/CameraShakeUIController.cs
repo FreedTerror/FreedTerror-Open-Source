@@ -10,12 +10,12 @@ namespace UFE2FTE
 
         private void Update()
         {
-            UFE2FTE.SetTextMessage(cameraShakeText, UFE2FTE.GetStringFromBool(UFE2FTE.Instance.useCameraShake));
+            UFE2FTE.SetTextMessage(cameraShakeText, UFE2FTE.GetStringFromBool(UFE2FTE.instance.useCameraShake));
         }
 
         public void ToggleCameraShake()
         {
-            UFE2FTE.Instance.useCameraShake = UFE2FTE.ToggleBool(UFE2FTE.Instance.useCameraShake);
+            UFE2FTE.instance.useCameraShake = UFE2FTE.ToggleBool(UFE2FTE.instance.useCameraShake);
         }
     }
 }

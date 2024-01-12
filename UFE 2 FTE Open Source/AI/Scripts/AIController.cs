@@ -27,7 +27,7 @@ namespace UFE2FTE
                 return;
             }
 
-            switch (UFE2FTE.Instance.aiMode)
+            switch (UFE2FTE.instance.aiMode)
             {
                 case UFE2FTE.AIMode.Crouch:
                     SetBlockVariables(player, false);
@@ -226,8 +226,8 @@ namespace UFE2FTE
 
         private void TryThrowTechInput(ControlsScript player)
         {
-            if (UFE2FTE.Instance.aiMode == UFE2FTE.AIMode.Human
-                || UFE2FTE.Instance.aiThrowTechMode == UFE2FTE.Toggle.Off
+            if (UFE2FTE.instance.aiMode == UFE2FTE.AIMode.Human
+                || UFE2FTE.instance.aiThrowTechMode == UFE2FTE.Toggle.Off
                 || player == null
                 || player.currentMove != null
                 || player.opControlsScript == null

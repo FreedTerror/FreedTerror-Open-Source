@@ -10,7 +10,7 @@ namespace UFE2FTE
 
         private void Update()
         {
-            UFE2FTE.SetTextMessage(frameDelayText, UFE2FTE.languageOptions.GetNormalFrameNumber(UFE2FTE.GetFrameDelay()));
+            UFE2FTE.SetTextMessage(frameDelayText, UFE2FTE.GetNormalFrameStringNumber(UFE2FTE.GetFrameDelay()));
         }
     }
 }

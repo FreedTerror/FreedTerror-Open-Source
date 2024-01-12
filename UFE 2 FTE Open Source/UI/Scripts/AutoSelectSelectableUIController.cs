@@ -17,26 +17,12 @@ namespace UFE2FTE
 
         private void Update()
         {
-            AutoSelectSelectableOnThisSelectedGameObject();
-        }
-
-        private void AutoSelectSelectableOnThisSelectedGameObject()
-        {
             if (EventSystem.current != null
-                && EventSystem.current.currentSelectedGameObject == myGameObject)
+                && EventSystem.current.currentSelectedGameObject == myGameObject
+                && autoSelectSelectable != null)
             {
-                SelectSelectable(autoSelectSelectable);
+                autoSelectSelectable.Select();
             }
-        }
-
-        private static void SelectSelectable(Selectable selectable)
-        {
-            if (selectable == null)
-            {
-                return;
-            }
-
-            selectable.Select();
         }
     }
 }

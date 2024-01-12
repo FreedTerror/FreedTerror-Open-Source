@@ -40,16 +40,16 @@ namespace UFE2FTE
             switch(loadingMethod)
             {
                 case LoadingMethod.Path:
-                    ChallengeModeController.Instance.LoadChallenges(challengeModeScriptableObjectPath);
+                    ChallengeModeController.instance.LoadChallenges(challengeModeScriptableObjectPath);
                     break;
             }
 
-            int count = ChallengeModeController.Instance.currentChallengesList.Count;
+            int count = ChallengeModeController.instance.currentChallengesList.Count;
             for (int i = 0; i < count; i++)
             {
                 ChallengeModeStartChallengeUIController spawnedGameObject = Instantiate(gameObjectToSpawn, spawnParent);
                 spawnedGameObject.gameObject.SetActive(true);
-                spawnedGameObject.challengeOptions = ChallengeModeController.Instance.currentChallengesList[i];
+                spawnedGameObject.challengeOptions = ChallengeModeController.instance.currentChallengesList[i];
             }
         }
     }

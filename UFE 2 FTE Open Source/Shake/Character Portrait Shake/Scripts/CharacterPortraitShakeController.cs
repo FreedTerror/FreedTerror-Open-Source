@@ -85,7 +85,7 @@ namespace UFE2FTE
         private void LateUpdate()
         {
             if (UFE.IsPaused() == true
-                || UFE2FTE.Instance.useCharacterPortraitShake == false)
+                || UFE2FTE.instance.useCharacterPortraitShake == false)
             {
                 return;
             }

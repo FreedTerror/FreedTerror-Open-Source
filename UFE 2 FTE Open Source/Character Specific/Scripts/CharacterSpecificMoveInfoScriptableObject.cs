@@ -1,9 +1,9 @@
-using UnityEngine;
 using UFE3D;
+using UnityEngine;
 
 namespace UFE2FTE
 {
-    [CreateAssetMenu(fileName = "New Character Specific Move Info", menuName = "U.F.E. 2 F.T.E./Character Specific Move Info/Character Specific Move Info")]
+    [CreateAssetMenu(fileName = "New Character Specific Move Info", menuName = "U.F.E. 2 F.T.E./Character Info/Character Specific Move Info")]
     public class CharacterSpecificMoveInfoScriptableObject : ScriptableObject
     {
         public UFE3D.CharacterInfo characterInfo;
@@ -13,9 +13,9 @@ namespace UFE2FTE
         {
             public CombatStances combatStance;
             public MoveInfo introMoveInfo;
-            public MoveInfo roundWinOutroMoveInfo;
-            public MoveInfo timeOutOutroMoveInfo;
-            public MoveInfo gameWinOutroMoveInfo;
+            public MoveInfo roundWonMoveInfo;
+            public MoveInfo timeOutMoveInfo;
+            public MoveInfo gameWonMoveInfo;
         }
         public DefaultMoveInfoOptions[] defaultMoveInfoOptionsArray;
 
@@ -25,9 +25,9 @@ namespace UFE2FTE
             public UFE3D.CharacterInfo opponentCharacterInfo;
             public CombatStances combatStance;
             public MoveInfo introMoveInfo;
-            public MoveInfo roundWinOutroMoveInfo;
-            public MoveInfo timeOutOutroMoveInfo;
-            public MoveInfo gameWinOutroMoveInfo;
+            public MoveInfo roundWonMoveInfo;
+            public MoveInfo timeOutMoveInfo;
+            public MoveInfo gameWonMoveInfo;
         }
         public OpponentMoveInfoOptions[] opponentMoveInfoOptionsArray;
     }

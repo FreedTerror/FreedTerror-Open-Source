@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UFE3D;
 using Unity.Collections;
 #if UNITY_EDITOR
@@ -13,6 +14,7 @@ namespace UFE2FTE
     public class PaletteSwapSpriteController : MonoBehaviour
     {
         //TODO add a swap texture pool
+        //TODO add code to force alpha values to 255.
 
         //GetPixels32(); //GC. Recommended if GC isnt an issue.
         //GetRawTextureData<Color32>(); //0 GC. Recommended if GC is an issue. Test for correct results before using.
@@ -34,18 +36,21 @@ namespace UFE2FTE
             }
         }
 
-        [SerializeField]
-        private SpriteRenderer mySpriteRenderer;
+        public SpriteRenderer mySpriteRenderer;
         private Texture2D mySwapTexture;
         private ControlsScript myControlsScript;
         private ProjectileMoveScript myProjectileMoveScript;
 
         [SerializeField]
         private UFE3D.CharacterInfo characterInfo;
+        [SerializeField]
+        private UFE3D.CharacterInfo[] linkedCharacterInfoArray;
         [HideInInspector]
         public UFE2FTE.Player player;
 
-        public string[] palettePartNameArray;
+        [SerializeField]
+        private TextAsset paletteTextAsset;
+
         [System.Serializable]
         public class SwapColors
         {
@@ -62,15 +67,14 @@ namespace UFE2FTE
         private SwapColorsType swapColorsType;
         private int swapColorsArrayIndex;
 
-#if UNITY_EDITOR
-        [SerializeField]
-        private TextAsset paletteTextAsset;
-        [SerializeField]
-        private Color32[] paletteTextureColorsArray;
-#endif
-
-        public string paletteSwapSpriteEditorName;
-        public Sprite[] paletteSwapEditorSpriteArray;
+        [System.Serializable]
+        public class PaletteSwapSpriteEditorOptions
+        {
+            public string objectName;
+            public string[] objectPartNameArray;
+            public Sprite[] objectSpriteArray;
+        }
+        public PaletteSwapSpriteEditorOptions paletteSwapSpriteEditorOptions;
 
         private void Awake()
         {
@@ -81,9 +85,9 @@ namespace UFE2FTE
         {
             SetAllCustomSwapColorsArraysRandomSwapColors();
 
-            LoadCustomSwapColorsArray();
+            LoadSwapColors();
 
-            SaveCustomSwapColorsArray();
+            SaveSwapColors();
 
             myControlsScript = GetComponentInParent<ControlsScript>();
             if (myControlsScript != null)
@@ -115,9 +119,62 @@ namespace UFE2FTE
         [NaughtyAttributes.Button]
         private void AutoConfiguration()
         {
-            SetPalettePartNameArrayFromPaletteTextAsset();
-            SetAllSwapColorsArraysFromPaletteTexture();
-            SetPaletteTextureColorsArrayFromPaletteTextAsset();
+            if (characterInfo != null)
+            {
+                paletteSwapSpriteEditorOptions.objectName = characterInfo.characterName;
+            }
+
+            List<string> newStringList = GetListFromTextAsset(paletteTextAsset);
+            if (newStringList != null)
+            {
+                int count = newStringList.Count;
+                paletteSwapSpriteEditorOptions.objectPartNameArray = new string[count];
+                for (int i = 0; i < count; i++)
+                {
+                    paletteSwapSpriteEditorOptions.objectPartNameArray[i] = GetPalettePartNameFromString(newStringList[i]);
+                }
+            }
+
+            if (mySpriteRenderer != null)
+            {
+                Texture2D paletteTexture = (Texture2D)mySpriteRenderer.sharedMaterial.GetTexture(paletteTextureID);
+                if (paletteTexture != null)
+                {
+                    int paletteTextureWidth = paletteTexture.width;
+
+                    if (defaultSwapColorsArray.Length <= 0)
+                    {
+                        SwapColors newSwapColors = new SwapColors();
+                        newSwapColors.swapColorsArray = GetDefaultColor32Array(paletteTextureWidth);
+                        defaultSwapColorsArray = new SwapColors[1];
+                        defaultSwapColorsArray[0] = newSwapColors;
+                    }
+                    int length = defaultSwapColorsArray.Length;
+                    for (int i = 0; i < length; i++)
+                    {
+                        Color32[] newColorArray = GetDefaultColor32Array(paletteTextureWidth);
+                        CopyAndPaste(defaultSwapColorsArray[i].swapColorsArray, newColorArray);
+                        defaultSwapColorsArray[i].swapColorsArray = newColorArray;
+                    }
+                    defaultSwapColorsArray[0].swapColorsArray = paletteTexture.GetPixels32();
+
+                    if (customSwapColorsArray.Length <= 0)
+                    {
+                        SwapColors newSwapColors = new SwapColors();
+                        newSwapColors.swapColorsArray = GetDefaultColor32Array(paletteTextureWidth);
+                        customSwapColorsArray = new SwapColors[1];
+                        customSwapColorsArray[0] = newSwapColors;
+                    }
+                    length = customSwapColorsArray.Length;
+                    for (int i = 0; i < length; i++)
+                    {
+                        Color32[] newColorArray = GetDefaultColor32Array(paletteTextureWidth);
+                        CopyAndPaste(customSwapColorsArray[i].swapColorsArray, newColorArray);
+                        customSwapColorsArray[i].swapColorsArray = newColorArray;
+                    }
+                    SetAllCustomSwapColorsArraysRandomSwapColors();
+                }
+            }
         }
 
         #region Swap Color Methods
@@ -412,7 +469,7 @@ namespace UFE2FTE
         #region Save And Load Methods
 
         [NaughtyAttributes.Button]
-        public void SaveCustomSwapColorsArray()
+        public void SaveSwapColors()
         {
             if (characterInfo == null)
             {
@@ -421,16 +478,24 @@ namespace UFE2FTE
 
             try
             {
-                ES3.Save(characterInfo.characterName + nameof(customSwapColorsArray), customSwapColorsArray);
+                ES3.Save("", customSwapColorsArray, "Swap Colors/" + characterInfo.characterName + " Swap Colors/" + characterInfo.characterName + " Swap Colors" + ".es3");
+
+                int length = customSwapColorsArray.Length;
+                for (int i = 0; i < length; i++)
+                {
+                    ES3.Save("", customSwapColorsArray[i].swapColorsArray, "Swap Colors/" + characterInfo.characterName + " Swap Colors/" + characterInfo.characterName + " Swap Colors " + i + ".es3");
+                }
             }
             catch (Exception exception)
             {
+#if UNITY_EDITOR
                 Debug.Log(exception);
+#endif
             }
         }
 
         [NaughtyAttributes.Button]
-        public void LoadCustomSwapColorsArray()
+        public void LoadSwapColors()
         {
             if (characterInfo == null)
             {
@@ -439,28 +504,70 @@ namespace UFE2FTE
 
             try
             {
-                SwapColors[] loadedSwapColorsArray = ES3.Load<SwapColors[]>(characterInfo.characterName + nameof(customSwapColorsArray));
-                if (loadedSwapColorsArray == null)
+                SwapColors[] loadedSwapColorsArray = ES3.Load<SwapColors[]>("", "Swap Colors/" + characterInfo.characterName + " Swap Colors/" + characterInfo.characterName + " Swap Colors" + ".es3");
+                if (loadedSwapColorsArray != null)
                 {
-                    return;
-                }
-
-                int length = loadedSwapColorsArray.Length;
-                int arrayBounds = customSwapColorsArray.Length - 1;
-                for (int i = 0; i < length; i++)
-                {
-                    if (i > arrayBounds)
+                    int length = loadedSwapColorsArray.Length;
+                    int bounds = customSwapColorsArray.Length - 1;
+                    for (int i = 0; i < length; i++)
                     {
-                        break;
-                    }
+                        if (i > bounds)
+                        {
+                            break;
+                        }
 
-                    CopyAndPaste(loadedSwapColorsArray[i].swapColorsArray, customSwapColorsArray[i].swapColorsArray);
+                        CopyAndPaste(loadedSwapColorsArray[i].swapColorsArray, customSwapColorsArray[i].swapColorsArray);
+                    }
                 }
             }
             catch (Exception exception)
             {
+#if UNITY_EDITOR
                 Debug.Log(exception);
+#endif
             }
+        }
+
+        public List<SwapColors> GetSavedSwapColors()
+        {
+            if (characterInfo == null
+                || ES3.DirectoryExists("Swap Colors/" + characterInfo.characterName + " Swap Colors/") == false)
+            {
+                return null;
+            }
+
+            List<SwapColors> newSwapColorsList = new List<SwapColors>();
+            foreach (var fileName in ES3.GetFiles("Swap Colors/" + characterInfo.characterName + " Swap Colors/"))
+            {
+                try
+                {
+                    SwapColors newSwapColors = new SwapColors();
+                    newSwapColors.swapColorsArray = ES3.Load<Color32[]>("", "Swap Colors/" + characterInfo.characterName + " Swap Colors/" + fileName);
+                    if (newSwapColors.swapColorsArray != null)
+                    {
+                        newSwapColorsList.Add(newSwapColors);
+                    }
+                }
+                catch (Exception exception)
+                {
+#if UNITY_EDITOR
+                    Debug.Log(exception);
+#endif
+                }            
+            }
+
+            return newSwapColorsList;
+        }
+
+        [NaughtyAttributes.Button]
+        public void OpenSaveDataLocation()
+        {
+            if (characterInfo == null)
+            {
+                return;
+            }
+
+            Application.OpenURL(Application.persistentDataPath + "\\" + "Swap Colors" + "\\" + characterInfo.characterName + " Swap Colors");
         }
 
         public void SaveSwapColorsVariables()
@@ -472,6 +579,18 @@ namespace UFE2FTE
 
             PlayerPrefs.SetInt(characterInfo.characterName + player + nameof(swapColorsType), (int)swapColorsType);
             PlayerPrefs.SetInt(characterInfo.characterName + player + nameof(swapColorsArrayIndex), swapColorsArrayIndex);
+
+            int length = linkedCharacterInfoArray.Length;
+            for (int i = 0; i < length; i++)
+            {
+                if (linkedCharacterInfoArray[i] == null)
+                {
+                    continue;
+                }
+
+                PlayerPrefs.SetInt(linkedCharacterInfoArray[i].characterName + player + nameof(swapColorsType), (int)swapColorsType);
+                PlayerPrefs.SetInt(linkedCharacterInfoArray[i].characterName + player + nameof(swapColorsArrayIndex), swapColorsArrayIndex);
+            }
         }
 
         public void LoadSwapColorsVariables()
@@ -506,36 +625,26 @@ namespace UFE2FTE
 
         #endregion
 
-        #region Palette Text Asset Methods
+        #region Helper Methods
 
-        private void SetPalettePartNameArrayFromPaletteTextAsset()
+        public void CopyAndPaste(Color32[] copyFrom, Color32[] pasteTo)
         {
-            List<string> stringList = GetListFromTextAsset(paletteTextAsset);
-            if (stringList == null)
+            if (copyFrom == null
+                || pasteTo == null)
             {
                 return;
             }
-            int count = stringList.Count;
-            palettePartNameArray = new string[count];
-            for (int i = 0; i < count; i++)
-            {
-                palettePartNameArray[i] = GetPalettePartNameFromString(stringList[i]);
-            }
-        }
 
-        [NaughtyAttributes.Button]
-        private void SetPaletteTextureColorsArrayFromPaletteTextAsset()
-        {
-            List<string> stringList = GetListFromTextAsset(paletteTextAsset);
-            if (stringList == null)
+            int length = copyFrom.Length;
+            int bounds = pasteTo.Length - 1;
+            for (int i = 0; i < length; i++)
             {
-                return;
-            }
-            int count = stringList.Count;
-            paletteTextureColorsArray = new Color32[count];
-            for (int i = 0; i < count; i++)
-            {
-                paletteTextureColorsArray[i] = GetPaletteColorFromString(stringList[i]);
+                if (i > bounds)
+                {
+                    break;
+                }
+
+                pasteTo[i] = copyFrom[i];
             }
         }
 
@@ -549,184 +658,39 @@ namespace UFE2FTE
             return new List<string>(textAsset.text.Split(System.Environment.NewLine));
         }
 
-        private string GetPalettePartNameFromString(string aText)
+        private Color32 GetPaletteColorFromString(string paletteColorMessage)
         {
-            if (aText.StartsWith("RGBA(") == false)
-            {
-                return "";
-            }
-
-            // Cut "RGBA(" and split at ")"
-            string[] S = aText.Substring(5).Split(')');
-
-            // Read the colorname and remove leading or trailing spaces
-            string colorName = S[1].Trim();
-
-            return colorName;
-        }
-
-        private Color32 GetPaletteColorFromString(string aText)
-        {
-            if (aText.StartsWith("RGBA(") == false)
+            if (paletteColorMessage.StartsWith("RGBA(") == false)
             {
                 return new Color32(0, 0, 0, 255);
             }
 
             // Cut "RGBA(" and split at ")"
-            string[] S = aText.Substring(5).Split(')');
+            string[] S = paletteColorMessage.Substring(5).Split(')');
 
             // Remove all spaces and split the 4 color values
             string[] values = S[0].Replace(" ", "").Split(',');
 
             // Parse the 4 strings into bytes and create the color value
-            Color32 col = new Color32(byte.Parse(values[0]), byte.Parse(values[1]), byte.Parse(values[2]), byte.Parse(values[3]));
+            Color32 color = new Color32(byte.Parse(values[0]), byte.Parse(values[1]), byte.Parse(values[2]), byte.Parse(values[3]));
 
-            return col;
+            return color;
         }
 
-        #endregion
-
-        #region  Palette Texture Methods
-
-        [NaughtyAttributes.Button]
-        private void SetPaletteTextureColorsArrayFromPaletteTexture()
+        private string GetPalettePartNameFromString(string palettePartMessage)
         {
-            if (mySpriteRenderer == null)
+            if (palettePartMessage.StartsWith("RGBA(") == false)
             {
-                return;
+                return "";
             }
 
-            Texture2D paletteTexture = (Texture2D)mySpriteRenderer.sharedMaterial.GetTexture(paletteTextureID);
-            if (paletteTexture == null)
-            {
-                return;
-            }
+            // Cut "RGBA(" and split at ")"
+            string[] S = palettePartMessage.Substring(5).Split(')');
 
-            paletteTextureColorsArray = paletteTexture.GetPixels32();
-        }
+            // Read the colorname and remove leading or trailing spaces
+            string colorName = S[1].Trim();
 
-        [NaughtyAttributes.Button]
-        private void OverwritePaletteTextureWithPaletteTextureColorsArray()
-        {
-            if (mySpriteRenderer == null
-                || paletteTextureColorsArray == null
-                || paletteTextureColorsArray.Length <= 0)
-            {
-                return;
-            }
-
-            Texture2D paletteTexture = (Texture2D)mySpriteRenderer.sharedMaterial.GetTexture(paletteTextureID);
-            if (paletteTexture == null)
-            {
-                return;
-            }
-
-            Texture2D newPaletteTexture = new Texture2D(paletteTextureColorsArray.Length, 1, TextureFormat.RGBA32, false, false);
-            newPaletteTexture.SetPixels32(paletteTextureColorsArray);
-            File.WriteAllBytes(AssetDatabase.GetAssetPath(paletteTexture), newPaletteTexture.EncodeToPNG());
-            AssetDatabase.Refresh();
-        }
-
-        #endregion
-
-        #region Helper Methods
-
-        public void CopyAndPaste(Color32[] copyFrom, Color32[] pasteTo)
-        {
-            if (copyFrom == null
-                || pasteTo == null)
-            {
-                return;
-            }
-
-            int length = copyFrom.Length;
-            int arrayBounds = pasteTo.Length - 1;
-            for (int i = 0; i < length; i++)
-            {
-                if (i > arrayBounds)
-                {
-                    break;
-                }
-
-                pasteTo[i] = copyFrom[i];
-            }
-        }
-
-        private void SetAllSwapColorsArraysFromPaletteTexture()
-        {
-            if (mySpriteRenderer == null)
-            {
-                return;
-            }
-
-            Texture2D paletteTexture = (Texture2D)mySpriteRenderer.sharedMaterial.GetTexture(paletteTextureID);
-            if (paletteTexture == null)
-            {
-                return;
-            }
-            int paletteTextureWidth = paletteTexture.width;
-
-            if (defaultSwapColorsArray.Length <= 0)
-            {
-                SwapColors newSwapColors = new SwapColors();
-                newSwapColors.swapColorsArray = GetDefaultColor32Array(paletteTextureWidth);
-                defaultSwapColorsArray = new SwapColors[1];
-                defaultSwapColorsArray[0] = newSwapColors;
-            }
-            int length = defaultSwapColorsArray.Length;
-            for (int i = 0; i < length; i++)
-            {
-                Color32[] newColorArray = GetDefaultColor32Array(paletteTextureWidth);
-                CopyAndPaste(defaultSwapColorsArray[i].swapColorsArray, newColorArray);
-                defaultSwapColorsArray[i].swapColorsArray = newColorArray;
-            }
-            SetDefaultSwapColorsArrayElement0();
-
-            if (customSwapColorsArray.Length <= 0)
-            {
-                SwapColors newSwapColors = new SwapColors();
-                newSwapColors.swapColorsArray = GetDefaultColor32Array(paletteTextureWidth);
-                customSwapColorsArray = new SwapColors[1];
-                customSwapColorsArray[0] = newSwapColors;
-            }
-            length = customSwapColorsArray.Length;
-            for (int i = 0; i < length; i++)
-            {
-                Color32[] newColorArray = GetDefaultColor32Array(paletteTextureWidth);
-                CopyAndPaste(customSwapColorsArray[i].swapColorsArray, newColorArray);
-                customSwapColorsArray[i].swapColorsArray = newColorArray;
-            }
-            SetAllCustomSwapColorsArraysRandomSwapColors();
-        }
-
-        private void SetDefaultSwapColorsArrayElement0()
-        {
-            if (mySpriteRenderer == null
-                || defaultSwapColorsArray.Length <= 0)
-            {
-                return;
-            }
-
-            Texture2D paletteTexture = (Texture2D)mySpriteRenderer.sharedMaterial.GetTexture(paletteTextureID);
-            if (paletteTexture == null)
-            {
-                return;
-            }
-
-            defaultSwapColorsArray[0].swapColorsArray = paletteTexture.GetPixels32();
-        }
-
-        private void SetAllCustomSwapColorsArraysRandomSwapColors()
-        {
-            int length = customSwapColorsArray.Length;
-            for (int i = 0; i < length; i++)
-            {
-                int lengthA = customSwapColorsArray[i].swapColorsArray.Length;
-                for (int a = 0; a < lengthA; a++)
-                {
-                    customSwapColorsArray[i].swapColorsArray[a] = GetDefaultRandomColor32();
-                }
-            }
+            return colorName;
         }
 
         private Color32[] GetCurrentSwapColors()
@@ -741,24 +705,27 @@ namespace UFE2FTE
             }
         }
 
-        public Color32 GetDefaultColor32()
-        {
-            return new Color32(0, 0, 0, 255);
-        }
-
-        public Color32 GetDefaultRandomColor32()
-        {
-            return new Color32((byte)UnityEngine.Random.Range(0, 256), (byte)UnityEngine.Random.Range(0, 256), (byte)UnityEngine.Random.Range(0, 256), 255);
-        }
-
         private Color32[] GetDefaultColor32Array(int length)
         {
             Color32[] newArray = new Color32[length];
             for (int i = 0; i < length; i++)
             {
-                newArray[i] = GetDefaultColor32();
+                newArray[i] = new Color32((byte)UnityEngine.Random.Range(0, 256), (byte)UnityEngine.Random.Range(0, 256), (byte)UnityEngine.Random.Range(0, 256), 255);
             }
             return newArray;
+        }
+
+        private void SetAllCustomSwapColorsArraysRandomSwapColors()
+        {
+            int length = customSwapColorsArray.Length;
+            for (int i = 0; i < length; i++)
+            {
+                int lengthA = customSwapColorsArray[i].swapColorsArray.Length;
+                for (int a = 0; a < lengthA; a++)
+                {
+                    customSwapColorsArray[i].swapColorsArray[a] = new Color32((byte)UnityEngine.Random.Range(0, 256), (byte)UnityEngine.Random.Range(0, 256), (byte)UnityEngine.Random.Range(0, 256), 255);
+                }
+            }
         }
 
         #endregion
@@ -767,7 +734,7 @@ namespace UFE2FTE
 
 #if UNITY_EDITOR
         [System.Serializable]
-        public class PaletteSwapSpriteControllerToolsOptions
+        private class PaletteSwapSpriteControllerToolsOptions
         {
             [SerializeField]
             private PaletteSwapSpriteController paletteSwapSpriteController;
@@ -799,7 +766,7 @@ namespace UFE2FTE
 
 #if UNITY_EDITOR
             [MethodButton(
-                "paletteSwapControllerTools",
+                "paletteSwapSpriteControllerToolsOptions",
                 nameof(InitializeSwapTexture),
                 nameof(SwapSingleSpriteColorPaletteIndex),
                 nameof(SwapSingleSpriteColorPaletteIndexArray),
@@ -811,7 +778,7 @@ namespace UFE2FTE
                 nameof(ResetSingleSpriteColorPaletteIndexArray),
                 nameof(ResetAllSpriteColors))]
             [SerializeField]
-            private bool paletteSwapControllerToolsMethodButtons;
+            private bool paletteSwapSpriteControllerToolsOptionsMethodButtons;
 #endif
 
             private void InitializeSwapTexture()
@@ -916,6 +883,136 @@ namespace UFE2FTE
         }
         [SerializeField]
         private PaletteSwapSpriteControllerToolsOptions paletteSwapSpriteControllerToolsOptions;
+#endif
+
+        #endregion
+
+        #region Palette Texture Tools Options
+
+#if UNITY_EDITOR
+        [System.Serializable]
+        private class PaletteTextureToolsOptions
+        {
+            [SerializeField]
+            private PaletteSwapSpriteController paletteSwapSpriteController;
+            [SerializeField]
+            private Texture2D paletteTexture;
+            [SerializeField]
+            private Texture2D sampleTexture;
+            [SerializeField]
+            private Color32[] paletteTextureColorsArray;
+
+#if UNITY_EDITOR
+            [MethodButton(
+                "paletteTextureToolsOptions",
+                nameof(SetPaletteTextureColorsArrayFromPaletteTextAsset),
+                nameof(SetPaletteTextureColorsArrayFromPaletteTexture),    
+                nameof(SetPaletteTextureColorsArrayFromSampleTexture),
+                nameof(OverwritePaletteTexture))]
+            [SerializeField]
+            private bool paletteTextureToolsOptionsMethodButtons;
+#endif
+
+            private void SetPaletteTextureColorsArrayFromPaletteTextAsset()
+            {
+                if (paletteSwapSpriteController == null)
+                {
+                    return;
+                }
+
+                List<string> newStringList = paletteSwapSpriteController.GetListFromTextAsset(paletteSwapSpriteController.paletteTextAsset);
+                if (newStringList == null)
+                {
+                    return;
+                }
+                int count = newStringList.Count;
+                paletteTextureColorsArray = new Color32[count];
+                for (int i = 0; i < count; i++)
+                {
+                    paletteTextureColorsArray[i] = paletteSwapSpriteController.GetPaletteColorFromString(newStringList[i]);
+                }
+            }
+
+            private void SetPaletteTextureColorsArrayFromSampleTexture()
+            {
+                if (sampleTexture == null)
+                {
+                    return;
+                }
+
+                List<Color32> newColorList = sampleTexture.GetPixels32().ToList();
+
+                int count = newColorList.Count - 1;
+                for (int i = count; i >= 0; i--)
+                {
+                    if (newColorList[i].a == 255)
+                    {
+                        continue;
+                    }
+
+                    newColorList.RemoveAt(i);
+                }
+
+                for (int i = 0; i < newColorList.Count; i++)
+                {
+                    RemoveDuplicateColor(newColorList[i]);
+                }
+
+                paletteTextureColorsArray = newColorList.ToArray();
+
+                void RemoveDuplicateColor(Color32 colorToRemove)
+                {
+                    bool ignoreFirstMatch = true;
+
+                    int count = newColorList.Count - 1;
+                    for (int i = count; i >= 0; i--)
+                    {
+                        if (ignoreFirstMatch == true
+                            && colorToRemove.r == newColorList[i].r
+                            && colorToRemove.g == newColorList[i].g
+                            && colorToRemove.b == newColorList[i].b
+                            && colorToRemove.a == newColorList[i].a)
+                        {
+                            ignoreFirstMatch = false;
+                        }
+                        else if (ignoreFirstMatch == false
+                            && colorToRemove.r == newColorList[i].r
+                            && colorToRemove.g == newColorList[i].g
+                            && colorToRemove.b == newColorList[i].b
+                            && colorToRemove.a == newColorList[i].a)
+                        {
+                            newColorList.RemoveAt(i);
+                        }
+                    }
+                }
+            }
+
+            private void SetPaletteTextureColorsArrayFromPaletteTexture()
+            {
+                if (paletteTexture == null)
+                {
+                    return;
+                }
+
+                paletteTextureColorsArray = paletteTexture.GetPixels32();
+            }
+
+            private void OverwritePaletteTexture()
+            {
+                if (paletteTexture == null
+                    || paletteTextureColorsArray.Length <= 0)
+                {
+                    return;
+                }
+
+                Texture2D newPaletteTexture = new Texture2D(paletteTextureColorsArray.Length, 1, TextureFormat.RGBA32, false, false);
+                newPaletteTexture.SetPixels32(paletteTextureColorsArray);
+                File.WriteAllBytes(AssetDatabase.GetAssetPath(paletteTexture), newPaletteTexture.EncodeToPNG());
+                AssetDatabase.Refresh();
+            }
+        }
+        [SerializeField]
+        private PaletteTextureToolsOptions paletteTextureToolsOptions;
 #endif
 
         #endregion

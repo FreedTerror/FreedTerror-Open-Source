@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,16 +6,9 @@ namespace UFE2FTE
 {
     public class PaletteSwapSpriteEditor : MonoBehaviour
     {
+        private readonly string saveSlotMessage = "Save Slot ";
+
         private Camera myCamera;
-        private readonly string saveSlotName = "Save Slot ";
-
-        [SerializeField]
-        private PaletteSwapSpriteController[] paletteSwapSpriteControllerArray;
-        private PaletteSwapSpriteController currentPaletteSwapSpriteController;
-
-        private int objectArrayIndex;
-        private int objectPartArrayIndex;
-        private int objectSaveSlotIndex;
 
         [SerializeField]
         private RectTransform objectRectTransform;
@@ -30,64 +24,79 @@ namespace UFE2FTE
         [SerializeField]
         private Text objectSaveSlotText;
 
+        private int objectArrayIndex;
+        private int previousObjectArrayIndex;
+        private int objectPartArrayIndex;
+        private int objectSpriteArrayIndex;
+        private int objectSaveSlotIndex;
+        private int previousObjectSaveSlotIndex;
+
+        [SerializeField]
+        private PaletteSwapSpriteController[] paletteSwapSpriteControllerArray;
+        private PaletteSwapSpriteController currentPaletteSwapSpriteController;
+
+        private List<PaletteSwapSpriteController.SwapColors> loadedSwapColorsList = new List<PaletteSwapSpriteController.SwapColors>();
+        private int loadedSwapColorsListIndex;
+
         private void Start()
         {
             myCamera = Camera.main;
+
+            objectArrayIndex = 0;
+            previousObjectArrayIndex = -1;
+            objectSaveSlotIndex = 0;
+            previousObjectSaveSlotIndex = -1;
         }
 
         private void Update()
         {
-            if (objectNameText != null)
+            if (previousObjectArrayIndex != objectArrayIndex)
             {
-                objectNameText.text = paletteSwapSpriteControllerArray[objectArrayIndex].paletteSwapSpriteEditorName;
-       
-                int length = paletteSwapSpriteControllerArray.Length;
-                for (int i = 0; i < length; i++)
+                if (currentPaletteSwapSpriteController != null)
                 {
-                    if (paletteSwapSpriteControllerArray[i] == null
-                        || paletteSwapSpriteControllerArray[i].paletteSwapSpriteEditorName != objectNameText.text)
-                    {
-                        continue;
-                    }
-
-                    if (currentPaletteSwapSpriteController == null)
-                    {
-                        currentPaletteSwapSpriteController = Instantiate(paletteSwapSpriteControllerArray[i]);
-                        objectPositionOffset = new Vector3(0, 0, 0);
-                        objectPartArrayIndex = 0;
-                        objectSaveSlotIndex = 0;
-                        ApplySavedColorAllParts();
-                    }
-
-                    if (currentPaletteSwapSpriteController != null
-                        && currentPaletteSwapSpriteController.paletteSwapSpriteEditorName != objectNameText.text)
-                    {
-                        Destroy(currentPaletteSwapSpriteController.gameObject);
-                        currentPaletteSwapSpriteController = Instantiate(paletteSwapSpriteControllerArray[i]);
-                        objectPositionOffset = new Vector3(0, 0, 0);
-                        objectPartArrayIndex = 0;
-                        objectSaveSlotIndex = 0;
-                        ApplySavedColorAllParts();
-                    }
-
-                    break;
+                    Destroy(currentPaletteSwapSpriteController.gameObject);
                 }
-            }
-
-            if (objectPartText != null)
-            {
-                objectPartText.text = paletteSwapSpriteControllerArray[objectArrayIndex].palettePartNameArray[objectPartArrayIndex];
-            }
-
-            if (objectSaveSlotText != null)
-            {
-                int saveSlotIndex = objectSaveSlotIndex + 1;
-                objectSaveSlotText.text = saveSlotName + saveSlotIndex;
+                if (paletteSwapSpriteControllerArray[objectArrayIndex] != null
+                    && objectArrayIndex < paletteSwapSpriteControllerArray.Length)
+                {
+                    currentPaletteSwapSpriteController = Instantiate(paletteSwapSpriteControllerArray[objectArrayIndex]);
+                }
+                objectPositionOffset = new Vector3(0, 0, 0);
+                objectPartArrayIndex = 0;
+                previousObjectArrayIndex = objectArrayIndex;
+                objectSpriteArrayIndex = 0;
+                objectSaveSlotIndex = 0;
+                ApplySavedColorAllParts();
             }
 
             if (currentPaletteSwapSpriteController != null)
             {
                 currentPaletteSwapSpriteController.transform.position = UFE2FTE.GetWorldPositionOfCanvasElement(objectRectTransform, myCamera) + objectPositionOffset;
+
+                if (currentPaletteSwapSpriteController.mySpriteRenderer != null
+                    && objectSpriteArrayIndex < currentPaletteSwapSpriteController.paletteSwapSpriteEditorOptions.objectSpriteArray.Length)
+                {
+                    currentPaletteSwapSpriteController.mySpriteRenderer.sprite = currentPaletteSwapSpriteController.paletteSwapSpriteEditorOptions.objectSpriteArray[objectSpriteArrayIndex];
+                }
+
+                if (objectNameText != null)
+                {
+                    objectNameText.text = currentPaletteSwapSpriteController.paletteSwapSpriteEditorOptions.objectName;
+                }
+
+                if (objectPartText != null)
+                {
+                    objectPartText.text = currentPaletteSwapSpriteController.paletteSwapSpriteEditorOptions.objectPartNameArray[objectPartArrayIndex];
+                }
+            }
+
+            if (previousObjectSaveSlotIndex != objectSaveSlotIndex
+                && objectSaveSlotText != null)
+            {
+                previousObjectSaveSlotIndex = objectSaveSlotIndex;
+                int saveSlotIndex = objectSaveSlotIndex + 1;
+                //objectSaveSlotText.text = saveSlotMessage + saveSlotIndex; //68 B GC
+                objectSaveSlotText.text = saveSlotMessage + UFE2FTE.GetNormalStringNumber(saveSlotIndex); //44 B GC
             }
         }
 
@@ -96,14 +105,6 @@ namespace UFE2FTE
             if (currentPaletteSwapSpriteController != null)
             {
                 Destroy(currentPaletteSwapSpriteController.gameObject);
-            }
-        }
-
-        public void NextSprite()
-        {
-            if (currentPaletteSwapSpriteController == null)
-            {
-                return;
             }
         }
 
@@ -131,13 +132,13 @@ namespace UFE2FTE
 
         #endregion
 
-        #region Object Part
+        #region Object Part Methods
 
         public void NextObjectPart()
         {
             objectPartArrayIndex += 1;
 
-            if (objectPartArrayIndex >= currentPaletteSwapSpriteController.palettePartNameArray.Length)
+            if (objectPartArrayIndex >= currentPaletteSwapSpriteController.paletteSwapSpriteEditorOptions.objectPartNameArray.Length)
             {
                 objectPartArrayIndex = 0;
             }
@@ -149,13 +150,47 @@ namespace UFE2FTE
 
             if (objectPartArrayIndex < 0)
             {
-                objectPartArrayIndex = currentPaletteSwapSpriteController.palettePartNameArray.Length - 1;
+                objectPartArrayIndex = currentPaletteSwapSpriteController.paletteSwapSpriteEditorOptions.objectPartNameArray.Length - 1;
             }
         }
 
         #endregion
 
-        #region Object Save Slot
+        #region Object Sprite Methods
+
+        public void NextObjectSprite()
+        {
+            if (currentPaletteSwapSpriteController == null)
+            {
+                return;
+            }
+
+            objectSpriteArrayIndex += 1;
+
+            if (objectSpriteArrayIndex >= currentPaletteSwapSpriteController.paletteSwapSpriteEditorOptions.objectSpriteArray.Length)
+            {
+                objectSpriteArrayIndex = 0;
+            }
+        }
+
+        public void PreviousObjectSprite()
+        {
+            if (currentPaletteSwapSpriteController == null)
+            {
+                return;
+            }
+
+            objectSpriteArrayIndex -= 1;
+
+            if (objectSpriteArrayIndex < 0)
+            {
+                objectSpriteArrayIndex = currentPaletteSwapSpriteController.paletteSwapSpriteEditorOptions.objectSpriteArray.Length - 1;
+            }
+        }
+
+        #endregion
+
+        #region Object Save Slot Methods
 
         public void NextObjectSaveSlot()
         {
@@ -232,6 +267,82 @@ namespace UFE2FTE
 
         #endregion
 
+        #region Save And Load Methods
+
+        public void Save()
+        {
+            if (currentPaletteSwapSpriteController == null)
+            {
+                return;
+            }
+
+            currentPaletteSwapSpriteController.SaveSwapColors();
+        }
+
+        public void Load()
+        {
+            if (currentPaletteSwapSpriteController == null)
+            {
+                return;
+            }
+
+            loadedSwapColorsList = currentPaletteSwapSpriteController.GetSavedSwapColors();
+        }
+
+        public void Unload()
+        {
+            loadedSwapColorsList.Clear();
+            loadedSwapColorsListIndex = -1;
+        }
+
+        public void NextLoadedSwapColors()
+        {
+            if (currentPaletteSwapSpriteController == null)
+            {
+                return;
+            }
+
+            loadedSwapColorsListIndex += 1;
+
+            if (loadedSwapColorsListIndex >= loadedSwapColorsList.Count)
+            {
+                loadedSwapColorsListIndex = 0;
+            }
+
+            currentPaletteSwapSpriteController.CopyAndPaste(loadedSwapColorsList[loadedSwapColorsListIndex].swapColorsArray, currentPaletteSwapSpriteController.customSwapColorsArray[objectSaveSlotIndex].swapColorsArray);
+            currentPaletteSwapSpriteController.SwapAllSpriteColors(currentPaletteSwapSpriteController.customSwapColorsArray[objectSaveSlotIndex].swapColorsArray);
+        }
+
+        public void PreviousLoadedSwapColors()
+        {
+            if (currentPaletteSwapSpriteController == null)
+            {
+                return;
+            }
+
+            loadedSwapColorsListIndex -= 1;
+
+            if (loadedSwapColorsListIndex < 0)
+            {
+                loadedSwapColorsListIndex = loadedSwapColorsList.Count - 1;
+            }
+
+            currentPaletteSwapSpriteController.CopyAndPaste(loadedSwapColorsList[loadedSwapColorsListIndex].swapColorsArray, currentPaletteSwapSpriteController.customSwapColorsArray[objectSaveSlotIndex].swapColorsArray);
+            currentPaletteSwapSpriteController.SwapAllSpriteColors(currentPaletteSwapSpriteController.customSwapColorsArray[objectSaveSlotIndex].swapColorsArray);
+        }
+
+        public void OpenSaveDataLocation()
+        {
+            if (currentPaletteSwapSpriteController == null)
+            {
+                return;
+            }
+
+            currentPaletteSwapSpriteController.OpenSaveDataLocation();
+        }
+
+        #endregion
+
         #region Apply Color Methods
 
         public void ApplyDefaultColorAllParts()
@@ -252,7 +363,7 @@ namespace UFE2FTE
                 return;
             }
 
-            currentPaletteSwapSpriteController.LoadCustomSwapColorsArray();
+            currentPaletteSwapSpriteController.LoadSwapColors();
             currentPaletteSwapSpriteController.SwapAllSpriteColors(currentPaletteSwapSpriteController.customSwapColorsArray[objectSaveSlotIndex].swapColorsArray);
         }
 
@@ -292,7 +403,7 @@ namespace UFE2FTE
                     continue;
                 }
 
-                currentPaletteSwapSpriteController.customSwapColorsArray[objectSaveSlotIndex].swapColorsArray[i] = currentPaletteSwapSpriteController.GetDefaultRandomColor32();
+                currentPaletteSwapSpriteController.customSwapColorsArray[objectSaveSlotIndex].swapColorsArray[i] = new Color32((byte)UnityEngine.Random.Range(0, 256), (byte)UnityEngine.Random.Range(0, 256), (byte)UnityEngine.Random.Range(0, 256), 255);
             }
 
             currentPaletteSwapSpriteController.SwapAllSpriteColors(currentPaletteSwapSpriteController.customSwapColorsArray[objectSaveSlotIndex].swapColorsArray);
@@ -313,7 +424,7 @@ namespace UFE2FTE
                     continue;
                 }
 
-                currentPaletteSwapSpriteController.customSwapColorsArray[objectSaveSlotIndex].swapColorsArray[i] = currentPaletteSwapSpriteController.GetDefaultRandomColor32();
+                currentPaletteSwapSpriteController.customSwapColorsArray[objectSaveSlotIndex].swapColorsArray[i] = new Color32((byte)UnityEngine.Random.Range(0, 256), (byte)UnityEngine.Random.Range(0, 256), (byte)UnityEngine.Random.Range(0, 256), 255);
             }
 
             currentPaletteSwapSpriteController.SwapAllSpriteColors(currentPaletteSwapSpriteController.customSwapColorsArray[objectSaveSlotIndex].swapColorsArray);
@@ -329,7 +440,7 @@ namespace UFE2FTE
             int length = currentPaletteSwapSpriteController.customSwapColorsArray[objectSaveSlotIndex].swapColorsArray.Length;
             for (int i = 0; i < length; i++)
             {
-                currentPaletteSwapSpriteController.customSwapColorsArray[objectSaveSlotIndex].swapColorsArray[i] = currentPaletteSwapSpriteController.GetDefaultRandomColor32();
+                currentPaletteSwapSpriteController.customSwapColorsArray[objectSaveSlotIndex].swapColorsArray[i] = new Color32((byte)UnityEngine.Random.Range(0, 256), (byte)UnityEngine.Random.Range(0, 256), (byte)UnityEngine.Random.Range(0, 256), 255);
             }
 
             currentPaletteSwapSpriteController.SwapAllSpriteColors(currentPaletteSwapSpriteController.customSwapColorsArray[objectSaveSlotIndex].swapColorsArray);

@@ -32,7 +32,7 @@ namespace UFE2FTE
             OnChallengeActionCompleteEvent(challengeActionOptions);
         }
 
-        public static ChallengeModeController Instance { get; private set; }
+        public static ChallengeModeController instance { get; private set; }
 
         public bool lockInputsOnChallengeComplete = true;
         public bool lockMovementsOnChallengeComplete = true;
@@ -61,13 +61,12 @@ namespace UFE2FTE
 
         private void Awake()
         {
-            Instance = this;
+            instance = this;
         }
 
         private void OnEnable()
         {
             UFE.OnScreenChanged += OnScreenChanged;
-
             UFE.OnButton += OnButton;
             UFE.OnBasicMove += OnBasicMove;
             UFE.OnMove += OnMove;
@@ -99,7 +98,6 @@ namespace UFE2FTE
         private void OnDisable()
         {
             UFE.OnScreenChanged -= OnScreenChanged;
-
             UFE.OnButton -= OnButton;
             UFE.OnBasicMove -= OnBasicMove;
             UFE.OnMove -= OnMove;
@@ -154,6 +152,7 @@ namespace UFE2FTE
         public class OnChallengeCompleteOptions
         {
             [Header("Next Challenge Delay of 0 or less will use the global delay.")]
+            [Tooltip("Next Challenge Delay of 0 or less will use the global delay.")]
             public Fix64 nextChallengeDelay;
             public enum EventType
             {
@@ -197,14 +196,14 @@ namespace UFE2FTE
             public MoveInfoOptions moveInfoOptions;
             public GaugeOptions gaugeOptions;
             public InputDisplayOptions inputDisplayOptions;
-            public ScriptedActionOptions.SelectionType scriptedActionOptionsSelectionType;
+            public ScriptedActionOptions.SelectionType scriptedActionOptionsSelectionType;    
+            public ScriptedActionOptions[] scriptedActionOptionsArray;
             [HideInInspector]
             public int scriptedActionOptionsArrayIndex;
             [HideInInspector]
             public int scriptedActionOptionsArrayIndexRandomWithExclusion;
             [HideInInspector]
             public bool applyRandomWithExclusion = false;
-            public ScriptedActionOptions[] scriptedActionOptionsArray;
 
             public int GetNewScriptedActionOptionsArrayIndex()
             {
@@ -431,42 +430,44 @@ namespace UFE2FTE
 
             CallOnChallengeCompleteEvent(GetCurrentChallenge());
 
-            MainAlertController.CallOnMainAlertEvent(UFE2FTE.languageOptions.selectedLanguage.Success);
+            MainAlertController.CallOnMainAlertEvent("Success");
 
             UFE.config.lockMovements = lockMovementsOnChallengeComplete;
             UFE.config.lockInputs = lockInputsOnChallengeComplete;
 
-            if (GetCurrentChallenge().onChallengeCompleteOptions.nextChallengeDelay <= 0)
+            UFE.DelayLocalAction(() =>
             {
-                UFE.DelayLocalAction(CompleteCurrentChallengeDelayed, nextChallengeDelayOnChallengeComplete);
-            }
-            else
-            {
-                UFE.DelayLocalAction(CompleteCurrentChallengeDelayed, GetCurrentChallenge().onChallengeCompleteOptions.nextChallengeDelay);
-            }
+                if (currentChallengeNumber >= currentChallengesList.Count - 1)
+                {
+                    currentChallengeNumber = currentChallengesList.Count - 1;
+
+                    UFE.StartChallengeModeAfterBattleScreen();
+                }
+                else
+                {
+                    switch (GetCurrentChallenge().onChallengeCompleteOptions.eventType)
+                    {
+                        case OnChallengeCompleteOptions.EventType.ChallengeModeAfterBattleScreen:
+                            UFE.StartChallengeModeAfterBattleScreen();
+                            break;
+
+                        case OnChallengeCompleteOptions.EventType.AutoStartNextChallenge:
+                            StartNextChallenge();
+                            break;
+                    }
+                }
+            },
+            GetNextChallengeDelay());
         }
 
-        private void CompleteCurrentChallengeDelayed()
+        public Fix64 GetNextChallengeDelay()
         {
-            if (currentChallengeNumber >= currentChallengesList.Count - 1)
+            if (GetCurrentChallenge().onChallengeCompleteOptions.nextChallengeDelay > 0)
             {
-                currentChallengeNumber = currentChallengesList.Count - 1;
-
-                UFE.StartChallengeModeAfterBattleScreen();
+                return GetCurrentChallenge().onChallengeCompleteOptions.nextChallengeDelay;
             }
-            else
-            {
-                switch (GetCurrentChallenge().onChallengeCompleteOptions.eventType)
-                {
-                    case OnChallengeCompleteOptions.EventType.ChallengeModeAfterBattleScreen:
-                        UFE.StartChallengeModeAfterBattleScreen();
-                        break;
 
-                    case OnChallengeCompleteOptions.EventType.AutoStartNextChallenge:
-                        StartNextChallenge();
-                        break;
-                }
-            }
+            return nextChallengeDelayOnChallengeComplete;
         }
 
         #endregion
@@ -581,6 +582,11 @@ namespace UFE2FTE
 
         public void LoadChallenges(UFE3D.CharacterInfo characterInfo)
         {
+            if (characterInfoReferencesScriptableObject == null)
+            {
+                return;
+            }
+
             ChallengeModeScriptableObject challengeModeScriptableObject = characterInfoReferencesScriptableObject.GetChallengeModeScriptableObject(characterInfo);
             if (challengeModeScriptableObject == null)
             {
@@ -611,7 +617,7 @@ namespace UFE2FTE
             Resources.UnloadUnusedAssets();
 
 #if UNITY_EDITOR
-            //Debug.Log(nameof(UnloadChallenges));
+            Debug.Log(" Unloaded Challenges");
 #endif
         }
 
@@ -668,23 +674,6 @@ namespace UFE2FTE
         }
 
         #endregion
-
-        private void ValidateCurrentChallengeNumber()
-        {
-            if (currentChallengeNumber < 0
-                || currentChallengeNumber >= currentChallengesList.Count)
-            {
-                currentChallengeNumber = 0;
-            }
-        }
-        private void ValidateCurrentChallengeActionNumber()
-        {
-            if (currentChallengeActionNumber < 0
-                || currentChallengeActionNumber >= GetCurrentChallengeActions().Length)
-            {
-                currentChallengeNumber = 0;
-            }
-        }
 
         #region Challenge Data Methods
 
@@ -942,7 +931,7 @@ namespace UFE2FTE
                 return;
             }
 
-            if (player.currentBasicMove == currentChallengesList[currentChallengeNumber].challengeActionsArray[currentChallengeActionNumber].onBasicMoveOptions.basicMove)
+            if (player.currentBasicMoveReference == currentChallengesList[currentChallengeNumber].challengeActionsArray[currentChallengeActionNumber].onBasicMoveOptions.basicMove)
             {
                 AddCurrentChallengeActionProgress(UFE.fixedDeltaTime);
             }

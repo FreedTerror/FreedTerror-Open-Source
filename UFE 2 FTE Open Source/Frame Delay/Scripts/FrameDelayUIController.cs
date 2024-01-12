@@ -30,7 +30,12 @@ namespace UFE2FTE
 
         public void DefaultFrameDelay()
         {
-            UFE2FTE.Instance.defaultFrameDelayScriptableObject.UpdateFrameDelaySettings();
+            if (UFE2FTE.instance.defaultFrameDelayScriptableObject == null)
+            {
+                return;
+            }
+
+            UFE2FTE.instance.defaultFrameDelayScriptableObject.UpdateFrameDelaySettings();
         }
 
         public void NextFrameDelay()

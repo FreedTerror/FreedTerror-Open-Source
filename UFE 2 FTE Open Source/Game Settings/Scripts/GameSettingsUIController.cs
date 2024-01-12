@@ -13,6 +13,10 @@ namespace UFE2FTE
         [SerializeField]
         private Text timerText;
         [SerializeField]
+        private Text damageDeteriorationText;
+        [SerializeField]
+        private Text hitStunDeteriorationText;
+        [SerializeField]
         private Text maximumGroundBouncesText;
         [SerializeField]
         private Text maximumWallBouncesText;
@@ -35,7 +39,7 @@ namespace UFE2FTE
 
             previousParryTiming = UFE.config.blockOptions._parryTiming;
             UFE2FTE.SetTextMessage(parryTimingText, UFE.config.blockOptions._parryTiming.ToString());
-            UFE2FTE.SetTextMessage(parryTimingFramesText, UFE2FTE.languageOptions.GetNormalFrameNumber((int)Fix64.Floor(UFE.config.blockOptions._parryTiming * UFE.config.fps)));
+            UFE2FTE.SetTextMessage(parryTimingFramesText, UFE2FTE.GetNormalFrameStringNumber((int)Fix64.Floor(UFE.config.blockOptions._parryTiming * UFE.config.fps)));
         }
 
         private void Update()
@@ -45,7 +49,7 @@ namespace UFE2FTE
                 return;
             }
 
-            UFE2FTE.SetTextMessage(totalRoundsText, UFE2FTE.languageOptions.GetNormalNumber(UFE.config.roundOptions.totalRounds));
+            UFE2FTE.SetTextMessage(totalRoundsText, UFE2FTE.GetNormalStringNumber(UFE.config.roundOptions.totalRounds));
 
             if (previousTimerValue != UFE.config.roundOptions._timer)
             {
@@ -53,13 +57,26 @@ namespace UFE2FTE
                 UFE2FTE.SetTextMessage(timerText, UFE.config.roundOptions._timer.ToString());
             }
 
-            UFE2FTE.SetTextMessage(maximumGroundBouncesText, UFE2FTE.languageOptions.GetNormalNumber(UFE.config.groundBounceOptions._maximumBounces));
+            UFE2FTE.SetTextMessage(damageDeteriorationText, System.Enum.GetName(typeof(Sizes), UFE.config.comboOptions.damageDeterioration));
 
-            UFE2FTE.SetTextMessage(maximumWallBouncesText, UFE2FTE.languageOptions.GetNormalNumber(UFE.config.wallBounceOptions._maximumBounces));
+            UFE2FTE.SetTextMessage(hitStunDeteriorationText, System.Enum.GetName(typeof(Sizes), UFE.config.comboOptions.hitStunDeterioration));
+
+            UFE2FTE.SetTextMessage(maximumGroundBouncesText, UFE2FTE.GetNormalStringNumber(UFE.config.groundBounceOptions._maximumBounces));
+
+            UFE2FTE.SetTextMessage(maximumWallBouncesText, UFE2FTE.GetNormalStringNumber(UFE.config.wallBounceOptions._maximumBounces));
 
             UFE2FTE.SetTextMessage(allowAirBlockText, UFE2FTE.GetStringFromBool(UFE.config.blockOptions.allowAirBlock));
 
-            UFE2FTE.SetTextMessage(parryTypeText, System.Enum.GetName(typeof(ParryType), UFE.config.blockOptions.parryType));
+            switch (UFE.config.blockOptions.parryType)
+            {
+                case ParryType.TapForward:
+                    UFE2FTE.SetTextMessage(parryTypeText, UFE2FTE.GetStringFromBool(true));
+                    break;
+
+                default:
+                    UFE2FTE.SetTextMessage(parryTypeText, UFE2FTE.GetStringFromBool(false));
+                    break;
+            }
 
             UFE2FTE.SetTextMessage(allowAirParryText, UFE2FTE.GetStringFromBool(UFE.config.blockOptions.allowAirParry));
 
@@ -67,13 +84,18 @@ namespace UFE2FTE
             {
                 previousParryTiming = UFE.config.blockOptions._parryTiming;
                 UFE2FTE.SetTextMessage(parryTimingText, UFE.config.blockOptions._parryTiming.ToString());
-                UFE2FTE.SetTextMessage(parryTimingFramesText, UFE2FTE.languageOptions.GetNormalFrameNumber((int)Fix64.Floor(UFE.config.blockOptions._parryTiming * UFE.config.fps)));
+                UFE2FTE.SetTextMessage(parryTimingFramesText, UFE2FTE.GetNormalFrameStringNumber((int)Fix64.Floor(UFE.config.blockOptions._parryTiming * UFE.config.fps)));
             }
         }
 
-        public void RestoreDefaultGameSettings()
+        public void DefaultGameSettings()
         {
-            UFE2FTE.Instance.defaultGameSettingsScriptableObject.UpdateGameSettings();
+            if (UFE2FTE.instance.defaultGameSettingsScriptableObject == null)
+            {
+                return;
+            }
+
+            UFE2FTE.instance.defaultGameSettingsScriptableObject.UpdateGameSettings();
         }
 
         public void NextTotalRoundsValue()
@@ -142,6 +164,46 @@ namespace UFE2FTE
             UFE.config.roundOptions._timer = Fix64.Round(UFE.config.roundOptions._timer * 100) / 100;
 
             UFE.SetTimer(UFE.config.roundOptions._timer);
+        }
+
+        public void NextDamageDeteriorationValue()
+        {
+            if (UFE.config == null)
+            {
+                return;
+            }
+
+            UFE.config.comboOptions.damageDeterioration = UFE2FTE.GetNextEnum(UFE.config.comboOptions.damageDeterioration);
+        }
+
+        public void PreviousDamageDeteriorationValue()
+        {
+            if (UFE.config == null)
+            {
+                return;
+            }
+
+            UFE.config.comboOptions.damageDeterioration = UFE2FTE.GetNextEnum(UFE.config.comboOptions.damageDeterioration);
+        }
+
+        public void NextHitStunDeteriorationValue()
+        {
+            if (UFE.config == null)
+            {
+                return;
+            }
+
+            UFE.config.comboOptions.hitStunDeterioration = UFE2FTE.GetNextEnum(UFE.config.comboOptions.hitStunDeterioration);
+        }
+
+        public void PreviousHitStunDeteriorationValue()
+        {
+            if (UFE.config == null)
+            {
+                return;
+            }
+
+            UFE.config.comboOptions.hitStunDeterioration = UFE2FTE.GetNextEnum(UFE.config.comboOptions.hitStunDeterioration);
         }
 
         public void NextMaximumGroundBounceValue()
@@ -214,24 +276,23 @@ namespace UFE2FTE
             UFE.config.blockOptions.allowAirBlock = UFE2FTE.ToggleBool(UFE.config.blockOptions.allowAirBlock);
         }
 
-        public void NextParryType()
+        public void ToggleParryType()
         {
             if (UFE.config == null)
             {
                 return;
             }
 
-            UFE.config.blockOptions.parryType = UFE2FTE.GetNextEnum(UFE.config.blockOptions.parryType, UFE2FTE.Instance.allowedParryTypeArray);
-        }
-
-        public void PreviousParryType()
-        {
-            if (UFE.config == null)
+            switch (UFE.config.blockOptions.parryType)
             {
-                return;
-            }
+                case ParryType.TapForward:
+                    UFE.config.blockOptions.parryType = ParryType.None;
+                    break;
 
-            UFE.config.blockOptions.parryType = UFE2FTE.GetPreviousEnum(UFE.config.blockOptions.parryType, UFE2FTE.Instance.allowedParryTypeArray);
+                default:
+                    UFE.config.blockOptions.parryType = ParryType.TapForward;
+                    break;
+            }
         }
 
         public void ToggleAllowAirParry()

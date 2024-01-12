@@ -21,8 +21,6 @@ namespace UFE2FTE
             myGameObjectName = gameObject.name;
 
             myUFEScreen = GetComponent<UFEScreen>();
-
-            UFE2FTE.currentScreen = myUFEScreen;
         }
 
         private void OnEnable()
@@ -49,7 +47,7 @@ namespace UFE2FTE
             savedSelectableSelected = false;
         }
 
-        #region Public UFE Screen Methods
+        #region Screen Methods
 
         public void StartUFEScreen(string path)
         {
@@ -61,7 +59,43 @@ namespace UFE2FTE
 
             if (UFE.GameEngine == null)
             {
-                StartUFEScreen(screen, (float)UFE.config.gameGUI.screenFadeDuration);
+                if (UFE.currentScreen.hasFadeOut == true)
+                {
+                    UFE.eventSystem.enabled = false;
+
+                    CameraFade.StartAlphaFade(UFE.config.gameGUI.screenFadeColor, false, (float)UFE.config.gameGUI.screenFadeDuration / 2f, 0f);
+
+                    UFE.DelayLocalAction(() =>
+                    {
+                        UFE.eventSystem.enabled = true;
+                        UFE.HideScreen(UFE.currentScreen);
+                        UFE.ShowScreen(screen);
+                        if (screen.hasFadeIn == true)
+                        {
+                            CameraFade.StartAlphaFade(UFE.config.gameGUI.screenFadeColor, true, (float)UFE.config.gameGUI.screenFadeDuration);
+                        }
+                        else
+                        {
+                            CameraFade.StartAlphaFade(UFE.config.gameGUI.screenFadeColor, true, 0);
+                        }
+                        DeleteSavedScreen();
+                    },
+                    (Fix64)UFE.config.gameGUI.screenFadeDuration / 2);
+                }
+                else
+                {
+                    UFE.HideScreen(UFE.currentScreen);
+                    UFE.ShowScreen(screen);
+                    if (screen.hasFadeIn == true)
+                    {
+                        CameraFade.StartAlphaFade(UFE.config.gameGUI.screenFadeColor, true, (float)UFE.config.gameGUI.screenFadeDuration);
+                    }
+                    else
+                    {
+                        CameraFade.StartAlphaFade(UFE.config.gameGUI.screenFadeColor, true, 0);
+                    }
+                    DeleteSavedScreen();
+                }
             }
             else
             {
@@ -76,7 +110,7 @@ namespace UFE2FTE
                     int length = screenArray.Length;
                     for (int i = 0; i < length; i++)
                     {
-                        if (UFE2FTE.IsStringMatch(path, screenArray[i].gameObject.name) == false)
+                        if (path != screenArray[i].gameObject.name)
                         {
                             continue;
                         }
@@ -87,106 +121,6 @@ namespace UFE2FTE
 
                         return;
                     }
-                }
-            }
-        }
-
-        public void ReturnToUFEScreen(string path)
-        {
-            UFEScreen screen = GetUFEScreen(path);
-            if (screen == null)
-            {
-                return;
-            }
-
-            UFE.EndGame();
-
-            StartUFEScreen(path);
-
-            UFE.PauseGame(false);
-        }
-
-        public void ResumeGame()
-        {
-            UFE.PauseGame(false);
-        }
-
-        public void Quit()
-        {
-            UFE.Quit();
-        }
-
-        #endregion
-
-        #region Private UFE Screen Methods
-
-        private void StartUFEScreen(UFEScreen screen, float fadeTime)
-        {
-            if (screen == null)
-            {
-                return;
-            }
-
-            if (UFE.currentScreen.hasFadeOut)
-            {
-                UFE.eventSystem.enabled = false;
-
-                CameraFade.StartAlphaFade(UFE.config.gameGUI.screenFadeColor, false, fadeTime / 2f, 0f);
-
-                UFE.DelayLocalAction(() => { UFE.eventSystem.enabled = true; StartUFEScreenDelayed(screen, fadeTime / 2f); }, (Fix64)fadeTime / 2);
-            }
-            else
-            {
-                StartUFEScreenDelayed(screen, fadeTime / 2f);
-            }
-        }
-
-        private void StartUFEScreenDelayed(UFEScreen screen, float fadeTime)
-        {
-            if (screen == null)
-            {
-                return;
-            }
-
-            UFE.HideScreen(UFE.currentScreen);
-
-            UFE.ShowScreen(screen);
-            if (!screen.hasFadeIn)
-            {
-                fadeTime = 0;
-            }
-            CameraFade.StartAlphaFade(UFE.config.gameGUI.screenFadeColor, true, fadeTime);
-
-            DeleteSavedScreen();
-        }
-
-        private void EnableSavedScreen()
-        {
-            if (enableSavedScreen == false
-                || myUFEScreen == null
-                || PlayerPrefs.HasKey(SavedScreenNameKey) == false)
-            {
-                return;
-            }
-
-            string loadedKey = PlayerPrefs.GetString(SavedScreenNameKey);
-
-            UFEScreen[] screenArray = FindObjectsOfType<UFEScreen>(true);
-            if (screenArray != null)
-            {
-                int length = screenArray.Length;
-                for (int i = 0; i < length; i++)
-                {
-                    if (UFE2FTE.IsStringMatch(loadedKey, screenArray[i].gameObject.name) == false)
-                    {
-                        continue;
-                    }
-
-                    DisableUFEScreen(myUFEScreen);
-
-                    EnableUFEScreen(screenArray[i]);
-
-                    break;
                 }
             }
         }
@@ -217,6 +151,52 @@ namespace UFE2FTE
             screen.OnShow();
 
             SaveScreen(screen.gameObject.name);
+        }
+
+        public void ReturnToUFEScreen(string path)
+        {
+            UFEScreen screen = GetUFEScreen(path);
+            if (screen == null)
+            {
+                return;
+            }
+
+            UFE.EndGame();
+
+            StartUFEScreen(path);
+
+            UFE.PauseGame(false);
+        }
+
+        private void EnableSavedScreen()
+        {
+            if (enableSavedScreen == false
+                || myUFEScreen == null
+                || PlayerPrefs.HasKey(SavedScreenNameKey) == false)
+            {
+                return;
+            }
+
+            string loadedKey = PlayerPrefs.GetString(SavedScreenNameKey);
+
+            UFEScreen[] screenArray = FindObjectsOfType<UFEScreen>(true);
+            if (screenArray != null)
+            {
+                int length = screenArray.Length;
+                for (int i = 0; i < length; i++)
+                {
+                    if (loadedKey != screenArray[i].gameObject.name)
+                    {
+                        continue;
+                    }
+
+                    DisableUFEScreen(myUFEScreen);
+
+                    EnableUFEScreen(screenArray[i]);
+
+                    break;
+                }
+            }
         }
 
         public static UFEScreen GetUFEScreen(string path)
@@ -254,17 +234,17 @@ namespace UFE2FTE
 
         public void StartNextChallenge()
         {
-            ChallengeModeController.Instance.StartNextChallenge();
+            ChallengeModeController.instance.StartNextChallenge();
         }
 
         public void StartPreviousChallenge()
         {
-            ChallengeModeController.Instance.StartPreviousChallenge();
+            ChallengeModeController.instance.StartPreviousChallenge();
         }
 
         public void RestartCurrentChallenge()
         {
-            ChallengeModeController.Instance.RestartCurrentChallenge();
+            ChallengeModeController.instance.RestartCurrentChallenge();
         }
 
         #endregion
@@ -347,7 +327,7 @@ namespace UFE2FTE
                 int length = selectableArray.Length;
                 for (int i = 0; i < length; i++)
                 {
-                    if (UFE2FTE.IsStringMatch(loadedKey, selectableArray[i].gameObject.name) == false)
+                    if (loadedKey != selectableArray[i].gameObject.name)
                     {
                         continue;
                     }
@@ -372,5 +352,15 @@ namespace UFE2FTE
         }
 
         #endregion
+
+        public void ResumeGame()
+        {
+            UFE.PauseGame(false);
+        }
+
+        public void Quit()
+        {
+            UFE.Quit();
+        }
     }
 }

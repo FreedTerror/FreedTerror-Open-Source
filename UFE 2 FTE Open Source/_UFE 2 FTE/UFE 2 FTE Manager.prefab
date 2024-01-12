@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 180798915838761831}
   - component: {fileID: 8852560926340786208}
+  - component: {fileID: 8815325259804191878}
+  - component: {fileID: 5496837945068158205}
   m_Layer: 0
   m_Name: UFE 2 FTE Manager
   m_TagString: Untagged
@@ -30,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8852560926340786208
 MonoBehaviour:
@@ -44,285 +46,85 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5156ee1f31790c4fa2a28ab7e07b72b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _challengeModeOptions:
-    lockInputsOnChallengeComplete: 1
-    lockMovementsOnChallengeComplete: 1
-    nextChallengeDelayOnChallengeComplete:
-      _serializedValue: 8589934592
-    challengeActionCurrentColor:
-      serializedVersion: 2
-      rgba: 4294901760
-    challengeActionIncompleteColor:
-      serializedVersion: 2
-      rgba: 4278190335
-    challengeActionCompleteColor:
-      serializedVersion: 2
-      rgba: 4278222848
-    tutorialChallengesScriptableObjectPath: Tutorial Challenges
-    challengeModeScriptableObjectOptionsArray:
-    - challengeModeScriptableObjectPath: Tutorial Challenges
-      characterInfo: {fileID: 0}
-    player1ControlsScript: {fileID: 0}
-    currentChallengeNumber: 0
-    currentChallengeCompleted: 0
-    currentChallengeActionNumber: 0
-    highestChallengeActionNumber: 0
-    currentChallengeActionProgress:
-      _serializedValue: 0
-    currentChallengesList: []
-    _challengeModeOptionsMethodButtons: 0
-  _trainingModeOptions:
-    cornerTarget: 1
-    cornerPositionXOffset:
-      _serializedValue: 12884901888
-  _mainAlertOptions:
-    alertDuration:
-      _serializedValue: 8589934592
-    allowUFEAlerts: 0
-    _mainAlertOptionsMethodButtons: 0
-  _characterAlertOptions:
-    alertDuration:
-      _serializedValue: 4294967296
-    allowUFEAlerts: 0
-    useWakeUpAlertOnMove: 1
-    useCounterHitAlertOnHit: 1
-    usePunishAlertOnHit: 1
-    useArmorAlertOnHit: 1
-    useArmorBreakerAlertOnHit: 1
-    useArmorBrokenAlertOnHit: 1
-    useUnblockableAlertOnHit: 1
-    useForceStandAlertOnHit: 1
-    useOtgAlertOnHit: 1
-    useParryAlertOnParry: 1
-    _characterAlertOptionsMethodButtons: 0
-  _aiOptions:
-    aiMode: 0
-    aiThrowTechMode: 0
-  _displayOptions:
-    displayBattleGUI: 0
-    displayFrameAdvantage: 0
-    displayFrameDelay: 0
-    displayHitData: 0
-    displayMoveData: 0
-    displayPing: 0
-    inputDisplayOptions:
-      displayInputs: 0
-      inputDisplayButtonIconSizeDelta: {x: 80, y: 80}
-      inputDisplayOffsetMax: {x: 0, y: 0}
-      inputDisplayButtonIconControllerPrefabPath: Input Display Button Icon Controller
-        Prefab
-      inputDisplayForwardSprite: {fileID: 21300000, guid: f029529e09f1c12428dcc1a8c7dcb91c,
-        type: 3}
-      inputDisplayBackSprite: {fileID: 21300000, guid: 0f1eb58df8917b74f804b8cb97615fd5,
-        type: 3}
-      inputDisplayUpSprite: {fileID: 21300000, guid: 0f803e1627a596e468c46d268cea841a,
-        type: 3}
-      inputDisplayUpForwardSprite: {fileID: 21300000, guid: 917c18f4aaf6f3a41a72d01a8fa79c1a,
-        type: 3}
-      inputDisplayUpBackSprite: {fileID: 21300000, guid: a2811adde7913ac46a9b47b6cd73abd7,
-        type: 3}
-      inputDisplayDownSprite: {fileID: 21300000, guid: 7681f77e08529604096afaded862f563,
-        type: 3}
-      inputDisplayDownForwardSprite: {fileID: 21300000, guid: 10d86991785f12942b8581c6ed5a0f1f,
-        type: 3}
-      inputDisplayDownBackSprite: {fileID: 21300000, guid: 90523496d8897124e989ad256f109d27,
-        type: 3}
-      inputDisplayButton1Sprite: {fileID: 21300000, guid: 44dd7049b4286cb429154691fc16a0ae,
-        type: 3}
-      inputDisplayButton2Sprite: {fileID: 21300000, guid: b645b84b92239ac4e81cad4802c7d032,
-        type: 3}
-      inputDisplayButton3Sprite: {fileID: 21300000, guid: 754551564b367f24da34c48590c306df,
-        type: 3}
-      inputDisplayButton4Sprite: {fileID: 21300000, guid: d20d91e4857c2204e850158037155457,
-        type: 3}
-      inputDisplayButton5Sprite: {fileID: 21300000, guid: fa0d984a6d12fda47940eea0201a6431,
-        type: 3}
-      inputDisplayButton6Sprite: {fileID: 21300000, guid: b95421dc6f1a4b74aaf1833fb225074c,
-        type: 3}
-      inputDisplayButton7Sprite: {fileID: 21300000, guid: a51b93a793889204aa5070bd3680da67,
-        type: 3}
-      inputDisplayButton8Sprite: {fileID: 21300000, guid: ba161d6d4b05b544f9b0bb67ec878e85,
-        type: 3}
-      inputDisplayButton9Sprite: {fileID: 21300000, guid: 27354fd4caf9e174b9e1ee554ef1e9b4,
-        type: 3}
-      inputDisplayButton10Sprite: {fileID: 21300000, guid: 206d3c29b9801f84884ee51291be15e7,
-        type: 3}
-      inputDisplayButton11Sprite: {fileID: 21300000, guid: f6e83ae2990de9343ba13943b82334b4,
-        type: 3}
-      inputDisplayButton12Sprite: {fileID: 21300000, guid: 994bfcf558a120643b9496e55f85517e,
-        type: 3}
-      inputDisplayForwardTexture: {fileID: 2800000, guid: f029529e09f1c12428dcc1a8c7dcb91c,
-        type: 3}
-      inputDisplayBackTexture: {fileID: 2800000, guid: 0f1eb58df8917b74f804b8cb97615fd5,
-        type: 3}
-      inputDisplayUpTexture: {fileID: 2800000, guid: 0f803e1627a596e468c46d268cea841a,
-        type: 3}
-      inputDisplayUpForwardTexture: {fileID: 2800000, guid: 917c18f4aaf6f3a41a72d01a8fa79c1a,
-        type: 3}
-      inputDisplayUpBackTexture: {fileID: 2800000, guid: a2811adde7913ac46a9b47b6cd73abd7,
-        type: 3}
-      inputDisplayDownTexture: {fileID: 2800000, guid: 7681f77e08529604096afaded862f563,
-        type: 3}
-      inputDisplayDownForwardTexture: {fileID: 2800000, guid: 10d86991785f12942b8581c6ed5a0f1f,
-        type: 3}
-      inputDisplayDownBackTexture: {fileID: 2800000, guid: 90523496d8897124e989ad256f109d27,
-        type: 3}
-      inputDisplayButton1Texture: {fileID: 2800000, guid: 44dd7049b4286cb429154691fc16a0ae,
-        type: 3}
-      inputDisplayButton2Texture: {fileID: 2800000, guid: b645b84b92239ac4e81cad4802c7d032,
-        type: 3}
-      inputDisplayButton3Texture: {fileID: 2800000, guid: 754551564b367f24da34c48590c306df,
-        type: 3}
-      inputDisplayButton4Texture: {fileID: 2800000, guid: d20d91e4857c2204e850158037155457,
-        type: 3}
-      inputDisplayButton5Texture: {fileID: 2800000, guid: fa0d984a6d12fda47940eea0201a6431,
-        type: 3}
-      inputDisplayButton6Texture: {fileID: 2800000, guid: b95421dc6f1a4b74aaf1833fb225074c,
-        type: 3}
-      inputDisplayButton7Texture: {fileID: 2800000, guid: a51b93a793889204aa5070bd3680da67,
-        type: 3}
-      inputDisplayButton8Texture: {fileID: 2800000, guid: ba161d6d4b05b544f9b0bb67ec878e85,
-        type: 3}
-      inputDisplayButton9Texture: {fileID: 2800000, guid: 27354fd4caf9e174b9e1ee554ef1e9b4,
-        type: 3}
-      inputDisplayButton10Texture: {fileID: 2800000, guid: 206d3c29b9801f84884ee51291be15e7,
-        type: 3}
-      inputDisplayButton11Texture: {fileID: 2800000, guid: f6e83ae2990de9343ba13943b82334b4,
-        type: 3}
-      inputDisplayButton12Texture: {fileID: 2800000, guid: 994bfcf558a120643b9496e55f85517e,
-        type: 3}
-    hitBoxDisplayOptions:
-      hitBoxDisplayMode: 0
-      hitBoxDisplayAlphaValue: 128
-      hitBoxDisplayCirclePrefabPath: Hit Box Display Circle Prefab
-      hitBoxDisplayRectanglePrefabPath: Hit Box Display Rectangle Prefab
-      hitBoxDisplayCircleFilledSpritePath: Hit Box Display Circle Filled Sprite
-      hitBoxDisplayRectangleFilledSpritePath: Hit Box Display Rectangle Filled Sprite
-      hitBoxDisplayHitBoxesPoolSize: 30
-      hitBoxDisplayActiveHurtBoxesPoolSize: 30
-      hitBoxDisplayPopcronGizmosLinesAmount: 16
-      characterBodyColliderOptions:
-        colliderColor:
-          serializedVersion: 2
-          rgba: 4278255615
-        orderInLayerInfront: 10090
-        orderInLayerBehind: -10030
-        disableCollider: 0
-      characterHitColliderOptions:
-        colliderColor:
-          serializedVersion: 2
-          rgba: 4278190335
-        orderInLayerInfront: 10070
-        orderInLayerBehind: -10050
-        disableCollider: 0
-      characterThrowColliderOptions:
-        colliderColor:
-          serializedVersion: 2
-          rgba: 4278222848
-        orderInLayerInfront: 10080
-        orderInLayerBehind: -10040
-        disableCollider: 0
-      characterPhysicalInvincibleColliderOptions:
-        colliderColor:
-          serializedVersion: 2
-          rgba: 4294934783
-        orderInLayerInfront: 10060
-        orderInLayerBehind: -10060
-        disableCollider: 0
-      characterProjectileInvincibleColliderOptions:
-        colliderColor:
-          serializedVersion: 2
-          rgba: 4286578816
-        orderInLayerInfront: 10050
-        orderInLayerBehind: -10070
-        disableCollider: 0
-      characterNoColliderOptions:
-        colliderColor:
-          serializedVersion: 2
-          rgba: 4294901760
-        orderInLayerInfront: 10040
-        orderInLayerBehind: -10080
-        disableCollider: 0
-      characterActiveHurtBoxColliderOptions:
-        colliderColor:
-          serializedVersion: 2
-          rgba: 4278190335
-        orderInLayerInfront: 10100
-        orderInLayerBehind: -10000
-        disableCollider: 0
-        disableCharacterCollidersEqualToCharacterActiveHurtBoxColliders: 1
-        disableCharacterBlockableAreaCollidersEqualToCharacterActiveHurtBoxCollider: 1
-      characterBlockableAreaColliderOptions:
-        colliderColor:
-          serializedVersion: 2
-          rgba: 4294967295
-        orderInLayerInfront: 10030
-        orderInLayerBehind: -10090
-        disableCollider: 0
-        disableCharacterCollidersEqualToCharacterBlockableAreaCollider: 1
-        disableCharacterActiveHurtBoxCollidersEqualToCharacterBlockableAreaCollider: 0
-      projectileHitAreaColliderOptions:
-        colliderColor:
-          serializedVersion: 2
-          rgba: 4278190335
-        orderInLayerInfront: 10100
-        orderInLayerBehind: -10000
-        disableCollider: 0
-      projectileOnlyColliderOptions:
-        colliderColor:
-          serializedVersion: 2
-          rgba: 4278223103
-        orderInLayerInfront: 10099
-        orderInLayerBehind: -10001
-        disableCollider: 0
-      projectileBlockableAreaColliderOptions:
-        colliderColor:
-          serializedVersion: 2
-          rgba: 4294967295
-        orderInLayerInfront: 10030
-        orderInLayerBehind: -10090
-        disableCollider: 0
-      projectileTotalHitsTextOptions:
-        orderInLayer: 10110
-  _fontOptions:
-    fontFilterModeOptionsArray: []
-  _frameDelayOptions:
-    defaultFrameDelayConfigurationScriptableObject: {fileID: 0}
-    minFrameDelay: 0
-    maxFrameDelay: 10
-    defaultFrameDelay: 3
-  _gameSettingsOptions:
-    defaultGameSettingsScriptableObject: {fileID: 0}
-    allowedParryTypeArray: 
-    _gameSettingsOptionsMethodButtons: 0
-  _languageOptions:
-    selectedLanguage: {fileID: 11400000, guid: ada05d171d749154b914675108dd9a68, type: 2}
-    languageDataScriptableObjectArray: []
-    normalStringNumberAmount: 1000
-    normalStringNumberArray: []
-    normalPercentStringNumberAmount: 100
-    normalPercentStringNumberArray: []
-    normalFrameStringNumberAmount: 1000
-    normalFrameStringNumberArray: []
-    positiveStringNumberAmount: 1000
-    positiveStringNumberArray: []
-    negativeStringNumberAmount: 1000
-    negativeStringNumberArray: []
-  _moveListOptions:
-    moveListScriptableObjectOptionsArray: []
-  _pauseOptions:
-    pausedPlayer: 0
-  _player1CharacterData:
-    currentFrameData: 0
-    armor: 0
-    armorHitsRemaining: 0
-    invincibility: 0
-    standUp: 0
-  _player2CharacterData:
-    currentFrameData: 0
-    armor: 0
-    armorHitsRemaining: 0
-    invincibility: 0
-    standUp: 0
-  _characterDataOverrideOptions:
-    currentFrameDataOverrideOptionsArray: []
+  defaultFrameDelayScriptableObject: {fileID: 11400000, guid: d23594866ce2f7b4a8665967e77018fa, type: 2}
+  defaultGameSettingsScriptableObject: {fileID: 11400000, guid: 7372b617da2c65f4a9a4379f5ab11e07, type: 2}
+  inputDisplayScriptableObject: {fileID: 11400000, guid: 225efe731e7484a45bf88e97f7822413, type: 2}
+  aiMode: 0
+  aiThrowTechMode: 0
+  hitBoxDisplayMode: 0
+  hitBoxDisplayAlphaValue: 128
+  pausedPlayer: 0
+  trainingModeCornerTarget: 1
+  trainingModeCornerPositionXOffset:
+    _serializedValue: 12884901888
+  displayBattleGUI: 1
+  displayFrameAdvantage: 0
+  displayFrameDelay: 0
+  displayHitData: 0
+  displayInputs: 0
+  displayMoveData: 0
+  displayPing: 0
+  useCameraShake: 1
+  useCharacterPortraitShake: 1
+  on: On
+  off: Off
+  normalStringNumberAmount: 1000
+  normalStringNumberArray: []
+  normalPercentStringNumberAmount: 100
+  normalPercentStringNumberArray: []
+  normalFrameStringNumberAmount: 1000
+  normalFrameStringNumberArray: []
+  positiveStringNumberAmount: 1000
+  positiveStringNumberArray: []
+  negativeStringNumberAmount: 1000
+  negativeStringNumberArray: []
+--- !u!114 &8815325259804191878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8931345317380363267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ad28fb90a548f542952f851e7a72d8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockInputsOnChallengeComplete: 1
+  lockMovementsOnChallengeComplete: 1
+  nextChallengeDelayOnChallengeComplete:
+    _serializedValue: 8589934592
+  challengeActionCurrentColor:
+    serializedVersion: 2
+    rgba: 3237937152
+  challengeActionIncompleteColor:
+    serializedVersion: 2
+    rgba: 3221225727
+  challengeActionCompleteColor:
+    serializedVersion: 2
+    rgba: 3221258240
+  characterInfoReferencesScriptableObject: {fileID: 11400000, guid: 05c948d5e6affef468ab0440e87d04a3, type: 2}
+  player1ControlsScript: {fileID: 0}
+  currentChallengeNumber: 0
+  currentChallengeCompleted: 0
+  currentChallengeActionNumber: 0
+  highestChallengeActionNumber: 0
+  currentChallengeActionProgress:
+    _serializedValue: 0
+  currentChallengesList: []
+--- !u!114 &5496837945068158205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8931345317380363267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1c4a9569673154eb3fc137cab20dd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fontOptionsArray:
+  - filterMode: 0
+    fontArray:
+    - {fileID: 12800000, guid: d547ec0449c1a284187e857954752247, type: 3}
