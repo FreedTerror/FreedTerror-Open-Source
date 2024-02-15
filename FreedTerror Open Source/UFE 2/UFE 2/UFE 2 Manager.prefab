@@ -1,0 +1,124 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8931345317380363267
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 180798915838761831}
+  - component: {fileID: 8852560926340786208}
+  - component: {fileID: 8815325259804191878}
+  - component: {fileID: 5496837945068158205}
+  m_Layer: 0
+  m_Name: UFE 2 Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &180798915838761831
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8931345317380363267}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8852560926340786208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8931345317380363267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5156ee1f31790c4fa2a28ab7e07b72b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterInfoReferencesScriptableObject: {fileID: 11400000, guid: 05c948d5e6affef468ab0440e87d04a3, type: 2}
+  defaultFrameDelayScriptableObject: {fileID: 11400000, guid: d23594866ce2f7b4a8665967e77018fa, type: 2}
+  defaultGameSettingsScriptableObject: {fileID: 11400000, guid: 7372b617da2c65f4a9a4379f5ab11e07, type: 2}
+  inputDisplayScriptableObject: {fileID: 11400000, guid: 225efe731e7484a45bf88e97f7822413, type: 2}
+  aiMode: 0
+  aiThrowTechMode: 0
+  hitBoxDisplayMode: 0
+  hitBoxDisplayAlphaValue: 128
+  pausedPlayer: 0
+  trainingModeInputReplayControllerScriptableObject: {fileID: 11400000, guid: b8b6f938609b2b749b72c20b32e8f28a, type: 2}
+  trainingModeCornerPlayer: 1
+  trainingModeCornerPositionXOffset:
+    _serializedValue: 12884901888
+  displayBattleGUI: 1
+  displayFrameAdvantage: 0
+  displayFrameDelay: 0
+  displayHitData: 0
+  displayInputs: 0
+  displayMoveData: 0
+  displayPing: 0
+  useCameraShake: 1
+  useCharacterPortraitShake: 1
+  normalStringNumberAmount: 1000
+  normalStringNumberArray: []
+  normalPercentStringNumberAmount: 100
+  normalPercentStringNumberArray: []
+  normalFrameStringNumberAmount: 1000
+  normalFrameStringNumberArray: []
+  positiveStringNumberAmount: 1000
+  positiveStringNumberArray: []
+  negativeStringNumberAmount: 1000
+  negativeStringNumberArray: []
+--- !u!114 &8815325259804191878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8931345317380363267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ad28fb90a548f542952f851e7a72d8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextChallengeDelay:
+    _serializedValue: 8589934592
+  challengeActionCurrentColor:
+    serializedVersion: 2
+    rgba: 3237937152
+  challengeActionIncompleteColor:
+    serializedVersion: 2
+    rgba: 3221225727
+  challengeActionCompleteColor:
+    serializedVersion: 2
+    rgba: 3221258240
+  currentChallengeNumber: 0
+  currentChallengeCompleted: 0
+  currentChallengeActionNumber: 0
+  highestChallengeActionNumber: 0
+  currentChallengeActionProgress:
+    _serializedValue: 0
+  currentChallengeOptionsList: []
+--- !u!114 &5496837945068158205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8931345317380363267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1c4a9569673154eb3fc137cab20dd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  font: {fileID: 0}
+  filterMode: 0

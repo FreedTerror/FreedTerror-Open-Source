@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b736e3ebcde1ee458a6dc07dee9cf36, type: 3}
+  m_Name: Tutorial Challenges
+  m_EditorClassIdentifier: 
+  challengeOptionsArray:
+  - challengeName: Walking
+    challengeDescription: 
+    player1CharacterInfo: {fileID: 11400000, guid: 9bb7e60ab2ec9bd46826321be83f95da, type: 2}
+    player2CharacterInfo: {fileID: 11400000, guid: 9bb7e60ab2ec9bd46826321be83f95da, type: 2}
+    stageName: Training Room (Prefab)
+    onChallengeSuccessAction: 0
+    nextChallengeDelay:
+      _serializedValue: 0
+    aiOptions:
+      aiOpponent: 0
+    resetOptions:
+      resetIfOpponentNotStunned: 0
+      resetOnHit: 0
+      resetOnBlock: 0
+      resetOnParry: 0
+    player1GaugeOptionsArray: []
+    player2GaugeOptionsArray: []
+    challengeActionOptionsArray: []
+  - challengeName: Jumping
+    challengeDescription: 
+    player1CharacterInfo: {fileID: 11400000, guid: 9bb7e60ab2ec9bd46826321be83f95da, type: 2}
+    player2CharacterInfo: {fileID: 11400000, guid: 9bb7e60ab2ec9bd46826321be83f95da, type: 2}
+    stageName: Training Room (Prefab)
+    onChallengeSuccessAction: 0
+    nextChallengeDelay:
+      _serializedValue: 0
+    aiOptions:
+      aiOpponent: 0
+    resetOptions:
+      resetIfOpponentNotStunned: 0
+      resetOnHit: 0
+      resetOnBlock: 0
+      resetOnParry: 0
+    player1GaugeOptionsArray: []
+    player2GaugeOptionsArray: []
+    challengeActionOptionsArray: []
