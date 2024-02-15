@@ -1,5 +1,5 @@
 # FreedTerror Open Source
-Scripts and other various things I've made<br>
+Scripts and other various things I've made.<br>
 Import the folder into unity.<br>
 
 Optional Requirements (You can delete any scripts that cause errors):<br>
