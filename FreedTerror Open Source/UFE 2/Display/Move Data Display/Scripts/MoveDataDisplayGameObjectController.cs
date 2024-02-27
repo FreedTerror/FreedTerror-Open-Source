@@ -9,7 +9,7 @@ namespace FreedTerror.UFE2
 
         private void Update()
         {
-            UFE2Manager.SetGameObjectActive(moveDataDisplayGameObjectArray, UFE2Manager.instance.displayMoveData);
+            Utility.SetGameObjectActive(moveDataDisplayGameObjectArray, UFE2Manager.instance.displayMoveData);
         }
     }
 }

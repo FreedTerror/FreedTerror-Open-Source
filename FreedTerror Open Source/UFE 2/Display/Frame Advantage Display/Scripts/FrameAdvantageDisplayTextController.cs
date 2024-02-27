@@ -13,10 +13,10 @@ namespace FreedTerror.UFE2
 
         private void FixedUpdate()
         {
-            SetFrameAdvantage(UFE2Manager.GetControlsScript(player));
+            UpdateFrameAdvantage(UFE2Manager.GetControlsScript(player));
         }
 
-        private void SetFrameAdvantage(ControlsScript player)
+        private void UpdateFrameAdvantage(ControlsScript player)
         {
             if (player == null
                 || player != UFE2Manager.GetControlsScript(this.player)
@@ -31,9 +31,9 @@ namespace FreedTerror.UFE2
             {
                 if (player.opControlsScript.stunTime > 0)
                 {
-                    frameAdvantage++;
+                    frameAdvantage += 1;
 
-                    SetFrameAdvantageText();
+                    UpdateFrameAdvantageText();
                 }
                 else if (player.opControlsScript.stunTime == 0)
                 {
@@ -46,30 +46,28 @@ namespace FreedTerror.UFE2
                 {
                     frameAdvantage = 0;
 
-                    SetFrameAdvantageText();
+                    UpdateFrameAdvantageText();
                 }
                 else if (player.opControlsScript.stunTime == 0)
                 {
-                    frameAdvantage--;
+                    frameAdvantage -= 1;
 
-                    SetFrameAdvantageText();
+                    UpdateFrameAdvantageText();
                 }
             }
         }
 
-        private void SetFrameAdvantageText()
+        private void UpdateFrameAdvantageText()
         {
-            if (frameAdvantage == 0)
+            if (frameAdvantage >= 0
+                && frameAdvantageText != null)
             {
-                UFE2Manager.SetTextMessage(frameAdvantageText, UFE2Manager.GetNormalStringNumber(frameAdvantage));
+                frameAdvantageText.text = UFE2Manager.instance.cachedStringData.GetPositiveStringNumber(frameAdvantage);
             }
-            else if (frameAdvantage > 0)
+            else if (frameAdvantage < 0
+                && frameAdvantageText != null)
             {
-                UFE2Manager.SetTextMessage(frameAdvantageText, UFE2Manager.GetPositiveStringNumber(frameAdvantage));
-            }
-            else
-            {
-                UFE2Manager.SetTextMessage(frameAdvantageText, UFE2Manager.GetNegativeStringNumber(Mathf.Abs(frameAdvantage)));
+                frameAdvantageText.text = UFE2Manager.instance.cachedStringData.GetNegativeStringNumber(Mathf.Abs(frameAdvantage));
             } 
         }
     }

@@ -1,6 +1,6 @@
+using FPLibrary;
 using UnityEngine;
 using UnityEngine.UI;
-using FPLibrary;
 
 namespace FreedTerror.UFE2
 {
@@ -13,18 +13,11 @@ namespace FreedTerror.UFE2
 
         private void Update()
         {
-            SetLifePointsText(UFE2Manager.GetControlsScript(player));  
-        }
-
-        private void SetLifePointsText(ControlsScript player)
-        {
-            if (player == null
-                || player.myInfo == null)
+            if (UFE2Manager.GetControlsScript(player) != null
+                && lifePointsText != null)
             {
-                return;
+                lifePointsText.text = UFE2Manager.instance.cachedStringData.GetPositiveStringNumber((int)Fix64.Floor(UFE2Manager.GetControlsScript(player).currentLifePoints));
             }
-
-            UFE2Manager.SetTextMessage(lifePointsText, UFE2Manager.GetNormalStringNumber((int)FPMath.Floor(player.currentLifePoints)));
         }
     }
 }

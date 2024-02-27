@@ -12,23 +12,18 @@ namespace FreedTerror.UFE2
 
         private void Update()
         {
-            SetComboHitsText(UFE2Manager.GetControlsScript(player));
+            if (comboHitsText != null)
+            {
+                comboHitsText.text = UFE2Manager.instance.cachedStringData.GetPositiveStringNumber(UFE2Manager.GetControlsScript(player).opControlsScript.comboHits);
+            }
         }
 
         private void OnDisable()
         {
-            UFE2Manager.SetTextMessage(comboHitsText, UFE2Manager.GetNormalStringNumber(0));
-        }
-
-        private void SetComboHitsText(ControlsScript player)
-        {
-            if (player == null
-                || player.opControlsScript == null)
+            if (comboHitsText != null)
             {
-                return;
+                comboHitsText.text = UFE2Manager.instance.cachedStringData.GetPositiveStringNumber(0);
             }
-
-            UFE2Manager.SetTextMessage(comboHitsText, UFE2Manager.GetNormalStringNumber(player.opControlsScript.comboHits));
         }
     }
 }

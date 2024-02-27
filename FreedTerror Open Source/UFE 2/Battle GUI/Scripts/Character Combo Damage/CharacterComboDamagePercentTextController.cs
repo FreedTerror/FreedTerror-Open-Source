@@ -1,6 +1,6 @@
+using FPLibrary;
 using UnityEngine;
 using UnityEngine.UI;
-using FPLibrary;
 
 namespace FreedTerror.UFE2
 {
@@ -13,24 +13,19 @@ namespace FreedTerror.UFE2
 
         private void Update()
         {
-            SetComboDamagePercentText(UFE2Manager.GetControlsScript(player));
+            if (UFE2Manager.GetControlsScript(player) != null
+                && comboDamagePercentText != null)
+            {
+                comboDamagePercentText.text = UFE2Manager.instance.cachedStringData.GetPositivePercentStringNumber((int)Fix64.Round(UFE2Manager.GetControlsScript(player).opControlsScript.comboDamage / UFE2Manager.GetControlsScript(player).opControlsScript.myInfo.lifePoints * 100));
+            }
         }
 
         private void OnDisable()
         {
-            UFE2Manager.SetTextMessage(comboDamagePercentText, UFE2Manager.GetNormalPercentStringNumber(0));
-        }
-
-        private void SetComboDamagePercentText(ControlsScript player)
-        {
-            if (player == null
-                || player.opControlsScript == null
-                || player.opControlsScript.myInfo == null)
+            if (comboDamagePercentText != null)
             {
-                return;
+                comboDamagePercentText.text = UFE2Manager.instance.cachedStringData.GetPositivePercentStringNumber(0);
             }
-
-            UFE2Manager.SetTextMessage(comboDamagePercentText, UFE2Manager.GetNormalPercentStringNumber((int)FPMath.Round(player.opControlsScript.comboDamage / player.opControlsScript.myInfo.lifePoints * 100)));
         }
     }
 }

@@ -36,6 +36,7 @@ namespace FreedTerror.UFE2
 
             UFE.config.roundOptions.totalRounds = totalRounds;
             UFE.config.roundOptions._timer = timer;
+            UFE.SetTimer(UFE.config.roundOptions._timer);
 
             UFE.config.comboOptions.damageDeterioration = damageScaling;
             UFE.config.comboOptions.hitStunDeterioration = hitStunScaling;

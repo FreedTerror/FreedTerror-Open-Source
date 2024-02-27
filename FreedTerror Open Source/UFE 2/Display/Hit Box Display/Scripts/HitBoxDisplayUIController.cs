@@ -6,93 +6,121 @@ namespace FreedTerror.UFE2
     public class HitBoxDisplayUIController : MonoBehaviour
     {
         [SerializeField]
+        private HitBoxDisplayScriptableObject hitBoxDisplayScriptableObject;
+        [SerializeField]
         private Text hitBoxDisplayModeText;
-        private UFE2Manager.HitBoxDisplayMode previousHitBoxDisplayMode;
+        private HitBoxDisplayController.HitBoxDisplayMode previousHitBoxDisplayMode;
         [SerializeField]
         private Text hitBoxDisplayAlphaValueText;
         private int previousHitBoxDisplayAlphaValue;
 
         private void Start()
         {
-            previousHitBoxDisplayMode = UFE2Manager.instance.hitBoxDisplayMode;
-
-            if (hitBoxDisplayModeText != null)
+            if (hitBoxDisplayScriptableObject != null)
             {
-                hitBoxDisplayModeText.text = System.Enum.GetName(typeof(UFE2Manager.HitBoxDisplayMode), UFE2Manager.instance.hitBoxDisplayMode);
-            }
+                previousHitBoxDisplayMode = hitBoxDisplayScriptableObject.hitBoxDisplayMode;
 
-            previousHitBoxDisplayAlphaValue = UFE2Manager.instance.hitBoxDisplayAlphaValue;
+                if (hitBoxDisplayModeText != null)
+                {
+                    hitBoxDisplayModeText.text = Utility.AddSpacesBeforeCapitalLetters(System.Enum.GetName(typeof(HitBoxDisplayController.HitBoxDisplayMode), hitBoxDisplayScriptableObject.hitBoxDisplayMode));
+                }
 
-            if (hitBoxDisplayAlphaValueText != null)
-            {
-                hitBoxDisplayAlphaValueText.text = UFE2Manager.instance.hitBoxDisplayAlphaValue.ToString();
+                previousHitBoxDisplayAlphaValue = hitBoxDisplayScriptableObject.hitBoxDisplayAlphaValue;
+
+                if (hitBoxDisplayAlphaValueText != null)
+                {
+                    hitBoxDisplayAlphaValueText.text = hitBoxDisplayScriptableObject.hitBoxDisplayAlphaValue.ToString();
+                }
             }
         }
 
         private void Update()
         {
-            if (previousHitBoxDisplayMode != UFE2Manager.instance.hitBoxDisplayMode)
+            if (hitBoxDisplayScriptableObject != null)
             {
-                previousHitBoxDisplayMode = UFE2Manager.instance.hitBoxDisplayMode;
-
-                if (hitBoxDisplayModeText != null)
+                if (previousHitBoxDisplayMode != hitBoxDisplayScriptableObject.hitBoxDisplayMode)
                 {
-                    hitBoxDisplayModeText.text = System.Enum.GetName(typeof(UFE2Manager.HitBoxDisplayMode), UFE2Manager.instance.hitBoxDisplayMode);
+                    previousHitBoxDisplayMode = hitBoxDisplayScriptableObject.hitBoxDisplayMode;
+
+                    if (hitBoxDisplayModeText != null)
+                    {
+                        hitBoxDisplayModeText.text = System.Enum.GetName(typeof(HitBoxDisplayController.HitBoxDisplayMode), hitBoxDisplayScriptableObject.hitBoxDisplayMode);
+                    }
                 }
-            }
 
-            if (previousHitBoxDisplayAlphaValue != UFE2Manager.instance.hitBoxDisplayAlphaValue)
-            {
-                previousHitBoxDisplayAlphaValue = UFE2Manager.instance.hitBoxDisplayAlphaValue;
-
-                if (hitBoxDisplayAlphaValueText != null)
+                if (previousHitBoxDisplayAlphaValue != hitBoxDisplayScriptableObject.hitBoxDisplayAlphaValue)
                 {
-                    hitBoxDisplayAlphaValueText.text = UFE2Manager.instance.hitBoxDisplayAlphaValue.ToString();
+                    previousHitBoxDisplayAlphaValue = hitBoxDisplayScriptableObject.hitBoxDisplayAlphaValue;
+
+                    if (hitBoxDisplayAlphaValueText != null)
+                    {
+                        hitBoxDisplayAlphaValueText.text = hitBoxDisplayScriptableObject.hitBoxDisplayAlphaValue.ToString();
+                    }
                 }
             }
         }
 
         public void NextHitBoxDisplayMode()
         {
-            UFE2Manager.instance.hitBoxDisplayMode = Utility.GetNextEnum(UFE2Manager.instance.hitBoxDisplayMode);
+            if (hitBoxDisplayScriptableObject == null)
+            {
+                return;
+            }
+
+            hitBoxDisplayScriptableObject.hitBoxDisplayMode = Utility.GetNextEnum(hitBoxDisplayScriptableObject.hitBoxDisplayMode);
         }
 
         public void PreviousHitBoxDisplayMode()
         {
-            UFE2Manager.instance.hitBoxDisplayMode = Utility.GetPreviousEnum(UFE2Manager.instance.hitBoxDisplayMode);
+            if (hitBoxDisplayScriptableObject == null)
+            {
+                return;
+            }
+
+            hitBoxDisplayScriptableObject.hitBoxDisplayMode = Utility.GetPreviousEnum(hitBoxDisplayScriptableObject.hitBoxDisplayMode);
         }
 
         public void NextHitBoxDisplayAlphaValue()
         {
-            if (UFE2Manager.instance.hitBoxDisplayAlphaValue == 255)
+            if (hitBoxDisplayScriptableObject == null)
             {
-                UFE2Manager.instance.hitBoxDisplayAlphaValue = 32;
+                return;
+            }
+
+            if (hitBoxDisplayScriptableObject.hitBoxDisplayAlphaValue == 255)
+            {
+                hitBoxDisplayScriptableObject.hitBoxDisplayAlphaValue = 32;
 
                 return;
             }
 
-            UFE2Manager.instance.hitBoxDisplayAlphaValue += 32;
+            hitBoxDisplayScriptableObject.hitBoxDisplayAlphaValue += 32;
 
-            if (UFE2Manager.instance.hitBoxDisplayAlphaValue > 255)
+            if (hitBoxDisplayScriptableObject.hitBoxDisplayAlphaValue > 255)
             {
-                UFE2Manager.instance.hitBoxDisplayAlphaValue = 255;
+                hitBoxDisplayScriptableObject.hitBoxDisplayAlphaValue = 255;
             }
         }
 
         public void PreviousHitboxDisplayAlphaValue()
         {
-            if (UFE2Manager.instance.hitBoxDisplayAlphaValue == 32)
+            if (hitBoxDisplayScriptableObject == null)
             {
-                UFE2Manager.instance.hitBoxDisplayAlphaValue = 255;
+                return;
+            }
+
+            if (hitBoxDisplayScriptableObject.hitBoxDisplayAlphaValue == 32)
+            {
+                hitBoxDisplayScriptableObject.hitBoxDisplayAlphaValue = 255;
 
                 return;
             }
 
-            UFE2Manager.instance.hitBoxDisplayAlphaValue -= 32;
+            hitBoxDisplayScriptableObject.hitBoxDisplayAlphaValue -= 32;
 
-            if (UFE2Manager.instance.hitBoxDisplayAlphaValue < 32)
+            if (hitBoxDisplayScriptableObject.hitBoxDisplayAlphaValue < 32)
             {
-                UFE2Manager.instance.hitBoxDisplayAlphaValue = 32;
+                hitBoxDisplayScriptableObject.hitBoxDisplayAlphaValue = 32;
             }
         }
     }

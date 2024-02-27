@@ -117,20 +117,110 @@ namespace FreedTerror
 
         #endregion
 
+        #region Color32 Methods
+
+
+
+        #endregion
+
         #region Enum Methods
 
-        public static T GetNextEnum<T>(this T _enum) where T : Enum
+        public static T GetNextEnum<T>(this T value) where T : Enum
         {
-            T[] Arr = (T[])Enum.GetValues(_enum.GetType());
-            int j = Array.IndexOf<T>(Arr, _enum) + 1;
-            return (j >= Arr.Length) ? Arr[0] : Arr[j];
+            T[] array = (T[])Enum.GetValues(value.GetType());
+            int arrayIndex = Array.IndexOf(array, value) + 1;
+            return (arrayIndex >= array.Length) ? array[0] : array[arrayIndex];
         }
 
-        public static T GetPreviousEnum<T>(this T _enum) where T : Enum
+        public static T GetPreviousEnum<T>(this T value) where T : Enum
         {
-            T[] Arr = (T[])Enum.GetValues(_enum.GetType());
-            int j = Array.IndexOf<T>(Arr, _enum) - 1;
-            return (j < 0) ? Arr[Arr.Length - 1] : Arr[j];
+            T[] array = (T[])Enum.GetValues(value.GetType());
+            int arrayIndex = Array.IndexOf(array, value) - 1;
+            return (arrayIndex < 0) ? array[array.Length - 1] : array[arrayIndex];
+        }
+
+        #endregion
+
+        #region GameObject Methods
+
+        public static void SetGameObjectActive(GameObject[] gameObject, bool active)
+        {
+            if (gameObject == null)
+            {
+                return;
+            }
+
+            int length = gameObject.Length;
+            for (int i = 0; i < length; i++)
+            {
+                var item = gameObject[i];
+
+                if (item == null)
+                {
+                    continue;
+                }
+
+                item.SetActive(active);
+            }
+        }
+
+        public static void SetGameObjectActive(List<GameObject> gameObject, bool active)
+        {
+            if (gameObject == null)
+            {
+                return;
+            }
+
+            int count = gameObject.Count;
+            for (int i = 0; i < count; i++)
+            {
+                var item = gameObject[i];
+
+                if (item == null)
+                {
+                    continue;
+                }
+
+                item.SetActive(active);
+            }
+        }
+
+        public static void SetGameObjectChildrenActive(Transform transform, bool active)
+        {
+            if (transform == null)
+            {
+                return;
+            }
+
+            foreach (Transform child in transform)
+            {
+                if (child == null
+                    || child.gameObject == null)
+                {
+                    continue;
+                }
+
+                child.gameObject.SetActive(active);
+            }
+        }
+
+        public static void DestroyGameObjectChildren(Transform transform)
+        {
+            if (transform == null)
+            {
+                return;
+            }
+
+            foreach (Transform child in transform)
+            {
+                if (child == null
+                    || child.gameObject == null)
+                {
+                    continue;
+                }
+
+                UnityEngine.Object.Destroy(child.gameObject);
+            }
         }
 
         #endregion

@@ -1,6 +1,6 @@
+using UFE3D;
 using UnityEngine;
 using UnityEngine.UI;
-using UFE3D;
 
 namespace FreedTerror.UFE2
 {
@@ -40,11 +40,6 @@ namespace FreedTerror.UFE2
             UFE.OnMove += OnMove;
         }
 
-        private void Start()
-        {
-            SetAllGameObjectsActive(false);
-        }
-
         private void OnDisable()
         {
             UFE.OnMove -= OnMove;
@@ -52,53 +47,102 @@ namespace FreedTerror.UFE2
 
         private void OnMove(MoveInfo move, ControlsScript player)
         {
-            DisplayMoveData(player, move);
+            UpdateMoveDataDisplay(player, move);
         }
 
-        private void DisplayMoveData(ControlsScript player, MoveInfo moveInfo)
+        private void UpdateMoveDataDisplay(ControlsScript player, MoveInfo moveInfo)
         {
             if (player == null
                 || player != UFE2Manager.GetControlsScript(this.player)
-                ||moveInfo == null)
+                || moveInfo == null)
             {
                 return;
             }
 
-            UFE2Manager.SetTextMessage(moveNameText, moveInfo.moveName);
+            if (moveNameText != null)
+            {
+                moveNameText.text = moveInfo.moveName;
+            }
 
-            UFE2Manager.SetTextMessage(startupFramesText, UFE2Manager.GetNormalStringNumber(moveInfo.startUpFrames));
+            if (startupFramesText != null)
+            {
+                startupFramesText.text = UFE2Manager.instance.cachedStringData.GetPositiveStringNumber(moveInfo.activeFrames);
+            }
 
-            UFE2Manager.SetTextMessage(activeFramesText, UFE2Manager.GetNormalStringNumber(moveInfo.activeFrames));
+            if (activeFramesText != null)
+            {
+                activeFramesText.text = UFE2Manager.instance.cachedStringData.GetPositiveStringNumber(moveInfo.activeFrames);
+            }
 
-            UFE2Manager.SetTextMessage(recoveryFramesText, UFE2Manager.GetNormalStringNumber(moveInfo.recoveryFrames));
+            if (recoveryFramesText != null)
+            {
+                recoveryFramesText.text = UFE2Manager.instance.cachedStringData.GetPositiveStringNumber(moveInfo.recoveryFrames);
+            }
 
-            UFE2Manager.SetTextMessage(totalFramesText, UFE2Manager.GetNormalStringNumber(moveInfo.totalFrames));
+            if (totalFramesText != null)
+            {
+                totalFramesText.text = UFE2Manager.instance.cachedStringData.GetPositiveStringNumber(moveInfo.totalFrames);
+            }
 
             if (moveInfo.armorOptions.hitAbsorption <= 0)
             {
-                UFE2Manager.SetGameObjectActive(armorActiveFramesGameObject, false);
-                UFE2Manager.SetGameObjectActive(armorHitAbsorptionGameObject, false);
-                UFE2Manager.SetGameObjectActive(armorDamageAbsorptionGameObject, false);
+                if (armorActiveFramesGameObject != null)
+                {
+                    armorActiveFramesGameObject.SetActive(false);
+                }
+
+                if (armorHitAbsorptionGameObject != null)
+                {
+                    armorHitAbsorptionGameObject.SetActive(false);
+                }
+
+                if (armorDamageAbsorptionGameObject != null)
+                {
+                    armorDamageAbsorptionGameObject.SetActive(false);
+                }
             }
             else
             {
-                UFE2Manager.SetGameObjectActive(armorActiveFramesGameObject, true);
-                UFE2Manager.SetGameObjectActive(armorHitAbsorptionGameObject, true);
-                UFE2Manager.SetGameObjectActive(armorDamageAbsorptionGameObject, true);
+                if (armorActiveFramesBeginText != null)
+                {
+                    armorActiveFramesBeginText.text = UFE2Manager.instance.cachedStringData.GetPositiveStringNumber(moveInfo.armorOptions.activeFramesBegin);
+                }
 
-                UFE2Manager.SetTextMessage(armorActiveFramesBeginText, UFE2Manager.GetNormalStringNumber(moveInfo.armorOptions.activeFramesBegin));
-                UFE2Manager.SetTextMessage(armorActiveFramesText, UFE2Manager.GetNormalStringNumber(moveInfo.armorOptions.activeFramesEnds - moveInfo.armorOptions.activeFramesBegin));
-                UFE2Manager.SetTextMessage(armorActiveFramesEndsText, UFE2Manager.GetNormalStringNumber(moveInfo.armorOptions.activeFramesEnds));
-                UFE2Manager.SetTextMessage(armorHitAbsorptionText, UFE2Manager.GetNormalStringNumber(moveInfo.armorOptions.hitAbsorption));
-                UFE2Manager.SetTextMessage(armorDamageAbsorptionText, UFE2Manager.GetNormalPercentStringNumber(moveInfo.armorOptions.damageAbsorption));
+                if (armorActiveFramesText != null)
+                {
+                    armorActiveFramesText.text = UFE2Manager.instance.cachedStringData.GetPositiveStringNumber(moveInfo.armorOptions.activeFramesEnds - moveInfo.armorOptions.activeFramesBegin);
+                }
+
+                if (armorActiveFramesEndsText != null)
+                {
+                    armorActiveFramesEndsText.text = UFE2Manager.instance.cachedStringData.GetPositiveStringNumber(moveInfo.armorOptions.activeFramesEnds);
+                }
+
+                if (armorHitAbsorptionText != null)
+                {
+                    armorHitAbsorptionText.text = UFE2Manager.instance.cachedStringData.GetPositiveStringNumber(moveInfo.armorOptions.hitAbsorption);
+                }
+
+                if (armorDamageAbsorptionText != null)
+                {
+                    armorDamageAbsorptionText.text = UFE2Manager.instance.cachedStringData.GetPositivePercentStringNumber(moveInfo.armorOptions.damageAbsorption);
+                }
+
+                if (armorActiveFramesGameObject != null)
+                {
+                    armorActiveFramesGameObject.SetActive(true);
+                }
+
+                if (armorHitAbsorptionGameObject != null)
+                {
+                    armorHitAbsorptionGameObject.SetActive(true);
+                }
+
+                if (armorDamageAbsorptionGameObject != null)
+                {
+                    armorDamageAbsorptionGameObject.SetActive(true);
+                }
             }
-        }
-
-        private void SetAllGameObjectsActive(bool active)
-        {
-            UFE2Manager.SetGameObjectActive(armorActiveFramesGameObject, active);
-            UFE2Manager.SetGameObjectActive(armorHitAbsorptionGameObject, active);
-            UFE2Manager.SetGameObjectActive(armorDamageAbsorptionGameObject, active);
         }
     }
 }

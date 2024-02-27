@@ -17,7 +17,7 @@ namespace FreedTerror.UFE2
 
         private void OnEnable()
         {
-            UFE2Manager.SetGameObjectActive(animatorGameObjectArray, true);   
+            Utility.SetGameObjectActive(animatorGameObjectArray, true);   
         }
 
         private void Start()
@@ -42,7 +42,7 @@ namespace FreedTerror.UFE2
             }
         }
 
-        private static void SetAnimator(Animator animator)
+        private static void UpdateAnimator(Animator animator)
         {
             if (animator == null)
             {
@@ -71,7 +71,7 @@ namespace FreedTerror.UFE2
             int length = animator.Length;
             for (int i = 0; i < length; i++)
             {
-                SetAnimator(animator[i]);
+                UpdateAnimator(animator[i]);
             }
         }
 
@@ -95,7 +95,7 @@ namespace FreedTerror.UFE2
                 if (animator[i].GetCurrentAnimatorStateInfo(0).normalizedTime > 1
                     && animator[i].IsInTransition(0) == false)
                 {
-                    UFE2Manager.SetGameObjectActive(animatorGameObjectArray[i], false);
+                    //Utility.SetGameObjectActive(animatorGameObjectArray[i], false);
                 }
             }
 

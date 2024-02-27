@@ -10,20 +10,13 @@ namespace FreedTerror.UFE2
         [SerializeField]
         private Text characterNameText;
 
-        private void Start()
+        private void Update()
         {
-            SetCharacterNameText(UFE2Manager.GetControlsScript(player));
-        }
-
-        private void SetCharacterNameText(ControlsScript player)
-        {
-            if (player == null
-                || player.myInfo == null)
+            if (UFE2Manager.GetControlsScript(player) != null
+                && characterNameText != null)
             {
-                return;
+                characterNameText.text = UFE2Manager.GetControlsScript(player).myInfo.characterName;
             }
-
-            UFE2Manager.SetTextMessage(characterNameText, player.myInfo.characterName);
         }
     }
 }

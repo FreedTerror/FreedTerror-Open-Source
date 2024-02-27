@@ -23,11 +23,11 @@ namespace FreedTerror.UFE2
 
                 if (UFE.gameMode == item.gameMode)
                 {
-                    UFE2Manager.SetGameObjectActive(item.gameObjectArray, true);
+                    Utility.SetGameObjectActive(item.gameObjectArray, true);
                 }
                 else
                 {
-                    UFE2Manager.SetGameObjectActive(item.gameObjectArray, false);
+                    Utility.SetGameObjectActive(item.gameObjectArray, false);
                 }
             }
         }

@@ -9,21 +9,7 @@ namespace FreedTerror.UFE2
 
         private void Update()
         {
-            if (UFE.config != null)
-            {
-                if (UFE.config.networkOptions.applyFrameDelayOffline == true)
-                {
-                    UFE2Manager.SetGameObjectActive(frameDelayDisplayGameObjectArray, true);
-                }
-                else
-                {
-                    UFE2Manager.SetGameObjectActive(frameDelayDisplayGameObjectArray, UFE2Manager.instance.displayFrameDelay);
-                }
-            }
-            else
-            {
-                UFE2Manager.SetGameObjectActive(frameDelayDisplayGameObjectArray, UFE2Manager.instance.displayFrameDelay);
-            }
+            Utility.SetGameObjectActive(frameDelayDisplayGameObjectArray, UFE2Manager.instance.displayFrameDelay);
         }
     }
 }

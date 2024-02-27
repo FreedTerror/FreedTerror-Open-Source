@@ -21,11 +21,11 @@ namespace FreedTerror.UFE2
 
             if (UFE2Manager.GetControlsScript(player).opControlsScript.comboHits >= comboHits)
             {
-                UFE2Manager.SetGameObjectActive(gameObjectArray, true);
+                Utility.SetGameObjectActive(gameObjectArray, true);
             }
             else
             {
-                UFE2Manager.SetGameObjectActive(gameObjectArray, false);
+                Utility.SetGameObjectActive(gameObjectArray, false);
             }
         }
     }

@@ -22,15 +22,15 @@ namespace FreedTerror.UFE2
 
         private void Update()
         {
-            if (image == null)
+            if (image != null)
             {
-                return;
-            }
+                int length = imageFillAmountOptionsArray.Length;
+                for (int i = 0; i < length; i++)
+                {
+                    var item = imageFillAmountOptionsArray[i];
 
-            int length = imageFillAmountOptionsArray.Length;
-            for (int i = 0; i < length; i++)
-            {
-                UFE2Manager.SetGameObjectActive(imageFillAmountOptionsArray[i].gameObjectArray, Utility.IsInMinMaxRange(image.fillAmount, imageFillAmountOptionsArray[i].minFillAmount, imageFillAmountOptionsArray[i].maxFillAmount));
+                    Utility.SetGameObjectActive(item.gameObjectArray, Utility.IsInMinMaxRange(image.fillAmount, item.minFillAmount, item.maxFillAmount));
+                }
             }
         }
     }

@@ -12,20 +12,11 @@ namespace FreedTerror.UFE2
         private Image lifePointsImage;
         [SerializeField]
         private Image lifePointsHitLossImage;
-        private enum LossImageMode
-        {
-            Constant,
-            Custom1,
-        }
-        [SerializeField]
-        private LossImageMode lifePointsHitLossImageMode;
         [SerializeField]
         private float lifePointsHitLossImageSpeed;
         private float lifePointsHitLossImagePreviousAmount;
         [SerializeField]
         private Image lifePointsTotalLossImage;
-        [SerializeField]
-        private LossImageMode lifePointsTotalLossImageMode;
         [SerializeField]
         private float lifePointsTotalLossImageSpeed;
         private bool lifePointsTotalLossImageIsHit;
@@ -35,14 +26,14 @@ namespace FreedTerror.UFE2
         {
             float deltaTime = (float)UFE.fixedDeltaTime;
 
-            SetCharacterLifePointsImage(UFE2Manager.GetControlsScript(player));
+            UpdateLifePointsImage(UFE2Manager.GetControlsScript(player));
 
-            SetCharacterLifePointsHitLossImage(UFE2Manager.GetControlsScript(player), deltaTime);
+            UpdateLifePointsHitLossImage(UFE2Manager.GetControlsScript(player), deltaTime);
 
-            SetCharacterLifePointsTotalLossImage(UFE2Manager.GetControlsScript(player), deltaTime);
+            UpdateLifePointsTotalLossImage(UFE2Manager.GetControlsScript(player), deltaTime);
         }
 
-        private void SetCharacterLifePointsImage(ControlsScript player)
+        private void UpdateLifePointsImage(ControlsScript player)
         {
             if (player == null
                 || player.myInfo == null
@@ -54,7 +45,7 @@ namespace FreedTerror.UFE2
             lifePointsImage.fillAmount = (float)player.currentLifePoints / player.myInfo.lifePoints;
         }
 
-        private void SetCharacterLifePointsHitLossImage(ControlsScript player, float deltaTime)
+        private void UpdateLifePointsHitLossImage(ControlsScript player, float deltaTime)
         {
             if (player == null
                 || lifePointsImage == null
@@ -78,28 +69,19 @@ namespace FreedTerror.UFE2
                 lifePointsHitLossImagePreviousAmount = lifePointsImage.fillAmount;
             }
 
-            switch (lifePointsHitLossImageMode)
+            switch (player.currentSubState)
             {
-                case LossImageMode.Constant:
-                    lifePointsHitLossImage.fillAmount = Mathf.MoveTowards(lifePointsHitLossImage.fillAmount, lifePointsImage.fillAmount, lifePointsHitLossImageSpeed * deltaTime);
+                case SubStates.Stunned:
+                case SubStates.Blocking:
                     break;
 
-                case LossImageMode.Custom1:
-                    switch (player.currentSubState)
-                    {
-                        case SubStates.Stunned:
-                        case SubStates.Blocking:
-                            break;
-
-                        default:
-                            lifePointsHitLossImage.fillAmount = Mathf.MoveTowards(lifePointsHitLossImage.fillAmount, lifePointsImage.fillAmount, lifePointsHitLossImageSpeed * deltaTime);
-                            break;
-                    }
+                default:
+                    lifePointsHitLossImage.fillAmount = Mathf.MoveTowards(lifePointsHitLossImage.fillAmount, lifePointsImage.fillAmount, lifePointsHitLossImageSpeed * deltaTime);
                     break;
             }
         }
 
-        private void SetCharacterLifePointsTotalLossImage(ControlsScript player, float deltaTime)
+        private void UpdateLifePointsTotalLossImage(ControlsScript player, float deltaTime)
         {
             if (player == null
                 || lifePointsImage == null
@@ -113,33 +95,24 @@ namespace FreedTerror.UFE2
                 lifePointsTotalLossImage.fillAmount = lifePointsImage.fillAmount;
             }
 
-            switch (lifePointsTotalLossImageMode)
+            switch (player.currentSubState)
             {
-                case LossImageMode.Constant:
-                    lifePointsTotalLossImage.fillAmount = Mathf.MoveTowards(lifePointsTotalLossImage.fillAmount, lifePointsImage.fillAmount, lifePointsTotalLossImageSpeed * deltaTime);
+                case SubStates.Stunned:
+                case SubStates.Blocking:
+                    if (lifePointsTotalLossImageIsHit == false)
+                    {
+                        lifePointsTotalLossImageIsHit = true;
+
+                        lifePointsTotalLossImage.fillAmount = lifePointsTotalLossImageFillAmountOnFirstHit;
+                    }
                     break;
 
-                case LossImageMode.Custom1:
-                    switch (player.currentSubState)
-                    {
-                        case SubStates.Stunned:
-                        case SubStates.Blocking:
-                            if (lifePointsTotalLossImageIsHit == false)
-                            {
-                                lifePointsTotalLossImageIsHit = true;
+                default:
+                    lifePointsTotalLossImageIsHit = false;
 
-                                lifePointsTotalLossImage.fillAmount = lifePointsTotalLossImageFillAmountOnFirstHit;
-                            }
-                            break;
+                    lifePointsTotalLossImageFillAmountOnFirstHit = lifePointsImage.fillAmount;
 
-                        default:
-                            lifePointsTotalLossImageIsHit = false;
-
-                            lifePointsTotalLossImageFillAmountOnFirstHit = lifePointsImage.fillAmount;
-
-                            lifePointsTotalLossImage.fillAmount = Mathf.MoveTowards(lifePointsTotalLossImage.fillAmount, lifePointsImage.fillAmount, lifePointsTotalLossImageSpeed * deltaTime);
-                            break;
-                    }
+                    lifePointsTotalLossImage.fillAmount = Mathf.MoveTowards(lifePointsTotalLossImage.fillAmount, lifePointsImage.fillAmount, lifePointsTotalLossImageSpeed * deltaTime);
                     break;
             }
         }

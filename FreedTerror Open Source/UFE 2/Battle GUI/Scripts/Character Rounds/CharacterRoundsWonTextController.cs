@@ -12,17 +12,11 @@ namespace FreedTerror.UFE2
 
         private void Update()
         {
-            SetRoundsWonText(UFE2Manager.GetControlsScript(player));
-        }
-
-        private void SetRoundsWonText(ControlsScript player)
-        {
-            if (player == null)
+            if (UFE2Manager.GetControlsScript(player) != null
+                && roundsWonText != null)
             {
-                return;
+                roundsWonText.text = UFE2Manager.instance.cachedStringData.GetPositiveStringNumber(UFE2Manager.GetControlsScript(player).roundsWon);
             }
-
-            UFE2Manager.SetTextMessage(roundsWonText, UFE2Manager.GetNormalStringNumber(player.roundsWon));
         }
     }
 }

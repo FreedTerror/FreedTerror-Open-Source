@@ -5,160 +5,74 @@ namespace FreedTerror.UFE2
     [CreateAssetMenu(menuName = "FreedTerror/UFE 2/Display/Hit Box Display", fileName = "New Hit Box Display")]
     public class HitBoxDisplayScriptableObject : ScriptableObject
     {
-        public string hitBoxDisplayCirclePrefabPath = "Hit Box Display Circle Prefab";
-        public GameObject GetHitBoxDisplayCirclePrefab()
+        public HitBoxDisplayController.HitBoxDisplayMode hitBoxDisplayMode;
+        [Range(0, 255)]
+        public int hitBoxDisplayAlphaValue;
+
+        [SerializeField]
+        private string circlePrefabPath;
+        public GameObject GetCirclePrefab()
         {
-            return Resources.Load<GameObject>(hitBoxDisplayCirclePrefabPath);
-        }
-        public string hitBoxDisplayRectanglePrefabPath = "Hit Box Display Rectangle Prefab";
-        public GameObject GetHitBoxDisplayRectanglePrefab()
-        {
-            return Resources.Load<GameObject>(hitBoxDisplayRectanglePrefabPath);
+            return Resources.Load<GameObject>(circlePrefabPath);
         }
 
-        public Sprite hitBoxDisplayCircleFilledSprite;
-        public Sprite hitBoxDisplayRectangleFilledSprite;
+        [SerializeField]
+        private string rectanglePrefabPath;
+        public GameObject GetRectanglePrefab()
+        {
+            return Resources.Load<GameObject>(rectanglePrefabPath);
+        }
 
-        [Range(0, 100)]
-        public int hitBoxDisplayHitBoxesPoolSize = 30;
-        [Range(0, 100)]
-        public int hitBoxDisplayActiveHurtBoxesPoolSize = 30;
+        [SerializeField]
+        private string circleSpritePath;
+        public Sprite GetCircleSprite()
+        {
+            return Resources.Load<Sprite>(circleSpritePath);
+        }
+
+        [SerializeField]
+        private string rectangleSpritePath;
+        public Sprite GetRectangleSprite()
+        {
+            return Resources.Load<Sprite>(rectangleSpritePath);
+        }
 
         [System.Serializable]
-        public class CharacterBodyColliderOptions
+        public class ColliderOptions
         {
-            public Color32 colliderColor = new Color32(255, 255, 0, 255);
-            public int orderInLayerInfront = 10090;
-            public int orderInLayerBehind = -10030;
-            public bool disableCollider;
+            public Color32 colliderColor;
+            public int orderInLayerInfront;
+            public int orderInLayerBehind;
+
+            public ColliderOptions(
+                Color32 colliderColor,
+                int orderInLayerInfront,
+                int orderInLayerBehind)
+            {
+                this.colliderColor = colliderColor;
+                this.orderInLayerInfront = orderInLayerInfront;
+                this.orderInLayerBehind = orderInLayerBehind;
+            }
         }
-        public CharacterBodyColliderOptions characterBodyColliderOptions;
+        public ColliderOptions bodyColliderOptions = new ColliderOptions(new Color32(255, 255, 0, 255), 10090, -10030);
+        public ColliderOptions hitColliderOptions = new ColliderOptions(new Color32(255, 0, 0, 255), 10070, -10050);
+        public ColliderOptions noColliderOptions = new ColliderOptions(new Color32(0, 0, 255, 255), 10040, -10080);
+        public ColliderOptions throwColliderOptions = new ColliderOptions(new Color32(0, 128, 0, 255), 10080, -10040);
+        public ColliderOptions physicalInvincibleColliderOptions = new ColliderOptions(new Color32(255, 128, 255, 255), 10060, -10060);
+        public ColliderOptions projectileInvincibleColliderOptions = new ColliderOptions(new Color32(128, 0, 128, 255), 10050, -10070);
+        public ColliderOptions activeHitBoxColliderOptions = new ColliderOptions(new Color32(255, 0, 0, 255), 10100, -10000);
+        public ColliderOptions blockableAreaColliderOptions = new ColliderOptions(new Color32(255, 255, 255, 255), 10030, -10090);
 
-        [System.Serializable]
-        public class CharacterHitColliderOptions
+        public void UpdateColliderColorAlphaValues(byte alphaValue)
         {
-            public Color32 colliderColor = new Color32(255, 0, 0, 255);
-            public int orderInLayerInfront = 10070;
-            public int orderInLayerBehind = -10050;
-            public bool disableCollider;
-        }
-        public CharacterHitColliderOptions characterHitColliderOptions;
-
-        [System.Serializable]
-        public class CharacterThrowColliderOptions
-        {
-            public Color32 colliderColor = new Color32(0, 128, 0, 255);
-            public int orderInLayerInfront = 10080;
-            public int orderInLayerBehind = -10040;
-            public bool disableCollider;
-        }
-        public CharacterThrowColliderOptions characterThrowColliderOptions;
-
-        [System.Serializable]
-        public class CharacterPhysicalInvincibleColliderOptions
-        {
-            public Color32 colliderColor = new Color32(255, 128, 255, 255);
-            public int orderInLayerInfront = 10060;
-            public int orderInLayerBehind = -10060;
-            public bool disableCollider;
-        }
-        public CharacterPhysicalInvincibleColliderOptions characterPhysicalInvincibleColliderOptions;
-
-        [System.Serializable]
-        public class CharacterProjectileInvincibleColliderOptions
-        {
-            public Color32 colliderColor = new Color32(128, 0, 128, 255);
-            public int orderInLayerInfront = 10050;
-            public int orderInLayerBehind = -10070;
-            public bool disableCollider;
-        }
-        public CharacterProjectileInvincibleColliderOptions characterProjectileInvincibleColliderOptions;
-
-        [System.Serializable]
-        public class CharacterNoColliderOptions
-        {
-            public Color32 colliderColor = new Color32(0, 0, 255, 255);
-            public int orderInLayerInfront = 10040;
-            public int orderInLayerBehind = -10080;
-            public bool disableCollider;
-        }
-        public CharacterNoColliderOptions characterNoColliderOptions;
-
-        [System.Serializable]
-        public class CharacterActiveHurtBoxColliderOptions
-        {
-            public Color32 colliderColor = new Color32(255, 0, 0, 255);
-            public int orderInLayerInfront = 10100;
-            public int orderInLayerBehind = -10000;
-            public bool disableCollider;
-            public bool disableCharacterCollidersEqualToCharacterActiveHurtBoxColliders = true;
-            public bool disableCharacterBlockableAreaCollidersEqualToCharacterActiveHurtBoxCollider = true;
-        }
-        public CharacterActiveHurtBoxColliderOptions characterActiveHurtBoxColliderOptions;
-
-        [System.Serializable]
-        public class CharacterBlockableAreaColliderOptions
-        {
-            public Color32 colliderColor = new Color32(255, 255, 255, 255);
-            public int orderInLayerInfront = 10030;
-            public int orderInLayerBehind = -10090;
-            public bool disableCollider;
-            public bool disableCharacterCollidersEqualToCharacterBlockableAreaCollider = true;
-            public bool disableCharacterActiveHurtBoxCollidersEqualToCharacterBlockableAreaCollider;
-        }
-        public CharacterBlockableAreaColliderOptions characterBlockableAreaColliderOptions;
-
-        [System.Serializable]
-        public class ProjectileHitAreaColliderOptions
-        {
-            public Color32 colliderColor = new Color32(255, 0, 0, 255);
-            public int orderInLayerInfront = 10100;
-            public int orderInLayerBehind = -10000;
-            public bool disableCollider;
-        }
-        public ProjectileHitAreaColliderOptions projectileHitAreaColliderOptions;
-
-        [System.Serializable]
-        public class ProjectileOnlyColliderOptions
-        {
-            public Color32 colliderColor = new Color32(255, 128, 0, 255);
-            public int orderInLayerInfront = 10099;
-            public int orderInLayerBehind = -10001;
-            public bool disableCollider;
-        }
-        public ProjectileOnlyColliderOptions projectileOnlyColliderOptions;
-
-        [System.Serializable]
-        public class ProjectileBlockableAreaColliderOptions
-        {
-            public Color32 colliderColor = new Color32(255, 255, 255, 255);
-            public int orderInLayerInfront = 10030;
-            public int orderInLayerBehind = -10090;
-            public bool disableCollider;
-        }
-        public ProjectileBlockableAreaColliderOptions projectileBlockableAreaColliderOptions;
-
-        [System.Serializable]
-        public class ProjectileTotalHitsTextOptions
-        {
-            public int orderInLayer = 10110;
-        }
-        public ProjectileTotalHitsTextOptions projectileTotalHitsTextOptions;
-
-        public void SetAllColliderColorAlphaValue(byte alphaValue)
-        {
-            characterBodyColliderOptions.colliderColor.a = alphaValue;
-            characterHitColliderOptions.colliderColor.a = alphaValue;
-            characterThrowColliderOptions.colliderColor.a = alphaValue;
-            characterPhysicalInvincibleColliderOptions.colliderColor.a = alphaValue;
-            characterProjectileInvincibleColliderOptions.colliderColor.a = alphaValue;
-            characterNoColliderOptions.colliderColor.a = alphaValue;
-            characterActiveHurtBoxColliderOptions.colliderColor.a = alphaValue;
-            characterBlockableAreaColliderOptions.colliderColor.a = alphaValue;
-
-            projectileHitAreaColliderOptions.colliderColor.a = alphaValue;
-            projectileOnlyColliderOptions.colliderColor.a = alphaValue;
-            projectileBlockableAreaColliderOptions.colliderColor.a = alphaValue;
+            bodyColliderOptions.colliderColor.a = alphaValue;
+            hitColliderOptions.colliderColor.a = alphaValue;
+            throwColliderOptions.colliderColor.a = alphaValue;
+            physicalInvincibleColliderOptions.colliderColor.a = alphaValue;
+            projectileInvincibleColliderOptions.colliderColor.a = alphaValue;
+            noColliderOptions.colliderColor.a = alphaValue;
+            activeHitBoxColliderOptions.colliderColor.a = alphaValue;
+            blockableAreaColliderOptions.colliderColor.a = alphaValue;
         }
     }
 }

@@ -9,7 +9,7 @@ namespace FreedTerror.UFE2
 
         private void Update()
         {
-            UFE2Manager.SetGameObjectActive(frameAdvantageDisplayGameObjectArray, UFE2Manager.instance.displayFrameAdvantage);
+            Utility.SetGameObjectActive(frameAdvantageDisplayGameObjectArray, UFE2Manager.instance.displayFrameAdvantage);
         }
     }
 }

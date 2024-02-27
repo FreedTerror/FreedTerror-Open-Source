@@ -12,11 +12,11 @@ namespace FreedTerror.UFE2
         {
             if (UFE.gameMode == GameMode.ChallengeMode)
             {
-                UFE2Manager.SetGameObjectActive(challengeModeDisplayGameObjectArray, true);
+                Utility.SetGameObjectActive(challengeModeDisplayGameObjectArray, true);
             }
             else
             {
-                UFE2Manager.SetGameObjectActive(challengeModeDisplayGameObjectArray, false);
+                Utility.SetGameObjectActive(challengeModeDisplayGameObjectArray, false);
             }  
         }
     }

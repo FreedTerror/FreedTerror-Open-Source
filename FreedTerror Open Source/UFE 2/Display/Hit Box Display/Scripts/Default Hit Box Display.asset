@@ -12,95 +12,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26fce3fb131c28e479122eff9da97de9, type: 3}
   m_Name: Default Hit Box Display
   m_EditorClassIdentifier: 
-  hitBoxDisplayCirclePrefabPath: Hit Box Display Circle Prefab
-  hitBoxDisplayRectanglePrefabPath: Hit Box Display Rectangle Prefab
-  hitBoxDisplayCircleFilledSprite: {fileID: 21300000, guid: b44933aef4a8207418bfee2bfc01f10f,
-    type: 3}
-  hitBoxDisplayRectangleFilledSprite: {fileID: 21300000, guid: 69267b5a7fd183f43abea0a548213dba,
-    type: 3}
-  hitBoxDisplayHitBoxesPoolSize: 30
-  hitBoxDisplayActiveHurtBoxesPoolSize: 30
-  hitBoxDisplayPopcronGizmosLinesAmount: 16
-  characterBodyColliderOptions:
+  hitBoxDisplayMode: 1
+  hitBoxDisplayAlphaValue: 255
+  circlePrefabPath: Hit Box Display Circle Prefab
+  rectanglePrefabPath: Hit Box Display Rectangle Prefab
+  circleSpritePath: Hit Box Display Circle Sprite 2048 x 2048
+  rectangleSpritePath: Hit Box Display Rectangle Sprite 1 x 1
+  bodyColliderOptions:
     colliderColor:
       serializedVersion: 2
-      rgba: 2147549183
+      rgba: 4278255615
     orderInLayerInfront: 10090
     orderInLayerBehind: -10030
-    disableCollider: 0
-  characterHitColliderOptions:
+  hitColliderOptions:
     colliderColor:
       serializedVersion: 2
-      rgba: 2147483903
+      rgba: 4278190335
     orderInLayerInfront: 10070
     orderInLayerBehind: -10050
-    disableCollider: 0
-  characterThrowColliderOptions:
+  noColliderOptions:
     colliderColor:
       serializedVersion: 2
-      rgba: 2147516416
-    orderInLayerInfront: 10080
-    orderInLayerBehind: -10040
-    disableCollider: 0
-  characterPhysicalInvincibleColliderOptions:
-    colliderColor:
-      serializedVersion: 2
-      rgba: 2164228351
-    orderInLayerInfront: 10060
-    orderInLayerBehind: -10060
-    disableCollider: 0
-  characterProjectileInvincibleColliderOptions:
-    colliderColor:
-      serializedVersion: 2
-      rgba: 2155872384
-    orderInLayerInfront: 10050
-    orderInLayerBehind: -10070
-    disableCollider: 0
-  characterNoColliderOptions:
-    colliderColor:
-      serializedVersion: 2
-      rgba: 2164195328
+      rgba: 4294901760
     orderInLayerInfront: 10040
     orderInLayerBehind: -10080
-    disableCollider: 0
-  characterActiveHurtBoxColliderOptions:
+  throwColliderOptions:
     colliderColor:
       serializedVersion: 2
-      rgba: 2147483903
+      rgba: 4278222848
+    orderInLayerInfront: 10080
+    orderInLayerBehind: -10040
+  physicalInvincibleColliderOptions:
+    colliderColor:
+      serializedVersion: 2
+      rgba: 4294934783
+    orderInLayerInfront: 10060
+    orderInLayerBehind: -10060
+  projectileInvincibleColliderOptions:
+    colliderColor:
+      serializedVersion: 2
+      rgba: 4286578816
+    orderInLayerInfront: 10050
+    orderInLayerBehind: -10070
+  activeHitBoxColliderOptions:
+    colliderColor:
+      serializedVersion: 2
+      rgba: 4278190335
     orderInLayerInfront: 10100
     orderInLayerBehind: -10000
-    disableCollider: 0
-    disableCharacterCollidersEqualToCharacterActiveHurtBoxColliders: 1
-    disableCharacterBlockableAreaCollidersEqualToCharacterActiveHurtBoxCollider: 1
-  characterBlockableAreaColliderOptions:
+  blockableAreaColliderOptions:
     colliderColor:
       serializedVersion: 2
-      rgba: 2164260863
+      rgba: 4294967295
     orderInLayerInfront: 10030
     orderInLayerBehind: -10090
-    disableCollider: 0
-    disableCharacterCollidersEqualToCharacterBlockableAreaCollider: 1
-    disableCharacterActiveHurtBoxCollidersEqualToCharacterBlockableAreaCollider: 0
-  projectileHitAreaColliderOptions:
-    colliderColor:
-      serializedVersion: 2
-      rgba: 2147483903
-    orderInLayerInfront: 10100
-    orderInLayerBehind: -10000
-    disableCollider: 0
-  projectileOnlyColliderOptions:
-    colliderColor:
-      serializedVersion: 2
-      rgba: 2147516671
-    orderInLayerInfront: 10099
-    orderInLayerBehind: -10001
-    disableCollider: 0
-  projectileBlockableAreaColliderOptions:
-    colliderColor:
-      serializedVersion: 2
-      rgba: 2164260863
-    orderInLayerInfront: 10030
-    orderInLayerBehind: -10090
-    disableCollider: 0
-  projectileTotalHitsTextOptions:
-    orderInLayer: 10110

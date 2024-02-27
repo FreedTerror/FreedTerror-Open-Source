@@ -13,13 +13,10 @@ namespace FreedTerror.UFE2
         //GetPixels32(); //GC. Recommended if GC isnt an issue.
         //GetRawTextureData<Color32>(); //0 GC. Recommended if GC is an issue. Test for correct results before using.
 
-        private static readonly int paletteTextureID = Shader.PropertyToID("_PaletteTex");
-        private static readonly int swapTextureID = Shader.PropertyToID("_SwapTex");
-
         private static MaterialPropertyBlock _materialPropertyBlock;
         private static MaterialPropertyBlock materialPropertyBlock
         {
-            get 
+            get
             {
                 if (_materialPropertyBlock == null)
                 {
@@ -29,6 +26,9 @@ namespace FreedTerror.UFE2
                 return _materialPropertyBlock;
             }
         }
+
+        private static readonly int _PaletteTexShaderPropertyID = Shader.PropertyToID("_PaletteTex");
+        private static readonly int _SwapTexShaderPropertyID = Shader.PropertyToID("_SwapTex");
 
         public SpriteRenderer mySpriteRenderer;
         private Texture2D mySwapTexture;
@@ -136,7 +136,7 @@ namespace FreedTerror.UFE2
 
             if (mySpriteRenderer != null)
             {
-                Texture2D paletteTexture = (Texture2D)mySpriteRenderer.sharedMaterial.GetTexture(paletteTextureID);
+                Texture2D paletteTexture = (Texture2D)mySpriteRenderer.sharedMaterial.GetTexture(_PaletteTexShaderPropertyID);
                 if (paletteTexture != null)
                 {
                     int paletteTextureWidth = paletteTexture.width;
@@ -190,7 +190,7 @@ namespace FreedTerror.UFE2
                 return;
             }
 
-            Texture2D paletteTexture = (Texture2D)mySpriteRenderer.sharedMaterial.GetTexture(paletteTextureID);
+            Texture2D paletteTexture = (Texture2D)mySpriteRenderer.sharedMaterial.GetTexture(_PaletteTexShaderPropertyID);
             if (paletteTexture == null)
             {
                 return;
@@ -218,7 +218,7 @@ namespace FreedTerror.UFE2
             }
 
             mySpriteRenderer.GetPropertyBlock(materialPropertyBlock);
-            materialPropertyBlock.SetTexture(swapTextureID, mySwapTexture);
+            materialPropertyBlock.SetTexture(_SwapTexShaderPropertyID, mySwapTexture);
             mySpriteRenderer.SetPropertyBlock(materialPropertyBlock);
         }
 

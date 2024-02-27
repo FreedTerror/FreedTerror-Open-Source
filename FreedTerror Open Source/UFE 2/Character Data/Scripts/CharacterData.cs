@@ -12,7 +12,7 @@ namespace FreedTerror.UFE2
         public bool invincibility;
         public bool standUp;
 
-        public static void SetCharacterData(ControlsScript player, CharacterData characterData, CharacterData opponentCharacterData, OverrideOptions characterDataOverrideOptions)
+        public static void UpdateCharacterData(ControlsScript player, CharacterData characterData, CharacterData opponentCharacterData, OverrideOptions characterDataOverrideOptions)
         {
             if (player == null
                 || player.opControlsScript == null

@@ -11,13 +11,9 @@ namespace FreedTerror.UFE2
 
         private void Update()
         {
-            if (UFE.gameMode != GameMode.NetworkGame)
+            if (pingText != null)
             {
-                UFE2Manager.SetTextMessage(pingText, UFE2Manager.GetNormalStringNumber(0));
-            }
-            else
-            {
-                UFE2Manager.SetTextMessage(pingText, UFE2Manager.GetNormalStringNumber(UFE2Manager.GetOnlinePing()));
+                pingText.text = UFE2Manager.instance.cachedStringData.GetPositiveStringNumber(UFE2Manager.GetPing());
             }
         }
     }

@@ -11,20 +11,13 @@ namespace FreedTerror
 #if UNITY_EDITOR
     [MethodButton(
         "propertyPath",
-        "MethodName1",
+        nameof(MethodName2),
         nameof(MethodName2))]
     [SerializeField]
     private bool propertyPathMethodButtons;
 #endif
     */
 
-    /// <summary>
-    /// Usage:
-    /// <para>#if UNITY_EDITOR</para>
-    /// <para>[MethodButton("propertyPath", MethodName1, nameof(MethodName2))</para>
-    /// <para>[SerializeField] private bool propertyPathMethodButtons;</para>
-    /// <para>#endif</para>
-    /// </summary>
     public class MethodButtonAttribute : PropertyAttribute
     {
         public readonly string propertyPath = null;
@@ -39,7 +32,7 @@ namespace FreedTerror
 
 #if UNITY_EDITOR
     [CustomPropertyDrawer(typeof(MethodButtonAttribute))]
-    public class MethodButtonAttributeDrawer : PropertyDrawer
+    public class MethodButtonAttributePropertyDrawer : PropertyDrawer
     {
         private int buttonCount = 0;
         private readonly float buttonHeight = EditorGUIUtility.singleLineHeight;
@@ -55,8 +48,8 @@ namespace FreedTerror
             {
                 if (property == null)
                 {
-                    buttonCount++;
-                    EditorGUI.LabelField(GetButtonRect(position), GetTargetPropertyErrorMessage(methodButtonAttribute.propertyPath));
+                    buttonCount += 1;
+                    EditorGUI.LabelField(GetButtonRect(position), GetSerializedPropertyErrorMessage(methodButtonAttribute.propertyPath));
                     return;
                 }
 
@@ -65,7 +58,7 @@ namespace FreedTerror
                     MethodInfo methodInfo = property.serializedObject.targetObject.GetType().GetMethod(methodName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly);
                     if (methodInfo == null)
                     {
-                        buttonCount++;
+                        buttonCount += 1;
                         EditorGUI.LabelField(GetButtonRect(position), GetMethodInfoErrorMessage(methodName));
                         continue;
                     }
@@ -82,8 +75,8 @@ namespace FreedTerror
                 SerializedProperty targetProperty = property.serializedObject.FindProperty(methodButtonAttribute.propertyPath);
                 if (targetProperty == null)
                 {
-                    buttonCount++;
-                    EditorGUI.LabelField(GetButtonRect(position), GetTargetPropertyErrorMessage(methodButtonAttribute.propertyPath));
+                    buttonCount += 1;
+                    EditorGUI.LabelField(GetButtonRect(position), GetSerializedPropertyErrorMessage(methodButtonAttribute.propertyPath));
                     return;
                 }
 
@@ -92,12 +85,12 @@ namespace FreedTerror
                     MethodInfo methodInfo = GetTargetObjectOfProperty(targetProperty).GetType().GetMethod(methodName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly);
                     if (methodInfo == null)
                     {
-                        buttonCount++;
+                        buttonCount += 1;
                         EditorGUI.LabelField(GetButtonRect(position), GetMethodInfoErrorMessage(methodName));
                         continue;
                     }
 
-                    buttonCount++;
+                    buttonCount += 1;
                     if (GUI.Button(GetButtonRect(position), AddSpacesBeforeCapitalLetters(methodName)))
                     {
                         methodInfo.Invoke(GetTargetObjectOfProperty(targetProperty), null);
@@ -108,15 +101,15 @@ namespace FreedTerror
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
-            return EditorGUI.GetPropertyHeight(property, label, true) + (buttonHeight) * (buttonCount);
+            return EditorGUI.GetPropertyHeight(property, label, true) + buttonHeight * buttonCount;
         }
 
         private Rect GetButtonRect(Rect position)
         {
-            return new Rect(position.x, position.y + ((buttonHeight) * (buttonCount)), position.width, buttonHeight);
+            return new Rect(position.x, position.y + (buttonHeight * buttonCount), position.width, buttonHeight);
         }
 
-        private string GetTargetPropertyErrorMessage(string propertyPath)
+        private string GetSerializedPropertyErrorMessage(string propertyPath)
         {
             return nameof(MethodButtonAttribute) + " is unable to find " + nameof(SerializedProperty) + ": " + propertyPath;
         }

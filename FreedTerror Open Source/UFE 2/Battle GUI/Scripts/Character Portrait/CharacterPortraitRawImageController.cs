@@ -12,10 +12,10 @@ namespace FreedTerror.UFE2
 
         private void Start()
         {
-            SetCharacterPortrait(UFE2Manager.GetControlsScript(player));
+            UpdateCharacterPortrait(UFE2Manager.GetControlsScript(player));
         }
 
-        private void SetCharacterPortrait(ControlsScript player)
+        private void UpdateCharacterPortrait(ControlsScript player)
         {
             if (player == null
                 || player.myInfo == null)

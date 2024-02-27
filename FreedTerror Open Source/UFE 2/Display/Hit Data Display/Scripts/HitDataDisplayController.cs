@@ -1,7 +1,7 @@
+using FPLibrary;
+using UFE3D;
 using UnityEngine;
 using UnityEngine.UI;
-using UFE3D;
-using FPLibrary;
 
 namespace FreedTerror.UFE2
 {
@@ -48,11 +48,6 @@ namespace FreedTerror.UFE2
             UFE.OnBlock += OnParry;
         }
 
-        private void Start()
-        {
-            SetAllGameObjectActive(false);
-        }
-
         private void OnDisable()
         {
             UFE.OnHit -= OnHit;
@@ -62,20 +57,20 @@ namespace FreedTerror.UFE2
 
         private void OnHit(HitBox strokeHitBox, MoveInfo move, Hit hitInfo, ControlsScript player)
         {
-            SetHitDisplayData(player, hitInfo);
+            UpdateHitDisplayData(player, hitInfo);
         }
 
         private void OnBlock(HitBox strokeHitBox, MoveInfo move, Hit hitInfo, ControlsScript player)
         {
-            SetHitDisplayData(player, hitInfo);
+            UpdateHitDisplayData(player, hitInfo);
         }
 
         private void OnParry(HitBox strokeHitBox, MoveInfo move, Hit hitInfo, ControlsScript player)
         {
-            SetHitDisplayData(player, hitInfo);
+            UpdateHitDisplayData(player, hitInfo);
         }
 
-        private void SetHitDisplayData(ControlsScript player, Hit hit)
+        private void UpdateHitDisplayData(ControlsScript player, Hit hit)
         {
             if (player == null
                 || player != UFE2Manager.GetControlsScript(this.player)
@@ -84,19 +79,142 @@ namespace FreedTerror.UFE2
                 return;
             }
 
-            UFE2Manager.SetTextMessage(hitTypeText, UFE2Manager.GetStringFromEnum(hit.hitType, hit.hitConfirmType));
+            if (hitTypeText != null)
+            {
+                if (hit.hitConfirmType == HitConfirmType.Hit)
+                {
+                    hitTypeText.text = System.Enum.GetName(typeof(HitType), hit.hitConfirmType);
+                }
+                else if (hit.hitConfirmType == HitConfirmType.Throw)
+                {
+                    hitTypeText.text = System.Enum.GetName(typeof(HitConfirmType), hit.hitConfirmType);
+                }
+            }
 
-            UFE2Manager.SetTextMessage(damageOnHitText, GetStringFromDamageType(hit.damageType, hit._damageOnHit));
+            if (damageOnHitText != null)
+            {
+                damageOnHitText.text = GetStringFromDamageType(hit.damageType, hit._damageOnHit);
+            }
 
-            UFE2Manager.SetTextMessage(minDamageOnHitText, GetStringFromDamageType(hit.damageType, hit._minDamageOnHit));
+            if (minDamageOnHitText != null)
+            {
+                minDamageOnHitText.text = GetStringFromDamageType(hit.damageType, hit._minDamageOnHit);
+            }
 
-            UFE2Manager.SetTextMessage(damageOnBlockText, GetStringFromDamageType(hit.damageType, hit._damageOnBlock));
+            if (damageOnBlockText != null)
+            {
+                damageOnBlockText.text = GetStringFromDamageType(hit.damageType, hit._damageOnBlock);
+            }
 
-            UFE2Manager.SetTextMessage(frameAdvantageOnHitText, GetStringFromHitStunType(hit.hitStunType, GetHitStunValueFromHitOnHit(hit)));
+            if (frameAdvantageOnHitText != null)
+            {
+                frameAdvantageOnHitText.text = GetStringFromHitStunType(hit.hitStunType, GetHitStunValueFromHitOnHit(hit));
+            }
 
-            UFE2Manager.SetTextMessage(frameAdvantageOnBlockText, GetStringFromHitStunType(hit.hitStunType, GetHitStunValueFromHitOnBlock(hit)));
+            if (frameAdvantageOnBlockText != null)
+            {
+                frameAdvantageOnBlockText.text = GetStringFromHitStunType(hit.hitStunType, GetHitStunValueFromHitOnBlock(hit));
+            }
 
-            SetGameObjectActiveFromHitConfirmType(hit.hitConfirmType, hit);
+            if (hit.hitConfirmType == HitConfirmType.Hit)
+            {
+                if (armorBreakerGameObject != null)
+                {
+                    armorBreakerGameObject.SetActive(hit.armorBreaker);
+                }
+
+                if (unblockableGameObject != null)
+                {
+                    unblockableGameObject.SetActive(hit.unblockable);
+                }
+
+                if (forceStandGameObject != null)
+                {
+                    forceStandGameObject.SetActive(hit.forceStand);
+                }
+
+                if (otgGameObject != null)
+                {
+                    otgGameObject.SetActive(hit.downHit);
+                }
+
+                if (groundBounceGameObject != null)
+                {
+                    groundBounceGameObject.SetActive(hit.groundBounce);
+                }
+
+                if (wallBounceGameObject != null)
+                {
+                    wallBounceGameObject.SetActive(hit.wallBounce);
+                }
+
+                if (techableThrowGameObject != null)
+                {
+                    techableThrowGameObject.SetActive(false);
+                }
+
+                if (untechableThrowGameObject != null)
+                {
+                    untechableThrowGameObject.SetActive(false);
+                }
+            }
+            else if (hit.hitConfirmType == HitConfirmType.Throw)
+            {
+                if (armorBreakerGameObject != null)
+                {
+                    armorBreakerGameObject.SetActive(false);
+                }
+
+                if (unblockableGameObject != null)
+                {
+                    unblockableGameObject.SetActive(false);
+                }
+
+                if (forceStandGameObject != null)
+                {
+                    forceStandGameObject.SetActive(false);
+                }
+
+                if (otgGameObject != null)
+                {
+                    otgGameObject.SetActive(false);
+                }
+
+                if (groundBounceGameObject != null)
+                {
+                    groundBounceGameObject.SetActive(false);
+                }
+
+                if (wallBounceGameObject != null)
+                {
+                    wallBounceGameObject.SetActive(false);
+                }
+
+                if (hit.techable == true)
+                {
+                    if (techableThrowGameObject != null)
+                    {
+                        techableThrowGameObject.SetActive(true);
+                    }
+
+                    if (untechableThrowGameObject != null)
+                    {
+                        untechableThrowGameObject.SetActive(false);
+                    }
+                }
+                else
+                {
+                    if (techableThrowGameObject != null)
+                    {
+                        techableThrowGameObject.SetActive(false);
+                    }
+
+                    if (untechableThrowGameObject != null)
+                    {
+                        untechableThrowGameObject.SetActive(true);
+                    }
+                }
+            }
         }
 
         private Fix64 GetHitStunValueFromHitOnHit(Hit hit)
@@ -148,7 +266,7 @@ namespace FreedTerror.UFE2
                     value = 0;
                 }
 
-                return UFE2Manager.GetNormalPercentStringNumber((int)Fix64.Floor(value));
+                return UFE2Manager.instance.cachedStringData.GetPositivePercentStringNumber((int)Fix64.Floor(value));
             }
             else if (damageType == DamageType.Points)
             {
@@ -157,7 +275,7 @@ namespace FreedTerror.UFE2
                     value = 0;
                 }
 
-                return UFE2Manager.GetNormalStringNumber((int)Fix64.Floor(value));
+                return UFE2Manager.instance.cachedStringData.GetPositiveStringNumber((int)Fix64.Floor(value));
             }
 
             return "";
@@ -165,102 +283,14 @@ namespace FreedTerror.UFE2
 
         private string GetStringFromHitStunType(HitStunType hitStunType, Fix64 value)
         {
-            switch (hitStunType)
+            if (value >= 0)
             {
-                case HitStunType.FrameAdvantage:
-                    if (value == 0)
-                    {
-                        return UFE2Manager.GetNormalStringNumber((int)value);
-                    }
-                    if (value > 0)
-                    {
-                        return UFE2Manager.GetPositiveStringNumber((int)value);
-                    }
-                    else if (value < 0)
-                    {
-                        return UFE2Manager.GetNegativeStringNumber((int)Fix64.Abs(value));
-                    }
-                    return "";
-
-                case HitStunType.Frames:
-                    if (value < 0)
-                    {
-                        value = 0;
-                    }
-
-                    return UFE2Manager.GetNormalFrameStringNumber((int)value);
-
-                default:
-                    return "";
+                return UFE2Manager.instance.cachedStringData.GetPositiveStringNumber((int)value);
             }
-        }
-
-        private void SetGameObjectActiveFromHitConfirmType(HitConfirmType hitConfirmType, Hit hit)
-        {
-            if (hitConfirmType == HitConfirmType.Hit)
+            else
             {
-                UFE2Manager.SetGameObjectActive(armorBreakerGameObject, hit.armorBreaker);
-
-                UFE2Manager.SetGameObjectActive(unblockableGameObject, hit.unblockable);
-
-                UFE2Manager.SetGameObjectActive(forceStandGameObject, hit.forceStand);
-
-                UFE2Manager.SetGameObjectActive(otgGameObject, hit.downHit);
-
-                UFE2Manager.SetGameObjectActive(groundBounceGameObject, hit.groundBounce);
-
-                UFE2Manager.SetGameObjectActive(wallBounceGameObject, hit.wallBounce);
-
-                UFE2Manager.SetGameObjectActive(techableThrowGameObject, false);
-
-                UFE2Manager.SetGameObjectActive(untechableThrowGameObject, false);
+                return UFE2Manager.instance.cachedStringData.GetNegativeStringNumber((int)Fix64.Abs(value));
             }
-            else if (hitConfirmType == HitConfirmType.Throw)
-            {
-                UFE2Manager.SetGameObjectActive(armorBreakerGameObject, false);
-
-                UFE2Manager.SetGameObjectActive(unblockableGameObject, false);
-
-                UFE2Manager.SetGameObjectActive(forceStandGameObject, false);
-
-                UFE2Manager.SetGameObjectActive(otgGameObject, false);
-
-                UFE2Manager.SetGameObjectActive(groundBounceGameObject, false);
-
-                UFE2Manager.SetGameObjectActive(wallBounceGameObject, false);
-
-                if (hit.techable == true)
-                {
-                    UFE2Manager.SetGameObjectActive(techableThrowGameObject, true);
-
-                    UFE2Manager.SetGameObjectActive(untechableThrowGameObject, false);
-                }
-                else
-                {
-                    UFE2Manager.SetGameObjectActive(techableThrowGameObject, false);
-
-                    UFE2Manager.SetGameObjectActive(untechableThrowGameObject, true);
-                }
-            }
-        }
-
-        private void SetAllGameObjectActive(bool active)
-        {
-            UFE2Manager.SetGameObjectActive(armorBreakerGameObject, active);
-
-            UFE2Manager.SetGameObjectActive(unblockableGameObject, active);
-
-            UFE2Manager.SetGameObjectActive(forceStandGameObject, active);
-
-            UFE2Manager.SetGameObjectActive(otgGameObject, active);
-
-            UFE2Manager.SetGameObjectActive(groundBounceGameObject, active);
-
-            UFE2Manager.SetGameObjectActive(wallBounceGameObject, active);
-
-            UFE2Manager.SetGameObjectActive(techableThrowGameObject, active);
-
-            UFE2Manager.SetGameObjectActive(untechableThrowGameObject, active);
         }
     }
 }

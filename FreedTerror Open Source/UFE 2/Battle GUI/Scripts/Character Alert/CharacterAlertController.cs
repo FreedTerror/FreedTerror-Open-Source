@@ -80,8 +80,8 @@ namespace FreedTerror.UFE2
 
         private void Update()
         {
-            CharacterData.SetCharacterData(UFE.p1ControlsScript, player1CharacterData, player2CharacterData, characterDataOverrideOptions);
-            CharacterData.SetCharacterData(UFE.p2ControlsScript, player2CharacterData, player1CharacterData, characterDataOverrideOptions);
+            CharacterData.UpdateCharacterData(UFE.p1ControlsScript, player1CharacterData, player2CharacterData, characterDataOverrideOptions);
+            CharacterData.UpdateCharacterData(UFE.p2ControlsScript, player2CharacterData, player1CharacterData, characterDataOverrideOptions);
 
             Fix64 deltaTime = UFE.fixedDeltaTime;
 

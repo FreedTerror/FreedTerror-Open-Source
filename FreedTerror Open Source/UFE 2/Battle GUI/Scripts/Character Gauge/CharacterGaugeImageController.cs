@@ -14,20 +14,11 @@ namespace FreedTerror.UFE2
         private Image gaugeImage;
         [SerializeField]
         private Image gaugeCostLossImage;
-        private enum LossImageMode
-        {
-            Constant,
-            Custom1,
-        }
-        [SerializeField]
-        private LossImageMode gaugeCostLossImageMode;
         [SerializeField]
         private float gaugeCostLossImageSpeed;
         private float gaugeCostLossImagePreviousAmount;
         [SerializeField]
         private Image gaugeTotalLossImage;
-        [SerializeField]
-        private LossImageMode gaugeTotalLossImageMode;
         [SerializeField]
         private float gaugeTotalLossImageSpeed;
 
@@ -35,14 +26,14 @@ namespace FreedTerror.UFE2
         {
             float deltaTime = (float)UFE.fixedDeltaTime;
 
-            SetCharacterGaugeImage(UFE2Manager.GetControlsScript(player));
+            UpdateGaugeImage(UFE2Manager.GetControlsScript(player));
 
-            SetCharacterGaugeCostLossImage(UFE2Manager.GetControlsScript(player), deltaTime);
+            UpdateGaugeCostLossImage(UFE2Manager.GetControlsScript(player), deltaTime);
 
-            SetCharacterGaugeTotalLossImage(UFE2Manager.GetControlsScript(player), deltaTime);
+            UpdateGaugeTotalLossImage(UFE2Manager.GetControlsScript(player), deltaTime);
         }
 
-        private void SetCharacterGaugeImage(ControlsScript player)
+        private void UpdateGaugeImage(ControlsScript player)
         {
             if (player == null
                 || player.myInfo == null
@@ -54,7 +45,7 @@ namespace FreedTerror.UFE2
             gaugeImage.fillAmount = (float)player.currentGaugesPoints[(int)gaugeId] / player.myInfo.maxGaugePoints;
         }
 
-        private void SetCharacterGaugeCostLossImage(ControlsScript player, float deltaTime)
+        private void UpdateGaugeCostLossImage(ControlsScript player, float deltaTime)
         {
             if (player == null
                 || gaugeImage == null
@@ -78,29 +69,20 @@ namespace FreedTerror.UFE2
                 gaugeCostLossImagePreviousAmount = gaugeImage.fillAmount;
             }
 
-            switch (gaugeCostLossImageMode)
+            if (player.opControlsScript != null)
             {
-                case LossImageMode.Constant:
+                if (player.currentMove == null
+                    && player.currentSubState != SubStates.Stunned
+                    && player.currentSubState != SubStates.Blocking
+                    && player.opControlsScript.currentSubState != SubStates.Stunned
+                    && player.opControlsScript.currentSubState != SubStates.Blocking)
+                {
                     gaugeCostLossImage.fillAmount = Mathf.MoveTowards(gaugeCostLossImage.fillAmount, gaugeImage.fillAmount, gaugeCostLossImageSpeed * deltaTime);
-                    break;
-
-                case LossImageMode.Custom1:
-                    if (player.opControlsScript != null)
-                    {
-                        if (player.currentMove == null
-                            && player.currentSubState != SubStates.Stunned
-                            && player.currentSubState != SubStates.Blocking
-                            && player.opControlsScript.currentSubState != SubStates.Stunned
-                            && player.opControlsScript.currentSubState != SubStates.Blocking)
-                        {
-                            gaugeCostLossImage.fillAmount = Mathf.MoveTowards(gaugeCostLossImage.fillAmount, gaugeImage.fillAmount, gaugeCostLossImageSpeed * deltaTime);
-                        }
-                    }
-                    break;
+                }
             }
         }
 
-        private void SetCharacterGaugeTotalLossImage(ControlsScript player, float deltaTime)
+        private void UpdateGaugeTotalLossImage(ControlsScript player, float deltaTime)
         {
             if (player == null
                 || gaugeImage == null
@@ -114,25 +96,16 @@ namespace FreedTerror.UFE2
                 gaugeTotalLossImage.fillAmount = gaugeImage.fillAmount;
             }
 
-            switch (gaugeTotalLossImageMode)
+            if (player.opControlsScript != null)
             {
-                case LossImageMode.Constant:
+                if (player.currentMove == null
+                    && player.currentSubState != SubStates.Stunned
+                    && player.currentSubState != SubStates.Blocking
+                    && player.opControlsScript.currentSubState != SubStates.Stunned
+                    && player.opControlsScript.currentSubState != SubStates.Blocking)
+                {
                     gaugeTotalLossImage.fillAmount = Mathf.MoveTowards(gaugeTotalLossImage.fillAmount, gaugeImage.fillAmount, gaugeTotalLossImageSpeed * deltaTime);
-                    break;
-
-                case LossImageMode.Custom1:
-                    if (player.opControlsScript != null)
-                    {
-                        if (player.currentMove == null
-                            && player.currentSubState != SubStates.Stunned
-                            && player.currentSubState != SubStates.Blocking
-                            && player.opControlsScript.currentSubState != SubStates.Stunned
-                            && player.opControlsScript.currentSubState != SubStates.Blocking)
-                        {
-                            gaugeTotalLossImage.fillAmount = Mathf.MoveTowards(gaugeTotalLossImage.fillAmount, gaugeImage.fillAmount, gaugeTotalLossImageSpeed * deltaTime);
-                        }
-                    }
-                    break;
+                }
             }
         }     
     }

@@ -17,11 +17,11 @@ namespace FreedTerror.UFE2
                 || UFE2Manager.GetCharacterInfo(player) == null
                 || characterInfo.characterName != UFE2Manager.GetCharacterInfo(player).characterName)
             {
-                UFE2Manager.SetGameObjectActive(gameObjectArray, false);
+                Utility.SetGameObjectActive(gameObjectArray, false);
             }
             else if (characterInfo.characterName == UFE2Manager.GetCharacterInfo(player).characterName)
             {
-                UFE2Manager.SetGameObjectActive(gameObjectArray, true);
+                Utility.SetGameObjectActive(gameObjectArray, true);
             }
         }
     }

@@ -1,6 +1,6 @@
+using FPLibrary;
 using UnityEngine;
 using UnityEngine.UI;
-using FPLibrary;
 
 namespace FreedTerror.UFE2
 {
@@ -13,18 +13,11 @@ namespace FreedTerror.UFE2
 
         private void Update()
         {
-            SetLifePointsText(UFE2Manager.GetControlsScript(player));  
-        }
-
-        private void SetLifePointsText(ControlsScript player)
-        {
-            if (player == null
-                || player.myInfo == null)
+            if (UFE2Manager.GetControlsScript(player) != null
+                && lifePointsPercentText != null)
             {
-                return;
+                lifePointsPercentText.text = UFE2Manager.instance.cachedStringData.GetPositivePercentStringNumber((int)Fix64.Floor(UFE2Manager.GetControlsScript(player).currentLifePoints / UFE2Manager.GetControlsScript(player).myInfo.lifePoints * 100));
             }
-
-            UFE2Manager.SetTextMessage(lifePointsPercentText, UFE2Manager.GetNormalPercentStringNumber((int)Fix64.Floor(player.currentLifePoints / player.myInfo.lifePoints * 100)));
         }
     }
 }

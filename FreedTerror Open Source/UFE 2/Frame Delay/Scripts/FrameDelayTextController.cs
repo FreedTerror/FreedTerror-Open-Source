@@ -10,7 +10,10 @@ namespace FreedTerror.UFE2
 
         private void Update()
         {
-            UFE2Manager.SetTextMessage(frameDelayText, UFE2Manager.GetNormalFrameStringNumber(UFE2Manager.GetFrameDelay()));
+            if (frameDelayText != null)
+            {
+                frameDelayText.text = UFE2Manager.instance.cachedStringData.GetPositiveStringNumber(UFE2Manager.GetFrameDelay());
+            }
         }
     }
 }

@@ -10,22 +10,10 @@ namespace FreedTerror.UFE2
 
         private void Update()
         {
-            SetRoundsWonText();
-        }
-
-        private void SetRoundsWonText()
-        {
-            UFE2Manager.SetTextMessage(roundsWonText, UFE2Manager.GetNormalStringNumber(GetNumberOfPossibleRoundWins()));
-        }
-
-        private static int GetNumberOfPossibleRoundWins()
-        {
-            if (UFE.config == null)
+            if (roundsWonText != null)
             {
-                return 0;
+                roundsWonText.text = UFE2Manager.instance.cachedStringData.GetPositiveStringNumber(UFE2Manager.GetNumberOfPossibleRoundWins());
             }
-
-            return (UFE.config.roundOptions.totalRounds + 1) / 2;
         }
     }
 }
